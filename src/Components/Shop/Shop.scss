@@ -1,0 +1,54 @@
+.shop{
+    margin-top: 7rem;
+}
+.firstDiv{
+    height: 700px;
+    margin-top: -13px;
+    width: 100%;
+    // position: relative;
+    // z-index: -30;
+    text-align: center;
+    // background-image: url("https://img.freepik.com/free-vector/flat-sale-banner-with-photo_23-2149026968.jpg?t=st=1654182552~exp=1654183152~hmac=655703c14aac2066639a10fd75fa8cb408b8afdf6b3ec08c222b2a1c85a3aa89&w=1380");
+}
+.shopCaro{
+    width: 70vw;
+    height: 40rem;
+}
+.watchshop{
+    text-align: center;
+    padding: 15rem;
+}
+.secondDiv{
+    position: absolute;
+    z-index: -1;
+    margin-left: 15rem;
+    height: 2200px;
+}
+.bg-image {
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .bg-text {
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.4); 
+    color: white;
+    font-weight: bold;
+    border: 3px solid #f1f1f1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+  }
+  .carosual{
+      position: relative;
+      z-index: -1;
+  }

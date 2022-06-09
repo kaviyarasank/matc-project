@@ -1,0 +1,66 @@
+  .navbar {
+    width: 100%;
+    // min-height: 10vh;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    background: #ffffff;
+  }
+  
+  .navbar .nav-links {
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+  }
+  
+  .navbar .nav-links>a{
+    font-size: 16px;
+    font-family: "Josefin Sans",sans-serif;
+    color: #141517;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .login-icon{
+      font-size: 35px !important;
+  }
+  .hide {
+    display: none;
+  }
+      
+  .login-icon:hover + .hide {
+    display: block;
+    margin-top: 3rem;
+    margin-left: -2rem;
+    color: red;
+  }
+  .login-div{
+    float: right;
+    margin: 10px 80px;
+    display: flex;
+  }
+  .logoImage{
+      margin: 15px 0px 0px 100px;
+  }
+  .navbar-header{
+    border: 1px solid #ddd;
+    height: 100px;
+    position: fixed;
+    top:0; left:0;
+    width: 100%; 
+    background-color: #ffffff;
+    z-index: 1;
+  }
+  .cartLength{
+    background: red;
+    height: 26px;
+    width: 26px;
+    color: white;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .carticon{
+    margin-left: -3px;
+  }

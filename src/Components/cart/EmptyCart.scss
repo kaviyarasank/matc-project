@@ -1,0 +1,31 @@
+.EmptymainDiv{
+    margin-top: 6rem;
+    background: #f1efef;
+    height: 100vh;
+}
+.emptyImage{
+    margin-top: 5rem;
+    margin-left: 50rem;
+}
+.emptyText{
+    text-align: center;
+}
+.emptyPara{
+    text-align: center;
+    font-weight: 500;
+    color: brown;
+}
+.emptyButton{
+    margin-left: 53rem;
+    color: #ffffff;
+    border-radius: 10px;
+    width: 10%;
+    border: none;
+    background: linear-gradient(to left, #ff2020 50%, rgb(57, 209, 57) 50%) right;
+    background-size: 200%;
+    transition: .5s ease-out;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+.emptyButton:hover{
+    background-position: left;
+}

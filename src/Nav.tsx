@@ -6,6 +6,8 @@ import { AiOutlineLogout } from 'react-icons/ai';
 import timezone from "./assets/timezone.png";
 import { getLocalStorageValuesBoolean } from "./Helper/localStore";
 import { useSelector } from "react-redux";
+import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
+import { FaStore } from "react-icons/fa";
 
 function Navigation() {
 
@@ -28,13 +30,22 @@ function Navigation() {
               <Link to="/shop">Shop</Link>
               <Link to="/about">About</Link>
               <Link to="/contact">Contact</Link>
+              
            </ul>
         </div>
         <div className="login-div">
         <p className="cartLength">{cart?.length}</p>
             <Link to="/cart" className="login-icon carticon"><BsCart3/></Link>
-            <button className="login-icon font-out ms-1 bg-light border-0" onClick={handleLogout}><AiOutlineLogout/> </button>
-            <div className="hide">LogOut</div>
+              <FaStore className="store"/>
+            <NavDropdown title="" id="basic-nav-dropdown" className="dropNav">
+            <div className="row d-flex">
+              <Link to="/likedItems" className="dropText logoutbtn text-center text-decoration-none">LikedList</Link>
+              <Link to="/likedItems" className="dropText logoutbtn text-center text-decoration-none">Profile</Link>
+              </div>
+              <div className="row d-flex">
+              <button  className="dropText border-0 bg-light logoutbtn" onClick={handleLogout}>Logout <AiOutlineLogout/></button>
+              </div>
+            </NavDropdown>
             </div>       
               </div>
   );

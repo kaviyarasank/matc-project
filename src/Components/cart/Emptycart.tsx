@@ -9,7 +9,7 @@ function Empty(){
     return(
         <div className="EmptymainDiv">
             <div className="emptysecDiv">
-        <img src="https://codescandy.com/coach/rtl/assets/images/bag.svg" alt="" className="emptyImage"/>
+        <img src="https://codescandy.com/coach/rtl/assets/images/bag.svg" alt="" className="mx-auto text-center d-block"/>
         <h1 className="emptyText mt-4">Your shopping cart is empty</h1>
         <p className="emptyPara mt-3">
 Return to the store to add items for your delivery slot. <br/>

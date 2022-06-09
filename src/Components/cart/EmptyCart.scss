@@ -1,11 +1,9 @@
 .EmptymainDiv{
-    margin-top: 6rem;
-    background: #f1efef;
+    margin-top: 10rem;
     height: 100vh;
 }
 .emptyImage{
     margin-top: 5rem;
-    margin-left: 50rem;
 }
 .emptyText{
     text-align: center;
@@ -16,7 +14,8 @@
     color: brown;
 }
 .emptyButton{
-    margin-left: 53rem;
+   margin: auto;
+   display: block;
     color: #ffffff;
     border-radius: 10px;
     width: 10%;

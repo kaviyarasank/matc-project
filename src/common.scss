@@ -13,7 +13,12 @@
     justify-content: space-around;
     list-style: none;
   }
-  
+  .nav-links>a:focus{
+background-color: rgb(255, 111, 111);
+height: 25px;
+text-decoration: none;
+width: auto;
+  }
   .navbar .nav-links>a{
     font-size: 16px;
     font-family: "Josefin Sans",sans-serif;
@@ -63,4 +68,23 @@
   }
   .carticon{
     margin-left: -3px;
+  }
+  .logoutbtn{
+    height: 30px;
+    width: 85%;
+    margin: auto;
+  }
+  .store{
+    font-size: 30px;
+    margin-left: 16px;
+    color: red;
+    margin-top: 16px;
+  }
+  .store:hover{
+    color:greenyellow ;
+  }
+  .dropNav{
+    margin-left: -35px;
+    margin-top: 5px;
+    color: red;
   }

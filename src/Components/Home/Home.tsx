@@ -13,18 +13,30 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../Loader/loader";
 import { addToCart } from "../../Redux/CardAction";
 import { v4 as uuidv4 } from 'uuid';
+import { likeState } from "../../Redux/LikeAction";
 
 function Home() {
     let navigate = useNavigate();
     const dispatch = useDispatch<AppDispatch>();
     const [loading, setLoading] = useState(false);
-    const [like,setLike] = useState(false);
-
+    const[like, setLike] = useState(false);
     const playerList = useSelector((state: any) => state.team.playerList);
     const unique_id = uuidv4();
-    const cart = useSelector((state: any) => state.cart);
+    const cart = useSelector((state: any) => state?.like);
     let res = playerList?.data?.results;
-    console.log("playerList", unique_id)
+    const likeStatess = cart?.map((like:any)=>{
+        return like.like
+    })
+    console.log("response-->",likeStatess)
+
+useEffect(()=>{
+if(likeStatess.length > 0){
+setLike(true)
+}else{
+    setLike(false);
+}
+},[likeStatess.length])
+
     const fetch = useCallback(
         () => {
             try {
@@ -67,7 +79,6 @@ function Home() {
     );
 
     const handleAdd = (product: any) => {
-        setLike(true);
         console.log("product", product)
         let cartProduct = {
             ...product,
@@ -81,6 +92,27 @@ function Home() {
           window.scrollTo(0, 0)
       }, [])
 
+
+    const addLikes = useCallback(
+        (product: any) => {
+            try {
+                dispatch(likeState(product));
+            } catch (err) {
+                console.log(err);
+            }
+        },
+        [dispatch]
+    );
+
+
+const handleLike=(data:any)=>{
+    let cartProduct = {
+        ...data,
+        id: unique_id,
+        like: true
+    }
+    addLikes(cartProduct);
+}
     return (
         <div className="Home">
             <div className="home-shopDiv">
@@ -110,6 +142,7 @@ function Home() {
                                         image={data.image}
                                         price={data.price_string?.slice(0, 10)}
                                         addtocarts={() => handleAdd(data)}
+                                        value={data?.stars}
                                     />
                                 </div>
                             ))}
@@ -124,12 +157,14 @@ function Home() {
                                 {res && res?.length > 0 && res.map((data: any) => (
                                     <div className="col-4">
                                         <SecondCard
-                                            // likeButton={handleLike}
+                                            likeButton={()=>handleLike(data)}
                                             name={data.name?.slice(0, 30)}
                                             image={data.image}
                                             price={data.price_string?.slice(0, 10)}
                                             addtocart={() => handleAdd(data)}
-                                            like={like}
+                                            value={data?.stars}
+                                            likes={like}
+                                            id={data?.id}
                                         />
                                     </div>
                                 ))}

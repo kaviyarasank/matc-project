@@ -1,8 +1,10 @@
 import { Card, CardImg, CardText, CardBody,
   CardTitle, Button } from 'reactstrap';
   import "./card.scss"
+  import Rating from '@mui/material/Rating';
 
 interface data{
+value: number,
 name:string,
 price:string,
 image:string,
@@ -15,6 +17,11 @@ const CardComponent = (props:data) => {
       <Card className='card-box'>
         <CardBody className='cardbodybox'>
         <CardImg  src={props.image} alt="Card image cap" className='cardimages'/>
+        <Rating
+  name="simple-controlled"
+  value={props.value}
+ className="rating"
+/>
           <Button className='cardButton' onClick={props.addtocarts}>Add To Cart</Button>
         </CardBody>
       

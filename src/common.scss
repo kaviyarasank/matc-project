@@ -14,10 +14,13 @@
     list-style: none;
   }
   .nav-links>a:focus{
-background-color: rgb(255, 111, 111);
+background-color: rgb(246, 27, 27);
 height: 25px;
+color: aliceblue !important;
 text-decoration: none;
-width: auto;
+width: 15%;
+text-align: center;
+border-radius: 10px;
   }
   .navbar .nav-links>a{
     font-size: 16px;

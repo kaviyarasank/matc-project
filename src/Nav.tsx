@@ -40,7 +40,8 @@ function Navigation() {
             <NavDropdown title="" id="basic-nav-dropdown" className="dropNav">
             <div className="row d-flex">
               <Link to="/likedItems" className="dropText logoutbtn text-center text-decoration-none">LikedList</Link>
-              <Link to="/likedItems" className="dropText logoutbtn text-center text-decoration-none">Profile</Link>
+              <Link to="/profile" className="dropText logoutbtn text-center text-decoration-none">Profile</Link>
+              <Link to="/Tracking" className="dropText logoutbtn text-center text-decoration-none">Track Your Order</Link>
               </div>
               <div className="row d-flex">
               <button  className="dropText border-0 bg-light logoutbtn" onClick={handleLogout}>Logout <AiOutlineLogout/></button>

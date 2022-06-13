@@ -2,13 +2,17 @@ import "./Cart.scss";
 import {useLocation, useNavigate} from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../Redux/Store";
-import { clear, decrement, increament } from "../../Redux/CardAction";
-import { useEffect, useState } from "react";
+import { clear, clearCart, decrement, increament } from "../../Redux/CardAction";
+import { useCallback, useEffect, useState } from "react";
 import { cartTotalPriceSelector } from "./cartTotal";
 import { MdAutoDelete } from 'react-icons/md';
 import Empty from "./Emptycart";
 import { Modal, ModalBody } from "reactstrap";
 import { AiOutlineCloseSquare } from "react-icons/ai";
+import StripeCheckout from 'react-stripe-checkout';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 function Cart(){
@@ -26,8 +30,13 @@ function Cart(){
     const handleminus=(id:any)=>{
       dispatch(decrement(id));
     }
+    const notify = () => toast.success('Payment Successfull', {
+      className: 'toast-success'
+    });
     const totalPrice = useSelector(cartTotalPriceSelector);
     console.log("totalPrice",cart)
+
+    localStorage.setItem("cart", JSON.stringify(cart));
     const handleClear=(id:any)=>{
       dispatch(clear(id))
     }
@@ -35,15 +44,62 @@ function Cart(){
     const toggle = () => {
         setModal(!modal);
     }
+
+    const StripeCheckoutButton = (price:any) => {
+      const priceForStripe = price * 100;
+      const publishableKey = 'pk_test_sLUqHXtqXOkwSdPosC8ZikQ800snMatYMb';
+  
+      const allClear = useCallback(
+        () => {
+            try {
+                dispatch(clearCart());
+            } catch (err) {
+                console.log(err);
+            }
+        },
+        [dispatch]
+    );
+
+      const onToken = (token: any) => {
+          console.log("token",token);
+          localStorage.setItem("address", JSON.stringify(token));
+          notify();
+          allClear();
+      };
+  
+      return (
+          <StripeCheckout
+              label='Pay Now'
+              name='Time Zone'
+              billingAddress
+              shippingAddress
+              image='https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
+              description={`Your total is $${totalPrice}`}
+              amount={priceForStripe}
+              panelLabel='Pay Now'
+              token={onToken}
+              stripeKey={publishableKey}
+          />
+      )
+  }
+
     return (
         <div className="cartmainDiv">
 
           {cart?.length !== 0 ? (<>
-
-            
-
           <div className="secondCart">
-
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            className={"toastMargin"}
+          />
             <section className="h-custom ">
               <div className="container py-5">
                 <div className="row d-flex justify-content-center align-items-center h-100">
@@ -105,194 +161,18 @@ function Cart(){
                         </tbody>
                       </table>
                     </div>
-
-
-                    <div className="card shadow-2-strong mb-5 mb-lg-0 cardType">
-                      <div className="card-body p-4">
-
-                        <div className="row">
-                          <div className="col-md-6 col-lg-4 col-xl-3 mb-4 mb-md-0">
-                            <form>
-                              <div className="d-flex flex-row pb-3">
-                                <div className="d-flex align-items-center pe-2">
-                                  <input className="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1v"
-                                    value="" aria-label="..." checked />
-                                </div>
-                                <div className="rounded border w-100 p-3">
-                                  <p className="d-flex align-items-center mb-0">
-                                    <i className="fab fa-cc-mastercard fa-2x text-dark pe-2"></i>Credit
-                                    Card
-                                  </p>
-                                </div>
-                              </div>
-                              <div className="d-flex flex-row pb-3">
-                                <div className="d-flex align-items-center pe-2">
-                                  <input className="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel2v"
-                                    value="" aria-label="..." />
-                                </div>
-                                <div className="rounded border w-100 p-3">
-                                  <p className="d-flex align-items-center mb-0">
-                                    <i className="fab fa-cc-visa fa-2x fa-lg text-dark pe-2"></i>Debit Card
-                                  </p>
-                                </div>
-                              </div>
-                              <div className="d-flex flex-row">
-                                <div className="d-flex align-items-center pe-2">
-                                  <input className="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel3v"
-                                    value="" aria-label="..." />
-                                </div>
-                                <div className="rounded border w-100 p-3">
-                                  <p className="d-flex align-items-center mb-0">
-                                    <i className="fab fa-cc-paypal fa-2x fa-lg text-dark pe-2"></i>PayPal
-                                  </p>
-                                </div>
-                              </div>
-                            </form>
-                          </div>
-                          <div className="col-md-6 col-lg-4 col-xl-6">
-                            <div className="row">
-                              <div className="col-12 col-xl-6">
-                                <div className="form-outline mb-4 mb-xl-5">
-                                  <input type="text" id="typeName" className="form-control form-control-lg"
-                                    placeholder="Your name" />
-                                  <label className="form-label">Name on card</label>
-                                </div>
-
-                                <div className="form-outline mb-4 mb-xl-5">
-                                  <input type="text" id="typeExp" className="form-control form-control-lg" placeholder="MM/YY" />
-                                  <label className="form-label">Expiration</label>
-                                </div>
-                              </div>
-                              <div className="col-12 col-xl-6">
-                                <div className="form-outline mb-4 mb-xl-5">
-                                  <input type="text" id="typeText" className="form-control form-control-lg"
-                                    placeholder="1111 2222 3333 4444" />
-                                  <label className="form-label">Card Number</label>
-                                </div>
-
-                                <div className="form-outline mb-4 mb-xl-5">
-                                  <input type="password" id="typeText" className="form-control form-control-lg"
-                                    placeholder="&#9679;&#9679;&#9679;" />
-                                  <label className="form-label">Cvv</label>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="col-lg-4 col-xl-3">
-                            <div className="d-flex justify-content-between">
-                              <p className="mb-2">Subtotal</p>
-                              <p className="mb-2">${" "}00.0</p>
-                            </div>
-
-                            <div className="d-flex justify-content-between">
-                              <p className="mb-0">Shipping</p>
-                              <p className="mb-0">FREE</p>
-                            </div>
-
-                            <hr className="my-4" />
-
-                            <div className="d-flex justify-content-between mb-4">
-                              <p className="mb-2">Total (tax included)</p>
-                              <p className="mb-2">${totalPrice}</p>
-                            </div>
-
-                            <button type="button" className="btn btn-primary btn-block btn-lg" onClick={handleClick}>
-                              <div className="d-flex justify-content-between">
-                                <span>Checkout</span><br/>
-                                <span className="ms-1">${totalPrice}</span>
-                              </div>
-                            </button>
-
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
-
+                    <header className="App-header">
+          <h4 className="colorWhite text-center">Payment Process</h4>
+          <p className="colorWhite text-center">
+            Pay Total of $ {totalPrice}
+          </p>
+          <p className="colorWhite text-center">
+            <StripeCheckoutButton price={totalPrice} />
+          </p>
+        </header>
                   </div>
                 </div>
               </div>
-
-              <div className="modalPopUp">
-              <Modal isOpen={modal}
-                toggle={toggle}
-                modalTransition={{ timeout: 500 }} >
-                <ModalBody className="modalBodyPopUp">
-                  <div className="modalpopRemit-wrapper">
-                    <div className="modalpopRemit-title">
-                        <AiOutlineCloseSquare className="closemodal" onClick={toggle}/>
-                    <div className="container py-5">
-  <div className="row d-flex justify-content-center align-items-center">
-    <div className="col">
-      <div className="card my-4 shadow-3">
-        <div className=" g-0">
-    
-          <div className="col-xl-12">
-            <div className="card-body p-md-5 text-black">
-              <h3 className="mb-4 text-uppercase">Delivery Info</h3>
-
-              <div className="row">
-                <div className="col-md-6 mb-4">
-                  <div className="form-outline">
-                    <input type="text" id="form3Example1m" placeholder="First Name" className="form-control form-control-lg" />
-                  </div>
-                </div>
-                <div className="col-md-6 mb-4">
-                  <div className="form-outline">
-                    <input type="text" id="form3Example1n" placeholder="Last Name" className="form-control form-control-lg" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="form-outline mb-4">
-                <input type="text" id="form3Example8" placeholder="Address" className="form-control form-control-lg" />
-              </div>
-
-
-
-              <div className="row">
-                <div className="col-md-6 mb-4">
-
-                <input type="text" id="form3Example1n" placeholder="State" className="form-control form-control-lg" />
-
-
-                </div>
-                <div className="col-md-6 mb-4">
-
-                <input type="text" id="form3Example1n" placeholder="City" className="form-control form-control-lg" />
-
-
-                </div>
-              </div>
-
-              <div className="form-outline mb-4">
-                <input type="text" id="form3Example3" placeholder="PostalCode" className="form-control form-control-lg" />
-              </div>
-
-              <div className="form-outline mb-4">
-                <input type="text" id="form3Example2" placeholder="Email" className="form-control form-control-lg" />
-              </div>
-              {/* <div className="form-outline mb-4">
-                <label>Your Total Amount Is</label>
-                <input type="text" id="form3Example2" placeholder="Email" className="form-control form-control-lg" value={totalPrice} />
-              </div> */}
-
-              <div className="d-flex justify-content-end pt-3">
-                  <button className="choicesbutton btn-lg ms-2 border-0">Place Order</button>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-                    </div>
-                  </div>
-                </ModalBody>
-              </Modal>
-            </div >
             </section>
           </div>
 

@@ -11,7 +11,9 @@ import Contact from "../Contact/Contact";
 import Footer from "../Footer/Footer";
 import ScrollToTop from "../goto/goto";
 import LikedItems from "../LikedItems/LikedItems";
+import Profile from "../Profile/Profile";
 import Shop from "../Shop/Shop";
+import Tracking from "../Track/Tracking";
 
 function PrivateRouter() {
     let localValues = getLocalStorageValuesBoolean();
@@ -26,6 +28,8 @@ function PrivateRouter() {
                 <Route path="/contact" element={<Contact />}></Route>
                 <Route path="/cart" element={<Cart/>}></Route>
                 <Route path="/likedItems" element={<LikedItems/>}></Route>
+                <Route path="/profile" element={<Profile/>}></Route>
+                <Route path="/Tracking" element={<Tracking/>}></Route>
             </Routes>
             <ScrollToTop />
             {localValues ? <Footer /> : <div></div>}

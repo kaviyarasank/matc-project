@@ -8,20 +8,19 @@ export const fetchPlayerList = createAsyncThunk(
 
       const fetchData = await axios({
         method: 'GET',
-  url: 'https://amazon-data-scraper58.p.rapidapi.com/search/rolexWatch',
-  headers: {
-    'X-RapidAPI-Key': 'a08b46e4f2msh25a8dc2a3d14f2fp17daeajsna7b2bc642d72',
-    'X-RapidAPI-Host': 'amazon-data-scraper58.p.rapidapi.com'
-  }
+        url: 'https://jsmamazonindiadatascraper.p.rapidapi.com/search/watch',
+        params: {api_key: '557ba6684cf3492fca6cc209f42f6950'},
+        headers: {
+          'X-RapidAPI-Key': 'a08b46e4f2msh25a8dc2a3d14f2fp17daeajsna7b2bc642d72',
+          'X-RapidAPI-Host': 'jsmamazonindiadatascraper.p.rapidapi.com'
+        }
       }).then((response) => {
         if (response.status !== 200) {
-          // Console error message
-          console.error(":( Error, no fetched data");
+          console.error("no fetched data");
   
           return {};
         } else {
-          // Console success message
-          const message = ":) Success, fetched data";
+          const message = "Success, fetched data";
           const style =
             "color: green; background: #f0ffec; display: block; margin: 0px; padding: 0px;";
           console.log("%c" + message, style);
@@ -34,40 +33,6 @@ export const fetchPlayerList = createAsyncThunk(
     }
   );
   
-//   export const fetchLatest =createAsyncThunk(
-//     "team/playerListLoading",
-
-//     async () => {
-
-//       const fetchData = await axios({
-//         method: 'GET',
-//         url: 'https://amazon-product-scrapper.p.rapidapi.com/search/PatekPhilippe',
-//         params: {api_key: '977c36656438366bf9d34cc870f99c22'},
-//         headers: {
-//           'X-RapidAPI-Host': 'amazon-product-scrapper.p.rapidapi.com',
-//           'X-RapidAPI-Key': 'a08b46e4f2msh25a8dc2a3d14f2fp17daeajsna7b2bc642d72'
-//         }
-//       }).then((response) => {
-//         if (response.status !== 200) {
-//           // Console error message
-//           console.error(":( Error, no fetched data");
-  
-//           return {};
-//         } else {
-//           // Console success message
-//           const message = ":) Success, fetched data";
-//           const style =
-//             "color: green; background: #f0ffec; display: block; margin: 0px; padding: 0px;";
-//           console.log("%c" + message, style);
-  
-//           return response.data;
-//         }
-//       });
-  
-//       return fetchData;
-//     }
-//   );
-  // Initial state
   const teamInitialState = {
     playerList: {
       status: "idle",

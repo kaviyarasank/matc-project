@@ -54,11 +54,14 @@ console.log("find",find)
       return state.filter((item:any) =>
         item.id !== payload
       );
+    },
+    clearCart() {
+      return []
     }
   }
 });
 
-export const { addToCart, increament, decrement, clear} = cartSlice.actions;
+export const { addToCart, increament, decrement, clear,clearCart} = cartSlice.actions;
 const cartReducer = cartSlice.reducer;
 
 export default cartReducer;

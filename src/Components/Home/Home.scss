@@ -64,7 +64,7 @@
 .popularItems{
     font-size: 30px;
     font-family: monospace;
-    color: brown;
+    color: rgb(233, 23, 23);
     font-weight: bold;
 }
 .videoPlay{
@@ -161,4 +161,12 @@ justify-content: space-between;
   .payLoad{
     margin-top: 2rem;
     // margin-bottom: -20rem;
+  }
+  .toastMargin{
+    margin-top: 7rem;
+  }
+  .Toastify__toast-theme--colored.Toastify__toast--success {
+    --toastify-color-success: #07bc0c;
+    color: white;
+    background-color: #07bc0c;
   }

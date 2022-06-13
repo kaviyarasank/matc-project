@@ -5,6 +5,8 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import {getLocalStorageValues} from "../../Helper/localStore"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface data {
   email:string,
@@ -19,7 +21,9 @@ function Login() {
     navigate("/register");
     window.location.reload(); 
   }
-
+  const notify = () => toast.error('InValid User', {
+    className: 'toast-error'
+  });;
 
   let acessLocalStorageValues = getLocalStorageValues();
    let formEmail = acessLocalStorageValues?.email;
@@ -32,6 +36,7 @@ if(data.email === formEmail && data.password === fromPass){
   setError("");
   window.location.reload();
 }else{
+  notify()
 setError("InValid User");
 }
 }
@@ -51,7 +56,10 @@ const schema = Yup.object().shape({
           <h3 className="pb-3">Welcome Back !</h3>
           <div className="form-style">
             <h3>Please Sign in now</h3>
-          {error && <p className="error-msg">{error}</p>}
+           {/* <p className="error-msg">{error}</p>} */}
+           {error && <div>
+              <ToastContainer className="toastMargin"/>
+            </div>}
              <Formik
       initialValues={{
         email: "",

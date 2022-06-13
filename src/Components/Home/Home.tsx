@@ -14,6 +14,8 @@ import Loader from "../Loader/loader";
 import { addToCart } from "../../Redux/CardAction";
 import { v4 as uuidv4 } from 'uuid';
 import { likeState } from "../../Redux/LikeAction";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Home() {
     let navigate = useNavigate();
@@ -28,7 +30,9 @@ function Home() {
         return like.like
     })
     console.log("response-->",likeStatess)
-
+    const notify = () => toast.success('Product Added Successfully', {
+        className: 'toast-success'
+      });
 useEffect(()=>{
 if(likeStatess.length > 0){
 setLike(true)
@@ -86,7 +90,7 @@ setLike(true)
             count: 1
         }
         addProducts(cartProduct);
-
+        notify();
     }
     useEffect(() => {
           window.scrollTo(0, 0)
@@ -115,6 +119,18 @@ const handleLike=(data:any)=>{
 }
     return (
         <div className="Home">
+         <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            className={"toastMargin"}
+          />
             <div className="home-shopDiv">
                 <div className="container">
                     <div className="d-flex">
@@ -163,7 +179,7 @@ const handleLike=(data:any)=>{
                                             price={data.price_string?.slice(0, 10)}
                                             addtocart={() => handleAdd(data)}
                                             value={data?.stars}
-                                            likes={like}
+                                            // likes={like}
                                             id={data?.id}
                                         />
                                     </div>

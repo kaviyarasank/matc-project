@@ -1,19 +1,23 @@
 import { Card, CardImg, CardText, CardBody,
     CardTitle, Button } from 'reactstrap';
     import "./card.scss"
-    import { AiOutlineHeart } from 'react-icons/ai';
     import * as React from 'react';
 import Rating from '@mui/material/Rating';
     // AiOutlineHeart
   
   const SecondCard = (props:any) => {
-    // const data= props;
+    const[likes, setLikes] = React.useState(false);
     console.log("props.value",props.value)
+    const handleLikes=()=>{
+      setLikes(!likes)
+      props.likeButton()
+    }
+
     return (
         <div>
         <Card className='card-box'>
           <CardBody className=''>
-              <AiOutlineHeart className={props.likes ? "heartTrue" : "heart"} key={props.id} onClick={props.likeButton}/>
+          <i className={`fa-solid fa-thumbs-up  ${likes ? "heartTrue" : "heart" }`} onClick={handleLikes} key={props.id}></i>
           <CardImg  src={props.image} alt="Card image cap" className='cardimages'/>
           <Rating
   name="simple-controlled"

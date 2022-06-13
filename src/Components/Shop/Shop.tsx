@@ -1,16 +1,6 @@
 import SecondCard from "../CustomCard/secondCard";
 import "./Shop.scss";
-import one from "../../assets/one.jpg";
-import two from "../../assets/two.jpeg";
-import three from "../../assets/three.png"
-import shop from "../../assets/shop.jpg"
-import shops from "../../assets/shops.jpg"
-import shopss from "../../assets/shopss.png"
-import axios from 'axios';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -23,6 +13,9 @@ import { useCallback, useEffect, useState } from "react";
 import Loader from "../Loader/loader";
 import { addToCart } from "../../Redux/CardAction";
 import { v4 as uuidv4 } from 'uuid';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { likeState } from "../../Redux/LikeAction";
 
 function Shop(){
   const unique_id = uuidv4();
@@ -44,7 +37,9 @@ function Shop(){
         }
       }
       const dispatch = useDispatch<AppDispatch>();
-
+      const notify = () => toast.success('Product Added Successfully', {
+        className: 'toast-success'
+      });
       const playerList = useSelector((state:any) => state.team.playerList);
       let res = playerList?.data?.results;
       console.log("playerList",res)
@@ -97,7 +92,28 @@ const handleAdd=(product:any)=>{
       id:unique_id,
       count:1
   }
+  notify();
   addProducts(cartProduct);
+}
+const addLikes = useCallback(
+  (product: any) => {
+      try {
+          dispatch(likeState(product));
+      } catch (err) {
+          console.log(err);
+      }
+  },
+  [dispatch]
+);
+
+
+const handleLike=(data:any)=>{
+let cartProduct = {
+  ...data,
+  id: unique_id,
+  like: true
+}
+addLikes(cartProduct);
 }
 
     return(
@@ -115,12 +131,25 @@ const handleAdd=(product:any)=>{
     </div>
             </div>
             <div className="secondDiv container">
+            <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            className={"toastMargin"}
+          />
             {res === undefined && <Loader/>}
             {loading ? null : (
             <div className="row justify-content-center mt-5">
                {res && res?.length > 0 && res.map((data:any) => (
                     <div className="col-4">
                           <SecondCard
+                           likeButton={()=>handleLike(data)}
                             name={data.name?.slice(0,30)}
                             image={data.image}
                             price={data.price_string}

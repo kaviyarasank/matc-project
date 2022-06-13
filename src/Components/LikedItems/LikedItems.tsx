@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom"
 import Rating from '@mui/material/Rating';
 import { useCallback } from "react";
 import { addToCart } from "../../Redux/CardAction";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function LikedItems() {
     const res = useSelector((state: any) => state?.like);
@@ -23,6 +25,9 @@ function LikedItems() {
     const handleShop = () => {
         navigate('/');
     }
+    const notify = () => toast.success('Product Added Successfully', {
+        className: 'toast-success'
+      });
     const addProducts = useCallback(
         (product: any) => {
             try {
@@ -41,11 +46,23 @@ function LikedItems() {
             count: 1
         }
         addProducts(cartProduct);
-
+        notify();
     }
     
     return (
         <div className="likeFirstDiv">
+             <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            className={"toastMargin"}
+          />
             {res?.length > 0 ? (
                 <div className="container">
                     <div className="row justify-content-center mt-5">

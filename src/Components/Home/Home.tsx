@@ -33,13 +33,13 @@ function Home() {
     const notify = () => toast.success('Product Added Successfully', {
         className: 'toast-success'
       });
-useEffect(()=>{
-if(likeStatess.length > 0){
-setLike(true)
-}else{
-    setLike(false);
-}
-},[likeStatess.length])
+// useEffect(()=>{
+// if(likeStatess.length > 0){
+// setLike(true)
+// }else{
+//     setLike(false);
+// }
+// },[likeStatess.length])
 
     const fetch = useCallback(
         () => {
@@ -54,7 +54,7 @@ setLike(true)
 
     useEffect(() => {
         fetch()
-    }, [fetch])
+    }, [])
     useEffect(() => {
         if (res === undefined) {
             setLoading(true);
@@ -92,9 +92,9 @@ setLike(true)
         addProducts(cartProduct);
         notify();
     }
-    useEffect(() => {
-          window.scrollTo(0, 0)
-      }, [])
+    // useEffect(() => {
+    //       window.scrollTo(0, 0)
+    //   }, [])
 
 
     const addLikes = useCallback(
@@ -137,7 +137,7 @@ const handleLike=(data:any)=>{
                         <div className="">
                             <p className="Div-text">Select Your New<br /> Perfect Style</p>
                             <h5 className="quotes">“Everyone looks at your watch and it represents who you are,<br /> your values and your personal style.”</h5>
-                            <button className="homeshop-btn" onClick={shopNow}>Shop Now</button>
+                            <button className="homeshop-btn choicesbutton" onClick={shopNow}>Shop Now</button>
                         </div>
                         <img src="https://preview.colorlib.com/theme/timezone/assets/img/hero/xwatch.png.pagespeed.ic.LlRtijfV2T.webp" className="watch mt-5" alt="" />
                     </div>
@@ -150,7 +150,7 @@ const handleLike=(data:any)=>{
                     <h1 className="popular mt-5">New Arraivals</h1>
                     {res === undefined && <Loader />}
                     {loading ? null : (
-                        <div className="row justify-content-center mt-5">
+                        <div className="row justify-content-center firstcard mt-5">
                             {res && res?.length > 0 && res?.slice(3, 6).map((data: any) => (
                                 <div className="col-4">
                                     <CardComponent
@@ -179,7 +179,6 @@ const handleLike=(data:any)=>{
                                             price={data.price_string?.slice(0, 10)}
                                             addtocart={() => handleAdd(data)}
                                             value={data?.stars}
-                                            // likes={like}
                                             id={data?.id}
                                         />
                                     </div>

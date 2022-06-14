@@ -9,8 +9,8 @@ import {
     return (
       <div className="App">
         <Routes>
-          <Route path="/" element={<Login />}></Route>
-          <Route path="/register" element={<Register />}></Route>
+          {/* <Route path="/" element={<Login />}></Route> */}
+          <Route path="/" element={<Register />}></Route>
         </Routes>
       </div>
     );

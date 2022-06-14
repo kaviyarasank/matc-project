@@ -7,11 +7,10 @@ import { useCallback, useEffect, useState } from "react";
 import { cartTotalPriceSelector } from "./cartTotal";
 import { MdAutoDelete } from 'react-icons/md';
 import Empty from "./Emptycart";
-import { Modal, ModalBody } from "reactstrap";
-import { AiOutlineCloseSquare } from "react-icons/ai";
 import StripeCheckout from 'react-stripe-checkout';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Suspense, lazy } from 'react';
 
 
 
@@ -21,7 +20,7 @@ function Cart(){
     const handleClick=()=>{
        setModal(true);
     }
-
+    const Empty = lazy(() => import('./Emptycart'));
     const cart = useSelector((state:any) => state?.cart);
     const handleplus=(id:any)=>{
       dispatch(increament(id));
@@ -36,7 +35,7 @@ function Cart(){
     const totalPrice = useSelector(cartTotalPriceSelector);
     console.log("totalPrice",cart)
 
-    localStorage.setItem("cart", JSON.stringify(cart));
+    
     const handleClear=(id:any)=>{
       dispatch(clear(id))
     }
@@ -64,7 +63,10 @@ function Cart(){
           console.log("token",token);
           localStorage.setItem("address", JSON.stringify(token));
           notify();
+          localStorage.setItem("cartProduct", JSON.stringify(cart));
+          localStorage.setItem("productAmount", JSON.stringify(totalPrice));
           allClear();
+          navigate("/Tracking");
       };
   
       return (
@@ -178,7 +180,9 @@ function Cart(){
 
           </>)
           :(
-<Empty />
+            <Suspense fallback={<div className="text-center mt-5">Loading...</div>}>
+                <Empty />
+          </Suspense>
           )
         }
 

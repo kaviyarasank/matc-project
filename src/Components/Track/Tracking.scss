@@ -26,3 +26,38 @@ body{background-color: #eeeeee;font-family: 'Open Sans',serif}
     p{margin-top: 0;margin-bottom: 1rem}
     .btn-warning{color: #ffffff;background-color: #ee5435;border-color: #ee5435;border-radius: 1px}
     .btn-warning:hover{color: #ffffff;background-color: #ff2b00;border-color: #ff2b00;border-radius: 1px}
+
+
+    .icon-styleTrack{
+        background-color: #ec121d;
+        height: 50px;
+        width: 100px;
+        color: #ffffff;
+        cursor: pointer;
+        font-weight: bold;
+        float: right;
+        animation: movebtn 3s ease-in-out infinite;
+        transition: all .5s ease-in-out;
+      }
+      @keyframes movebtn {
+        0%{
+          transform: translateY(0px);
+        }
+        25%{
+          transform: translateY(20px);
+        }
+        50%{
+          transform: translateY(0px);
+        }
+        75%{
+          transform: translateY(-20px);
+        }
+        100%{
+          transform: translateY(0px);
+        }
+      }
+      .invoiceBill{
+        height: 120px;
+        width: 150px;
+        border-radius: 50%;
+      }

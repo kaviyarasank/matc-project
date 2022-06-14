@@ -19,7 +19,7 @@ function Login() {
 
   const handleSignUp=()=>{
     navigate("/register");
-    window.location.reload(); 
+    // window.location.reload(); 
   }
   const notify = () => toast.error('InValid User', {
     className: 'toast-error'
@@ -47,6 +47,7 @@ const schema = Yup.object().shape({
 
   return (
     <div className="container colorgrad" style={{marginTop:"8rem", marginBottom:"10rem"}}>
+      
       <div className="row m-5 no-gutters shadow-lg">
         <div className="col-md-6 d-none d-md-block">
           <img src={"https://images.unsplash.com/photo-1533139502658-0198f920d8e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=742&q=80"} className="img-fluid logoreg" alt="" style={{ minHeight: "100%" }} />

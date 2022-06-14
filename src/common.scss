@@ -29,6 +29,9 @@ border-radius: 10px;
     font-weight: 600;
     text-decoration: none;
   }
+  .nav-links>a:hover{
+color: red;
+  }
   .login-icon{
       font-size: 35px !important;
   }
@@ -76,6 +79,11 @@ border-radius: 10px;
     height: 30px;
     width: 85%;
     margin: auto;
+    color: #141517 ;
+    font-weight: bold;
+  }
+  .logoutbtn:hover{
+    color: red;
   }
   .store{
     font-size: 30px;

@@ -21,14 +21,14 @@
       border: none;
       background: white;
       font-size: 17px;
-      font-family: 'cursive';
+      font-family: 'cursive',sans-serif;
       box-shadow: inset 0 0 0 0 #ff2020;
       color: #0a0a0a;
       transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
   }
   .footer-link{
     font-size: 17px;
-      font-family: 'cursive';
+      font-family: 'cursive',sans-serif;
       color: #0a0a0a; 
   }
   .footer-links:hover{
@@ -46,7 +46,7 @@
   }
   .footer-copyright{
     font-size: 18px;
-    font-family: 'fangsong';
+    font-family: 'fangsong',sans-serif;
     color: brown;
   }
   .icons{

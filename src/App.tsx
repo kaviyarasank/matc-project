@@ -30,12 +30,14 @@ function App() {
     localStorage.removeItem("name");
     notifySuccess();
   }
-
+  let userData = JSON.parse(localStorage.getItem("token") || "{}");
+  console.log("userDatauserData",userData?.Token)
   axios.interceptors.request.use(
     (config: any) => {
     console.log("config",config)
         config.headers["X-RapidAPI-Key"] = "a08b46e4f2msh25a8dc2a3d14f2fp17daeajsna7b2bc642d72";
-        config.headers["X-RapidAPI-Host"] = "amazon-scrapper-kteam.p.rapidapi.com";
+        config.headers["X-RapidAPI-Host"] = "my-amazon-data-parser1.p.rapidapi.com";
+        config.headers["x-access-token"] = userData?.Token
       return config;
     },
     function (error: any) {
@@ -51,8 +53,8 @@ function App() {
       }
       return response;
     },
-     function (error:any) {
-      console.log("error",error?.code)
+     function (error) {
+      console.log("error",error)
     
     if(error?.code === "ERR_BAD_REQUEST"){
         logout();

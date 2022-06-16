@@ -42,6 +42,7 @@ function Navigation() {
               <Link to="/likedItems" className="dropText logoutbtn text-center text-decoration-none">LikedList</Link>
               <Link to="/profile" className="dropText logoutbtn text-center text-decoration-none">Profile</Link>
               <Link to="/Tracking" className="dropText logoutbtn text-center text-decoration-none">Track Your Order</Link>
+              <Link to="/History" className="dropText logoutbtn text-center text-decoration-none">History</Link>
               </div>
               <div className="row d-flex">
               <button  className="dropText border-0 bg-light logoutbtn" onClick={handleLogout}>Logout <AiOutlineLogout/></button>

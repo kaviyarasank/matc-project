@@ -4,6 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
+package-lock.json
+sonarqube-scanner.js
 
 # testing
 /coverage
@@ -17,7 +19,14 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.env.development
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+#SonarQube
+test-report.xml
+eslint-report.json
+/.scannerwork

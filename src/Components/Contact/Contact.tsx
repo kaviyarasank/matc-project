@@ -4,15 +4,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-interface data{
-    target: any;
-    name:string,
-    email:string,
-    mobileNo:number,
-    Address:string,
-    subject:string,
-    message:string
-}
 function Contact(){
     useEffect(() => {
         window.scrollTo(0, 0)

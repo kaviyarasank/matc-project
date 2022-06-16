@@ -8,8 +8,8 @@ export const fetchPlayerList = createAsyncThunk(
 
       const fetchData = await axios({
         method: 'GET',
-        url: 'https://amazon-scrapper-kteam.p.rapidapi.com/search/rolexWatch',
-        params: {api_key: '108edc7ab4a38f7964866e4710d73d6f'},
+        url: 'https://my-amazon-data-parser1.p.rapidapi.com/search/rolexWatch',
+        params: {api_key: 'fa41c7877ce0de3b5a12da617bc8e8c2'},
 
       }).then((response) => {
         if (response.status !== 200) {

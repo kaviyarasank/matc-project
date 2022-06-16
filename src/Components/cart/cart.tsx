@@ -1,12 +1,11 @@
 import "./Cart.scss";
-import {useLocation, useNavigate} from "react-router-dom"
+import {useNavigate} from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../Redux/Store";
 import { clear, clearCart, decrement, increament } from "../../Redux/CardAction";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
 import { cartTotalPriceSelector } from "./cartTotal";
 import { MdAutoDelete } from 'react-icons/md';
-import Empty from "./Emptycart";
 import StripeCheckout from 'react-stripe-checkout';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,9 +16,7 @@ import { Suspense, lazy } from 'react';
 function Cart(){
     let navigate = useNavigate();
     const dispatch = useDispatch<AppDispatch>();
-    const handleClick=()=>{
-       setModal(true);
-    }
+   
     const Empty = lazy(() => import('./Emptycart'));
     const cart = useSelector((state:any) => state?.cart);
     const handleplus=(id:any)=>{
@@ -39,10 +36,7 @@ function Cart(){
     const handleClear=(id:any)=>{
       dispatch(clear(id))
     }
-    const [modal, setModal] = useState(false);
-    const toggle = () => {
-        setModal(!modal);
-    }
+  
 
     const StripeCheckoutButton = (price:any) => {
       const priceForStripe = price * 100;
@@ -56,7 +50,7 @@ function Cart(){
                 console.log(err);
             }
         },
-        [dispatch]
+        []
     );
 
       const onToken = (token: any) => {

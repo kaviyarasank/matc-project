@@ -1,5 +1,4 @@
-import { Card, CardImg, CardText, CardBody,
-  CardTitle, Button } from 'reactstrap';
+import { Card, CardImg,CardBody, Button } from 'reactstrap';
   import "./card.scss"
   import Rating from '@mui/material/Rating';
 

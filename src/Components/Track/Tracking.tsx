@@ -1,6 +1,6 @@
 import "./Tracking.scss";
 import { useNavigate } from "react-router-dom"
-import { useEffect, useRef, useState } from "react";
+import {  useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
 import timezone from "../../assets/timezone.png"
 import { Modal, ModalBody } from "reactstrap";
@@ -34,6 +34,7 @@ var myFutureDate=new Date(myCurrentDate);
         content: () => componentRef.current,
       });
     console.log("myFutureDate",myFutureDate)
+    localStorage.setItem("deliveryDate", JSON.stringify(myFutureDate));
 const handle=()=>{
     setModal(!modal)
 }

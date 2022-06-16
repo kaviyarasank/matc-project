@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import CardComponent from "../CustomCard/card";
 import "./Home.scss";
 import SecondCard from "../CustomCard/secondCard";
-import { Button, FormGroup, Input, Label } from "reactstrap";
+import { Button} from "reactstrap";
 import choices from "../../assets/choices.png"
 import choicesone from "../../assets/choicesone.png"
 import pay from "../../assets/pay.png"
@@ -21,7 +21,6 @@ function Home() {
     let navigate = useNavigate();
     const dispatch = useDispatch<AppDispatch>();
     const [loading, setLoading] = useState(false);
-    const[like, setLike] = useState(false);
     const playerList = useSelector((state: any) => state.team.playerList);
     const unique_id = uuidv4();
     const cart = useSelector((state: any) => state?.like);
@@ -54,7 +53,7 @@ function Home() {
 
     useEffect(() => {
         fetch()
-    }, [])
+    }, [fetch])
     useEffect(() => {
         if (res === undefined) {
             setLoading(true);

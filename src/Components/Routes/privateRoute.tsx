@@ -10,6 +10,7 @@ import Cart from "../cart/cart";
 import Contact from "../Contact/Contact";
 import Footer from "../Footer/Footer";
 import ScrollToTop from "../goto/goto";
+import History from "../History/History";
 import LikedItems from "../LikedItems/LikedItems";
 import Profile from "../Profile/Profile";
 import Shop from "../Shop/Shop";
@@ -30,6 +31,7 @@ function PrivateRouter() {
                 <Route path="/likedItems" element={<LikedItems/>}></Route>
                 <Route path="/profile" element={<Profile/>}></Route>
                 <Route path="/Tracking" element={<Tracking/>}></Route>
+                <Route path="/History" element={<History/>}></Route>
             </Routes>
             <ScrollToTop />
             {localValues ? <Footer /> : <div></div>}

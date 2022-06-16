@@ -12,8 +12,8 @@ function About(){
                 <source src={"https://content.rolex.com/dam/about-rolex-watches/hub/video/about-rolex-watches-cover.mp4"} type="video/mp4"/>
         </video>
          </div>
-         <div className="container aboutLine">
-         <div className="sidelineabout mt-5">History</div>
+         <div className="container aboutLineCon">
+         <div className="sidelineabout">History</div>
          <p className="mt-3 aboutcontent">Rolex’s story began when founder Hans Wilsdorf created the first waterproof wristwatch – the Oyster – and developed into a range of timepieces 
          that have become icons of watchmaking. Discover Rolex watches on the wrists of pioneers, 
          artists, athletes and visionaries and journey to the very highest summits and the deepest part of the oceans.msan.</p>

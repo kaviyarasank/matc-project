@@ -1,6 +1,6 @@
 import "./Login.scss";
-import { Button, Form, Input } from 'reactstrap';
-import { useEffect, useState } from "react";
+import { Button, Input } from 'reactstrap';
+import { useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,9 @@ import logo from "../../assets/rolex.jpg"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getLocalStorageValues } from "../../Helper/localStore";
+import { AppDispatch } from "../../Redux/Store";
+import { useDispatch } from "react-redux";
+import { postLogin } from "../../Redux/login";
 
 
 
@@ -23,6 +26,8 @@ interface datas {
   password:string
 }
 function Register() {
+const dispatch = useDispatch<AppDispatch>();
+
   let navigate = useNavigate();
 
  const[login, setLogin] = useState(true);
@@ -59,6 +64,10 @@ const notify = () => toast.error('InValid User', {
   className: 'toast-error'
 });;
 
+const notifyLog = () => toast.success('Login Successfully', {
+  className: 'toast-success'
+});;
+
 let acessLocalStorageValues = getLocalStorageValues();
  let formEmail = acessLocalStorageValues?.email;
  let fromPass = acessLocalStorageValues?.password
@@ -68,7 +77,9 @@ console.log("")
 if(data.email === formEmail && data.password === fromPass){
 navigate("/");
 setError("");
-window.location.reload();
+dispatch(postLogin(data));
+notifyLog();
+// window.location.reload();
 }else{
 notify()
 setError("InValid User");

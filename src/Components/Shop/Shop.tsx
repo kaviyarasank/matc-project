@@ -147,7 +147,7 @@ addLikes(cartProduct);
             {loading ? null : (
             <div className="row justify-content-center mt-5">
                {res && res?.length > 0 && res.map((data:any) => (
-                    <div className="col-4">
+                    <div className="col-4 responsiveColHome">
                           <SecondCard
                            likeButton={()=>handleLike(data)}
                             name={data.name?.slice(0,30)}

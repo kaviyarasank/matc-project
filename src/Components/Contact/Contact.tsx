@@ -130,7 +130,7 @@ if(value.name !== "" && value.email !=="" && value.Address !== "" && value.messa
             <div className="status"></div>
         </div>
 
-        <div className="col-md-3 text-center mt-4">
+        <div className="col-md-3 text-center mt-4 contactAddress">
             <ul className="list-unstyled mb-0">
                 <li><i className="fas fa-map-marker-alt fa-2x colorWhite"></i>
                     <p className="colorWhite">Bloom Plaza, Thillainagar.

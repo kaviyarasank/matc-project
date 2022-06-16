@@ -67,7 +67,7 @@ function LikedItems() {
                 <div className="container">
                     <div className="row justify-content-center mt-5">
                         {res && res?.length > 0 && res?.map((data: any) => (
-                            <div className="col-4 mt-5">
+                            <div className="col-4 mt-5 responsiveColHome">
                                 <Card className='card-boxLike'>
                                     <AiOutlineCloseSquare className="closemodal" onClick={() => closeLikedItems(data?.id)} />
                                     <CardBody className='cardbodybox'>
@@ -98,7 +98,7 @@ function LikedItems() {
                 </div>
             ) : (
                 <div className="emptysecDiv">
-                    <img src="https://24printing.ae/empty_wishlist.jpg" alt="" className="text-center mx-auto d-block" />
+                    <img src="https://24printing.ae/empty_wishlist.jpg" alt="" className="text-center mx-auto d-block likedImage" />
                     <p className="emptyPara mt-3">
                         Return to the store to add items for your delivery slot. <br />
                         Before proceed to checkout you must add some products to your shopping cart.<br />

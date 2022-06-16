@@ -25,7 +25,6 @@ const [modal, setModal] = useState(false);
 const toggle = () => {
     setModal(!modal);
 }
-const[print, setPrint] = useState(false);
 var myCurrentDate=new Date();
 var myFutureDate=new Date(myCurrentDate);
     myFutureDate.setDate(myFutureDate.getDate() + 4);

@@ -12,11 +12,18 @@ box-shadow:  13px 13px 24px #d0d0d0,
              -13px -13px 24px #f0f0f0 !important;
     transition: all 10s ease-in-out !important;
 }
-@media only screen and (max-width: 1450px) {
+@media only screen and (max-width: 999px) {
     .card-box{
-        width: 100%;
-        
+        width: 100% ;   
     }
+    .card-box:hover .cardButton{
+        margin-left: 20px;
+    }
+  }
+  @media only screen and (max-width: 500px) {
+.cardtextdiv{
+margin-left: 1rem !important;
+}
   }
 @-webkit-keyframes gradient {
 	0% {

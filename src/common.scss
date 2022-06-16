@@ -1,37 +1,9 @@
   .navbar {
     width: 100%;
-    // min-height: 10vh;
-    display: flex;
-    justify-content:center;
     align-items: center;
     background: #ffffff;
   }
   
-  .navbar .nav-links {
-    width: 40%;
-    display: flex;
-    justify-content: space-around;
-    list-style: none;
-  }
-  .nav-links>a:focus{
-background-color: rgb(246, 27, 27);
-height: 25px;
-color: aliceblue !important;
-text-decoration: none;
-width: 15%;
-text-align: center;
-border-radius: 10px;
-  }
-  .navbar .nav-links>a{
-    font-size: 16px;
-    font-family: "Josefin Sans",sans-serif;
-    color: #141517;
-    font-weight: 600;
-    text-decoration: none;
-  }
-  .nav-links>a:hover{
-color: red;
-  }
   .login-icon{
       font-size: 35px !important;
   }
@@ -99,3 +71,146 @@ color: red;
     margin-top: 5px;
     color: red;
   }
+  .colorChange{
+    background-color: #ec121d;
+    color: red;
+    width: 52px;
+    height: 35px;
+    margin-right: 50px;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: bold;
+    float: right;
+    animation: movebtn 3s ease-in-out infinite;
+    transition: all 0.5s ease-in-out;
+}
+.hamberIcon{
+  display: none;
+}
+@media only screen and (max-width: 960px) {
+  .hoverColor{
+    display: none;
+  }
+  .hamberIcon{
+    font-size: 35px;
+    display: block;
+    margin: auto;
+  }
+  .navbar {
+    position: relative;
+  }
+
+  .nav-menu {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    height: 100vh;
+    position: absolute !important;
+    top: 80px;
+    left: -100%;
+    opacity: 1;
+    transition: all 0.5s ease;
+    display: none !important;
+  }
+
+  .nav-menu.active {
+    background: red !important;
+    left: -16rem !important;
+    opacity: 1;
+    display: block !important;
+    transition: all 0.5s ease;
+    z-index: 1 !important;
+    margin:revert;
+    width: 50vw !important;
+  }
+
+  .nav-links {
+    text-align: center !important;
+    width: 100% !important;
+    display: table !important;
+    padding: 2rem;
+  }
+
+  .nav-links:hover {
+    background-color: #7577fa;
+    border-radius: 0;
+  }
+
+  .navbar-logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(25%, 50%);
+  }
+
+  .menu-icon {
+    display: block !important;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-100%, 60%);
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+
+  .fa-times {
+    color: rgb(14, 13, 13);
+    font-size: 2rem;
+  }
+  .nav-links-mobile {
+    display: block;
+    text-align: center;
+    padding: 1.5rem;
+    margin: 2rem auto;
+    border-radius: 4px;
+    width: 80%;
+    background: #4ad9e4;
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.5rem;
+  }
+
+  .nav-links-mobile:hover {
+    background: #fff;
+    color: #6568f4;
+    transition: 250ms;
+  }
+
+}
+
+.menu-icon {
+  display: none;
+}
+
+
+.nav-menu {
+  width: 100% !important;
+  display: flex;
+  justify-content: space-evenly;
+  list-style: none;
+}
+.nav-menu>a:focus{
+  background-color: rgb(246, 27, 27);
+  height: 25px;
+  color: aliceblue !important;
+  text-decoration: none;
+  width: 10%;
+  text-align: center;
+  border-radius: 10px;
+    }
+
+    .nav-menu>a{
+      font-size: 16px;
+      font-family: "Josefin Sans",sans-serif;
+      color: #141517;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .nav-menu>a:hover{
+      color: red;
+        }
+        @media only screen and (max-width: 320px) {
+          .login-div{
+            margin: 10px 80px 0px 0px !important;
+          }
+        }

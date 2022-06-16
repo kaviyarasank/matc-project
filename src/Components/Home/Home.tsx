@@ -136,7 +136,7 @@ const handleLike=(data:any)=>{
                         <div className="">
                             <p className="Div-text">Select Your New<br /> Perfect Style</p>
                             <h5 className="quotes">“Everyone looks at your watch and it represents who you are,<br /> your values and your personal style.”</h5>
-                            <button className="homeshop-btn choicesbutton" onClick={shopNow}>Shop Now</button>
+                            <button className="homeshop-btn" onClick={shopNow}>Shop Now</button>
                         </div>
                         <img src="https://preview.colorlib.com/theme/timezone/assets/img/hero/xwatch.png.pagespeed.ic.LlRtijfV2T.webp" className="watch mt-5" alt="" />
                     </div>
@@ -151,7 +151,7 @@ const handleLike=(data:any)=>{
                     {loading ? null : (
                         <div className="row justify-content-center firstcard mt-5">
                             {res && res?.length > 0 && res?.slice(3, 6).map((data: any) => (
-                                <div className="col-4">
+                                <div className="col-4 responsiveColHome">
                                     <CardComponent
                                         name={data.name?.slice(0, 30)}
                                         image={data.image}
@@ -170,7 +170,7 @@ const handleLike=(data:any)=>{
                         {loading ? null : (
                             <div className="row justify-content-center mt-5">
                                 {res && res?.length > 0 && res.map((data: any) => (
-                                    <div className="col-4">
+                                    <div className="col-4 responsiveColHome">
                                         <SecondCard
                                             likeButton={()=>handleLike(data)}
                                             name={data.name?.slice(0, 30)}
@@ -199,7 +199,7 @@ const handleLike=(data:any)=>{
                             <Button className="choicesbutton mt-5" onClick={shopNow}>SHOP WATCHES</Button>
                         </div>
                         <div className="col-6">
-                            <img src={choices} alt="" />
+                            <img src={choices} alt="" className="lasthomeimage"/>
                         </div>
                     </div>
 
@@ -207,7 +207,7 @@ const handleLike=(data:any)=>{
                 <div className="container mt-5">
                     <div className="row choices">
                         <div className="col-6">
-                            <img src={choicesone} alt="" />
+                            <img src={choicesone} alt=""  className="lasthomeimage"/>
                         </div>
                         <div className="col-6 mt-5">
                             <h1 className="choieshead">Watch of Choice</h1>

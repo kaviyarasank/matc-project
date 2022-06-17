@@ -11,6 +11,8 @@ import { getLocalStorageValues } from "../../Helper/localStore";
 import { AppDispatch } from "../../Redux/Store";
 import { useDispatch } from "react-redux";
 import { postLogin } from "../../Redux/login";
+import Clock from "./Login"
+import Analog from "./Analog"
 
 
 
@@ -96,14 +98,14 @@ password: Yup.string().required()
       {login === false ?
         <div className="row m-5 no-gutters shadow-lg">
         <div className="col-md-6 d-none d-md-block">
-          <img src={logo} className="img-fluid logoreg" alt="" style={{ height: "700px" }} />
+          <Analog/>
         </div>
 
         <div className="col-md-6 bg-white p-5">
-          <h3 className="pb-3">Welcome Back !</h3>
+          <h3 className="pb-3 welcome">Welcome Back !</h3>
           
             <div className="form-style">
-            <h3>Please Sign Up now</h3>
+            <h3 className="welcome">Please Sign Up now</h3>
             <Formik
       initialValues={{
         name: "",
@@ -117,7 +119,7 @@ password: Yup.string().required()
       {(formik) => (
         <form onSubmit={formik.handleSubmit}>
           <div  className="pb-3">
-            <label>Name</label>
+            <label className="loginLabel">Name</label>
             <Input
               type="text"
               className="inputBox"
@@ -128,7 +130,7 @@ password: Yup.string().required()
             <p className="errorMesg">{formik.touched.name && formik.errors.name}</p>
           </div>
           <div  className="pb-3">
-            <label>MobileNo</label>
+            <label className="loginLabel">MobileNo</label>
             <Input
               type="text"
               className="inputBox"
@@ -139,7 +141,7 @@ password: Yup.string().required()
             <p className="errorMesg">{formik.touched.mobileNo && formik.errors.mobileNo}</p>
           </div>
           <div  className="pb-3">
-            <label>Email</label>
+            <label className="loginLabel">Email</label>
             <Input
               type="text"
               name="email"
@@ -150,7 +152,7 @@ password: Yup.string().required()
             <p className="errorMesg">{formik.touched.email && formik.errors.email}</p>
           </div>
           <div  className="pb-3">
-            <label>Password</label>
+            <label className="loginLabel">Password</label>
             <Input
               type="password"
               name="password"
@@ -178,13 +180,14 @@ password: Yup.string().required()
          
       <div className="row m-5 no-gutters shadow-lg">
       <div className="col-md-6 d-none d-md-block">
-        <img src={"https://images.unsplash.com/photo-1533139502658-0198f920d8e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=742&q=80"} className="img-fluid logoreg" alt="" style={{ minHeight: "100%" }} />
+     <Clock/>
+        {/* <img src={"https://images.unsplash.com/photo-1533139502658-0198f920d8e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=742&q=80"} className="img-fluid logoreg" alt="" style={{ minHeight: "100%" }} /> */}
       </div>
 
       <div className="col-md-6 bg-white p-5">
-        <h3 className="pb-3">Welcome Back !</h3>
+        <h3 className="pb-3 welcome">Welcome Back !</h3>
         <div className="form-style">
-          <h3>Please Sign in now</h3>
+          <h3 className="welcome">Please Sign in now</h3>
          {error && <div>
             <ToastContainer className="toastMargin"/>
           </div>}
@@ -198,8 +201,8 @@ password: Yup.string().required()
   >
     {(formik) => (
       <form onSubmit={formik.handleSubmit}>
-        <div  className="pb-3">
-          <label>Email</label>
+        <div  className="pb-3 mt-3">
+          <label className="loginLabel">Email</label>
           <Input
             type="text"
             name="email"
@@ -210,7 +213,7 @@ password: Yup.string().required()
           <p className="errorMesg">{formik.touched.email && formik.errors.email}</p>
         </div>
         <div  className="pb-3">
-          <label>Password</label>
+          <label className="loginLabel">Password</label>
           <Input
             type="password"
             name="password"
@@ -228,7 +231,7 @@ password: Yup.string().required()
   </Formik>
           <div className="sideline">OR</div>
           <div>
-            <Button type="submit"   color="primary" className="btn w-100 font-weight-bold mt-2">Login With Facebook</Button>
+            <Button type="submit"   color="primary" className="btn w-100 font-weight-bold mt-2" href="https://www.facebook.com/login/">Login With Facebook</Button>
           </div>
           <div className="pt-4 text-center">
             You Not Have a Account, Please ! <Button className="border-0 bg-light signup-text" onClick={handleSignUp}>Sign Up</Button>

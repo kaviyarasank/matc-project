@@ -1,117 +1,146 @@
-import "./Login.scss";
-import { Button, Input } from 'reactstrap';
-import { useState } from "react";
-import { Formik } from "formik";
-import * as Yup from "yup";
-import { useNavigate } from "react-router-dom";
-import {getLocalStorageValues} from "../../Helper/localStore"
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import "./Clock.scss";
+import timezone from "../../assets/loginLogo.png";
 
-interface data {
-  email:string,
-  password:string
-}
-
-function Login() {
-  let navigate = useNavigate();
-  const[error, setError] = useState("");
-
-  const handleSignUp=()=>{
-    navigate("/register");
-    // window.location.reload(); 
-  }
-  const notify = () => toast.error('InValid User', {
-    className: 'toast-error'
-  });;
-
-  let acessLocalStorageValues = getLocalStorageValues();
-   let formEmail = acessLocalStorageValues?.email;
-   let fromPass = acessLocalStorageValues?.password
-
-const handleSubmit=(data:data)=>{
-  console.log("")
-if(data.email === formEmail && data.password === fromPass){
-  navigate("/");
-  setError("");
-  window.location.reload();
-}else{
-  notify()
-setError("InValid User");
-}
-}
-const schema = Yup.object().shape({
-  email:Yup.string().required(),
-  password: Yup.string().required()
-});
+function Clock() {
+  var myCurrentDate = new Date();
+  console.log("myCurrentDate", myCurrentDate);
 
   return (
-    <div className="container colorgrad" style={{marginTop:"8rem", marginBottom:"10rem"}}>
-      
-      <div className="row m-5 no-gutters shadow-lg">
-        <div className="col-md-6 d-none d-md-block">
-          <img src={"https://images.unsplash.com/photo-1533139502658-0198f920d8e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=742&q=80"} className="img-fluid logoreg" alt="" style={{ minHeight: "100%" }} />
+    <div>
+      <div className="wrapper">
+        <div className="watch-strap">
+          <div className="strap-circle"></div>
+          <div className="strap"></div>
+          <div className="watch-strap-holder left-up"></div>
+          <div className="watch-strap-holder left-bottom"></div>
+          <div className="watch-strap-holder right-up"></div>
+          <div className="watch-strap-holder right-bottom"></div>
+          <div className="watch-lace">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <span className="top"></span>
+            <span className="bottom"></span>
+          </div>
         </div>
-
-        <div className="col-md-6 bg-white p-5">
-          <h3 className="pb-3">Welcome Back !</h3>
-          <div className="form-style">
-            <h3>Please Sign in now</h3>
-           {/* <p className="error-msg">{error}</p>} */}
-           {error && <div>
-              <ToastContainer className="toastMargin"/>
-            </div>}
-             <Formik
-      initialValues={{
-        email: "",
-        password:""
-      }}
-      validationSchema={schema}
-      onSubmit={(data) => handleSubmit(data)}
-    >
-      {(formik) => (
-        <form onSubmit={formik.handleSubmit}>
-          <div  className="pb-3">
-            <label>Email</label>
-            <Input
-              type="text"
-              name="email"
-              className="inputBox"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            <p className="errorMesg">{formik.touched.email && formik.errors.email}</p>
-          </div>
-          <div  className="pb-3">
-            <label>Password</label>
-            <Input
-              type="password"
-              name="password"
-              className="inputBox"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            <p className="errorMesg">{formik.touched.password && formik.errors.password}</p>
-          </div>
-          <div className="pb-2">
-                <Button type="submit" className="btn btn-dark w-100 font-weight-bold mt-2">Submit</Button>
+        <div className="watch-case">
+          <div className="reflection"></div>
+          <div className="reflection bottom"></div>
+          <div className="watch-center">
+            <div className="watch-points">
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+            </div>
+            <div className="watch-tips">
+              <span className="hours"></span>
+              <span className="minutes"></span>
+              <span className="seconds"></span>
+            </div>
+            <div className="watch-date">
+              {myCurrentDate.toString()?.slice(0, 10)}
+            </div>
+            <div className="watch-alert">
+              <img src={timezone} alt="" />
+            </div>
+            <div className="watch-week">
+              <span className="week-arrow"></span>
+              <ul>
+                <div>S</div>
+                <div>M</div>
+                <div>T</div>
+                <div>W</div>
+                <div>T</div>
+                <div>F</div>
+                <div>S</div>
+              </ul>
+            </div>
+            <div className="watch-day">
+              <div className="sun">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
               </div>
-        </form>
-      )}
-    </Formik>
-            <div className="sideline">OR</div>
-            <div>
-              <Button type="submit"   color="primary" className="btn w-100 font-weight-bold mt-2">Login With Facebook</Button>
             </div>
-            <div className="pt-4 text-center">
-              You Not Have a Account, Please ! <Button className="border-0 bg-light signup-text" onClick={handleSignUp}>Sign Up</Button>
+            <div className="watch-week days">
+              <span className="week-arrow"></span>
+              <ul>
+                <div>3</div>
+                <div>6</div>
+                <div>9</div>
+              </ul>
             </div>
           </div>
-       
         </div>
       </div>
     </div>
   );
 }
-
-export default Login;
+export default Clock;

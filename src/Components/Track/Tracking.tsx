@@ -55,7 +55,7 @@ const handle=()=>{
             </article>
             {<div className="track">
                 <div className="step active"> <span className="icon"> <i className="fa fa-check"></i> </span> <span className="text">Order confirmed</span> </div>
-                <div className="step active"> <span className="icon"> <i className="fa fa-user"></i> </span> <span className="text"> Picked by courier</span> </div>
+                <div className="step"> <span className="icon"> <i className="fa fa-user"></i> </span> <span className="text"> Picked by courier</span> </div>
                 <div className="step"> <span className="icon"> <i className="fa fa-truck"></i> </span> <span className="text"> On the way </span> </div>
                 <div className="step"> <span className="icon"> <i className="fa fa-box"></i> </span> <span className="text">Ready for pickup</span> </div>
             </div>}
@@ -104,7 +104,7 @@ const handle=()=>{
                     <div className="col-lg-6 mt-3">
                         <div className="invoice-from">
                             <ul className="list-unstyled text-right">
-                                <h5 className="fw-bold">OFFICE ADDRESS</h5>
+                                <h5 className="fw-bold">SHIPPING ADDRESS</h5>
                            Time Zone,<br/>C-63,Bloom plaza,<br/>Thillianagar,Trichy-620018,<br/>India, | <i className="fa fa-phone"></i> {profile?.mobileNo}.
                             </ul>
                         </div>
@@ -122,6 +122,7 @@ const handle=()=>{
                                     <li><strong>Invoice</strong> {address?.created}</li>
                                     <li><strong>Invoice Date:</strong>{myCurrentDate.toString()?.slice(0,15)}</li>
                                     <li><strong>Status:</strong> <span className="label label-danger">{address?.card?.funding}</span></li>
+                                    <li><p className="borcode">Everyone looks at your watch </p></li>
                                 </ul>
                             </div>
                         </div>

@@ -17,10 +17,6 @@ export const fetchPlayerList = createAsyncThunk(
   
           return {};
         } else {
-          const message = "Success, fetched data";
-          const style =
-            "color: green; background: #f0ffec; display: block; margin: 0px; padding: 0px;";
-          console.log("%c" + message, style);
   
           return response.data;
         }

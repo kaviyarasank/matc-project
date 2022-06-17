@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Markazi+Text&display=swap');
 .form-style input{
 height:50px;
 border-radius:0;
@@ -31,15 +34,16 @@ height:50px;
         margin: 0 0 0 20px;
     }
     .signup-text{
-        color: #000000;
+        color:red;
         text-decoration: none;
     }
     .signup-text:hover{
         color: blue;
     }
     .errorMesg{
-        font-size: 14px;
+        font-size: 18px;
     color: red;
+    font-family: 'Markazi Text', serif;
     }
     .error-msg{
         font-size: 20px;
@@ -53,3 +57,13 @@ height:50px;
         color: white;
         background-color: red;
       }
+.welcome{
+    font-family: 'Courgette', cursive;
+    text-align: center;
+    color: red;
+    font-size: 35px;
+}
+.loginLabel{
+    font-family: 'Lobster', cursive;
+    font-size: 24px;
+}

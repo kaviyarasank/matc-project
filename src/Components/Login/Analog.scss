@@ -1,0 +1,249 @@
+
+  
+  #wrapper {
+    width: 600px;
+    height: 500px;
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 50px;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 9rem;
+  }
+  
+  .clock {
+    width: 300px;
+    height: 300px;
+    border-radius: 100%;
+    background: #fff7ce;
+    margin: 0 auto;
+    border: 15px solid #cb2739;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 11px 7px rgba(0, 0, 0, 0.5) inset;
+    margin: 0 auto 15px;
+  
+    .mid-point {
+      width: 14px;
+      height: 14px;
+      background: darken(#373838,5%);
+      border-radius: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-7px,-7px);
+      z-index: 4;
+    }
+  
+    .niddle-second {
+      width: 4px;
+      height: 100px;
+      background: #373838;
+      position: absolute;
+      top: 45px;
+      left: 50%;
+      animation: rotateniddle 60s steps(60, end) 0s infinite;
+      border-radius: 15px 15px 0 0;
+      z-index: 3;
+      margin-left: -2px;
+      transform-origin: (2px 100%);
+    }
+  
+    .niddle-minute {
+      width: 6px;
+      height: 90px;
+      background: #373838;
+      position: absolute;
+      top: 58px;
+      left: 50%;
+      animation: rotateniddle 3600s steps(60, end) 0s infinite;
+      border-radius: 10px 10px 0 0;
+      z-index: 2;
+      margin-left: -3px;
+      transform-origin: (4px 91px);
+    }
+  
+    .niddle-hour {
+      width: 10px;
+      height: 70px;
+      background: #373838;
+      position: absolute;
+      top: 78px;
+      left: 50%;
+      animation: rotateniddle 43200s steps(12, end) 0s infinite;
+      border-radius: 10px 10px 0 0;
+      z-index: 1;
+      margin-left: -5px;
+      transform-origin: (5px 71px);
+    }
+  }
+  
+  @keyframes rotateniddle {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  
+  .number-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: #373838;
+    font-weight: 700;
+    font-size: 20px;
+    text-transform: uppercase;
+  
+    li {
+      position: absolute;
+      
+      &.tweleve{
+        top: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+  
+      &.six {
+        bottom: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+  
+      &.three {
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+      }
+  
+      &.nine {
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+      }
+  
+      &.one {
+        top: 31px;
+        right: 71px;
+        transform: rotate(30deg);
+      }
+  
+      &.two {
+        top: 75px;
+        right: 32px;
+        transform: rotate(60deg);
+      }
+  
+      &.eleven {
+        top: 31px;
+        left: 71px;
+        transform: rotate(-30deg);
+      }
+  
+      &.ten {
+        top: 75px;
+        left: 32px;
+        transform: rotate(-60deg);
+      }
+  
+      &.seven {
+        bottom: 31px;
+        left: 71px;
+        transform: rotate(30deg);
+      }
+  
+      &.eight {
+        transform: rotate(60deg);
+        bottom: 79px;
+        left: 22px;
+      }
+  
+      &.four {
+        bottom: 31px;
+        right: 71px;
+        transform: rotate(-30deg);
+      }
+  
+      &.five {
+        bottom: 75px;
+        right: 32px;
+        transform: rotate(-60deg);
+      }
+    }
+  }
+  
+  @keyframes dg-sm {
+    0% {
+      margin: 0;
+    }
+  
+    100% {
+      margin-top: -1200px;
+    }
+  }
+  
+  @keyframes dg-hour {
+    0% {
+      margin: 0;
+    }
+  
+    100% {
+      margin-top: -240px;
+    }
+  }
+  
+  .dg-clock {
+    font-weight: bold;
+    letter-spacing: -5px;
+  
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      width: 30px;
+      height: 20px;
+      text-align: center;
+      li {
+        display: block;
+        height: 20px;
+      }
+    }
+  
+  }
+  
+  .mm-list {
+      animation: dg-sm 1s steps(60, end) 0s infinite;
+  }
+  
+  .second-list {
+    animation: dg-sm 60s steps(60, end) 0s infinite;
+  }
+  
+  .minute-list {
+    animation: dg-sm 3600s steps(60, end) 0s infinite;
+  
+  }
+  
+  .hour-list {
+    animation: dg-hour 43200s steps(12, end) 0s infinite;
+  }
+  
+  .holder {
+    width: 30px;
+    height: 20px;
+    padding: 0 5px;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: top;
+    border: solid #fff;
+    border-width: 1px;
+    letter-spacing: 0;
+  
+    +.holder {
+      border-width: 1px 1px 1px 0;
+    }
+  }

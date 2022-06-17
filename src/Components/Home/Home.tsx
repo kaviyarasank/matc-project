@@ -136,7 +136,7 @@ const handleLike=(data:any)=>{
                         <div className="">
                             <p className="Div-text">Select Your New<br /> Perfect Style</p>
                             <h5 className="quotes">“Everyone looks at your watch and it represents who you are,<br /> your values and your personal style.”</h5>
-                            <button className="homeshop-btn" onClick={shopNow}>Shop Now</button>
+                            <button className="homeshop-btn mt-5" onClick={shopNow}>Shop Now</button>
                         </div>
                         <img src="https://preview.colorlib.com/theme/timezone/assets/img/hero/xwatch.png.pagespeed.ic.LlRtijfV2T.webp" className="watch mt-5" alt="" />
                     </div>
@@ -194,7 +194,7 @@ const handleLike=(data:any)=>{
                 <div className="container mt-5">
                     <div className="row choices">
                         <div className="col-6 mt-5">
-                            <h1 className="choieshead">Watch of Choice</h1>
+                            <h1 className="choiceshead">Watch of Choice</h1>
                             <p className="mt-5 choicestext">Enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
                             <Button className="choicesbutton mt-5" onClick={shopNow}>SHOP WATCHES</Button>
                         </div>
@@ -210,7 +210,7 @@ const handleLike=(data:any)=>{
                             <img src={choicesone} alt=""  className="lasthomeimage"/>
                         </div>
                         <div className="col-6 mt-5">
-                            <h1 className="choieshead">Watch of Choice</h1>
+                            <h1 className="choiceshead">Watch of Choice</h1>
                             <p className="mt-5 choicestext">Enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
                             <Button className="choicesbutton mt-5" onClick={shopNow}>SHOP WATCHES</Button>
                         </div>

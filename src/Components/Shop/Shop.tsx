@@ -1,11 +1,5 @@
 import SecondCard from "../CustomCard/secondCard";
 import "./Shop.scss";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-import "swiper/css/autoplay"
 import { fetchPlayerList } from "../../Redux/Action";
 import { AppDispatch } from "../../Redux/Store";
 import {useDispatch, useSelector } from "react-redux";
@@ -20,22 +14,6 @@ import { likeState } from "../../Redux/LikeAction";
 function Shop(){
   const unique_id = uuidv4();
   const [loading , setLoading] = useState(false);
-    const params = {
-        spaceBetween: 30,
-        centeredSlides: true,
-        autoplay: {
-          delay: 2500,
-          disableOnInteraction: false
-        },
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true
-        },
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
-        }
-      }
       const dispatch = useDispatch<AppDispatch>();
       const notify = () => toast.success('Product Added Successfully', {
         className: 'toast-success'
@@ -120,14 +98,38 @@ addLikes(cartProduct);
         <div className="shop">
             <div className="firstDiv">
            <div className="carosual">
-            <Swiper
-    {...params}
-    >
-      <SwiperSlide><img src={"https://miro.medium.com/max/1200/1*VqeIv1WhEk34hAPVKRFDlg.gif"} alt="" className="shopCaro"/></SwiperSlide>
-      <SwiperSlide><img src={"https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"} alt="" className="shopCaro"/></SwiperSlide>
-      <SwiperSlide><img src={"https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"} alt="" className="shopCaro"/></SwiperSlide>
-      <SwiperSlide><img src={"https://images.unsplash.com/photo-1539874754764-5a96559165b0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1230&q=80"} alt="" className="shopCaro"/></SwiperSlide>
-    </Swiper>
+            
+<div className="wrapper">
+  <div className="clock">
+    <div className="clock-circles">
+      <div className="clock-circles__item"></div>
+      <div className="clock-circles__item"></div>
+      <div className="clock-circles__item"></div>
+      <div className="clock-circles__item">
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
+      </div>
+    </div>
+    <div className="clock-indicators">
+      <div className="clock-indicators__item"></div>
+      <div className="clock-indicators__item"></div>
+      <div className="clock-indicators__item"></div>
+      <div className="clock-indicators__item"></div>
+      <div className="clock-indicators__item"></div>
+      <div className="clock-indicators__item"></div>
+      <div className="clock-indicators__item"></div>
+      <div className="clock-indicators__item"></div>
+    </div>
+    <div className="clock-times">
+      <div className="clock-times__second"></div>
+      <div className="clock-times__minute"></div>
+      <div className="clock-times__hour"></div>
+    </div>
+  </div>
+</div>
     </div>
             </div>
             <div className="secondDiv container">

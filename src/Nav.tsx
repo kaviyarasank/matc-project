@@ -3,7 +3,7 @@ import {Link ,useNavigate} from "react-router-dom"
 import "./common.scss";
 import { BsCart3 } from 'react-icons/bs';
 import { AiOutlineLogout } from 'react-icons/ai';
-import timezone from "./assets/timezone.png";
+import timezone from "./assets/loginLogo.png";
 import { getLocalStorageValuesBoolean } from "./Helper/localStore";
 import { useSelector } from "react-redux";
 import { NavDropdown } from "react-bootstrap";
@@ -41,9 +41,13 @@ function Navigation() {
     setActive(!active);
   };
   console.log("aaaaaaa",active)
+
+  const handleHome =()=>{
+    navigate("/")
+  }
   return (
       <div className={localValues ? "d-flex navbar-header" : "d-none"}  style={{backgroundColor:color}} >
-        <div className="logoImage"><img src={timezone} alt=""/></div>
+        <div className="logoImage"><img src={timezone} alt="" onClick={handleHome} className="cursor-pointer"/></div>
         <div className="menu-icon" onClick={handleClick}>
         <i className={active ? "fas fa-times" : "fas fa-bars"}></i>
       </div>
@@ -64,10 +68,10 @@ function Navigation() {
             <Link to="/cart" className="login-icon carticon"><BsCart3/></Link>
               <FaStore className="store"/>
             <NavDropdown title="" id="basic-nav-dropdown" className="dropNav">
-            <div className="row d-flex">
+            <div className="row d-flex dropBoxwidth">
               <Link to="/likedItems" className="dropText logoutbtn text-center text-decoration-none">LikedList</Link>
               <Link to="/profile" className="dropText logoutbtn text-center text-decoration-none">Profile</Link>
-              <Link to="/Tracking" className="dropText logoutbtn text-center text-decoration-none">Track Your Order</Link>
+              <Link to="/Tracking" className="dropText logoutbtn text-center text-decoration-none">TrackYourOrder</Link>
               <Link to="/History" className="dropText logoutbtn text-center text-decoration-none">History</Link>
               </div>
               <div className="row d-flex">
@@ -75,7 +79,6 @@ function Navigation() {
               </div>
             </NavDropdown>
             </div>     
-        {/* <GiHamburgerMenu className="hamberIcon"/> */}
               </div>
   );
 }

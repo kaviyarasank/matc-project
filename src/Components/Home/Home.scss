@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Faster+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nosifer&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jomhuria&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+
 .Home{
     margin-top: 6.2rem;
 }
@@ -11,12 +16,13 @@
     font-size: 70px;
     font-weight: 700;
     padding: 10rem;
+    font-family: 'Nosifer', cursive;
 }
 .quotes{
-    margin-top: -5rem;
+    margin-top: -10rem;
     margin-left: 10rem;
-    font-size: 20px;
-    font-family: auto,sans-serif;
+    font-size: 35px;
+    font-family: 'Jomhuria', cursive;
     color: tomato;
 }
 .homeshop-btn{
@@ -35,10 +41,11 @@
     background: linear-gradient(to left, #ff2020 50%, rgb(57, 209, 57) 50%) right;
     background-size: 200%;
     transition: .5s ease-out;
-    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    box-shadow: red 0px 1px 25px;
 }
 .homeshop-btn:hover{
   background-position: left;
+  box-shadow: rgb(57, 209, 57) 0px 1px 25px;
 }
 
 .homeshop-divtwo{
@@ -64,7 +71,8 @@
 .popular{
     margin-top: 5rem;
     text-align: center;
-    font-size: 50px;
+    font-size: 55px;
+    font-family: 'Faster One', cursive;
 }
 .popularItems{
     font-size: 30px;
@@ -81,23 +89,27 @@
 }
 .choicestext{
     font-size: 20px;
-    font-family: auto,sans-serif;
+    font-family: monospace,sans-serif;
 }
 .choiceshead{
     font-size: 50px;
+    font-family: 'Alfa Slab One', cursive !important;
 }
 .choicesbutton{
     display: inline-block;
     text-align: center;
+    border-radius: 10px;
     color: white;
     background: #ff2020;
     background: linear-gradient(to left, #ff2020 50%, rgb(57, 209, 57) 50%) right;
     background-size: 200%;
     transition: .5s ease-out;
-    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    box-shadow: red 0px 1px 25px;
+    font-weight: bold;
 }
 .choicesbutton:hover{
     background-position: left;
+    box-shadow: rgb(57, 209, 57) 0px 1px 25px;
 }
 .payimg{
     width: 100%;
@@ -105,32 +117,6 @@
     margin-bottom: 2rem;
 }
 
-.top-to-btm{
-    position: relative;
-  }
-  .icon-position{
-    position: fixed;
-    bottom: 40px;
-    right: 25px;
-    z-index: 20;
-  }
-  .icon-style{
-    background-color: #551B54;
-    border: 2px solid #fff;
-    border-radius: 50%;
-    height: 50px;
-    width: 50px;
-    color: #fff;
-    cursor: pointer;
-    animation: movebtn 3s ease-in-out infinite;
-    transition: all .5s ease-in-out;
-  }
-  .icon-style:hover{
-    animation: none;
-    background: #fff;
-    color: #551B54;
-    border: 2px solid #551B54;
-  }
   @keyframes movebtn {
     0%{
       transform: translateY(0px);

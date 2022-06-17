@@ -33,7 +33,9 @@
 }
 
 .labels {
-    font-size: 11px
+    font-size: 16px;
+    font-family: none;
+    font-weight: bold;
 }
 
 .add-experience:hover {
@@ -53,4 +55,10 @@
 .profileimg{
 height: 80vh;
 width: 100%;
+}
+.profileHead{
+    font-size: 30px;
+    color: red;
+    font-family: none;
+    font-style: oblique;
 }

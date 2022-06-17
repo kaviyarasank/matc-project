@@ -52,6 +52,13 @@ Inspire employees to work more productively by providing focus and common goals
 Guide employee decision making
 Help establish a framework for ethical behavior
 </p>
+
+<div className="sidelineabout mt-5">Our Benefits</div>
+<p className="mt-3 aboutcontent">
+Of course, you have a homepage and dedicated pages for your products, but summarizing your offerings on the About Us page is crucial to tie them in with brand values in your messaging.
+
+Highlight the benefits and showcase what you do (and why it is unique).
+</p>
          </div>
      </div>
     )

@@ -32,36 +32,36 @@ function App() {
   }
   let userData = JSON.parse(localStorage.getItem("token") || "{}");
   console.log("userDatauserData",userData?.Token)
-  axios.interceptors.request.use(
-    (config: any) => {
-    console.log("config",config)
-        config.headers["X-RapidAPI-Key"] = "a08b46e4f2msh25a8dc2a3d14f2fp17daeajsna7b2bc642d72";
-        config.headers["X-RapidAPI-Host"] = "my-amazon-data-parser1.p.rapidapi.com";
-        config.headers["x-access-token"] = userData?.Token
-      return config;
-    },
-    function (error: any) {
-     return Promise.reject(error);
-    }
-  );
+  // axios.interceptors.request.use(
+  //   (config: any) => {
+  //   console.log("config",config)
+  //       config.headers["X-RapidAPI-Key"] = "a08b46e4f2msh25a8dc2a3d14f2fp17daeajsna7b2bc642d72";
+  //       config.headers["X-RapidAPI-Host"] = "my-amazon-data-parser1.p.rapidapi.com";
+  //       config.headers["x-access-token"] = userData?.Token
+  //     return config;
+  //   },
+  //   function (error: any) {
+  //    return Promise.reject(error);
+  //   }
+  // );
   
-  axios.interceptors.response.use(
-    (response) => {
-      console.log("responsemmm",response?.data)
-      if(response?.data?.statusCode === 403){
-        logoutSuccess();
-      }
-      return response;
-    },
-     function (error) {
-      console.log("error",error)
+  // axios.interceptors.response.use(
+  //   (response) => {
+  //     console.log("responsemmm",response?.data)
+  //     if(response?.data?.statusCode === 403){
+  //       logoutSuccess();
+  //     }
+  //     return response;
+  //   },
+  //    function (error) {
+  //     console.log("error",error)
     
-    if(error?.code === "ERR_BAD_REQUEST"){
-        logout();
-    }
-    return Promise.reject(error);
-    }
-  );
+  //   if(error?.code === "ERR_BAD_REQUEST"){
+  //       logout();
+  //   }
+  //   return Promise.reject(error);
+  //   }
+  // );
 
 
   return (

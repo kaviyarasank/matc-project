@@ -3,6 +3,7 @@
     height: 100vh
 }
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+39&display=swap');
 body{background-color: #eeeeee;font-family: 'Open Sans',serif}
 .container{
     margin-top:10rem;
@@ -59,4 +60,8 @@ body{background-color: #eeeeee;font-family: 'Open Sans',serif}
         height: 120px;
         width: 150px;
         border-radius: 50%;
+      }
+      .borcode{
+        font-family: 'Libre Barcode 39', cursive;
+        font-size: 25px;
       }

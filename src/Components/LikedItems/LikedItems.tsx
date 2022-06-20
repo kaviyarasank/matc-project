@@ -63,6 +63,7 @@ function LikedItems() {
             pauseOnHover
             className={"toastMargin"}
           />
+          <h1 className="d-none">LikedItems</h1>
             {res?.length > 0 ? (
                 <div className="container">
                     <div className="row justify-content-center mt-5">
@@ -72,7 +73,7 @@ function LikedItems() {
                                     <AiOutlineCloseSquare className="closemodal" onClick={() => closeLikedItems(data?.id)} />
                                     <CardBody className='cardbodybox'>
                                         <CardImg src={data.image} alt="Card image cap" className='cardimages' />
-                                        <Button className='cardButtonlike' onClick={() => handleAdd(data)}>{"Add To Cart"}</Button>
+                                        <Button data-testid="submitbutton" className='cardButtonlike' onClick={() => handleAdd(data)} >{"Add To Cart"}</Button>
                                         <Accordion>
                                             <Accordion.Item eventKey={data?.id} className="my-2">
                                                 <Accordion.Header>Details</Accordion.Header>

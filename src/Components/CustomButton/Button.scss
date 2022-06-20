@@ -1,0 +1,17 @@
+.choicesbutton{
+    display: inline-block;
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+    background: #ff2020;
+    background: linear-gradient(to left, #ff2020 50%, rgb(57, 209, 57) 50%) right;
+    background-size: 200%;
+    transition: .5s ease-out;
+    box-shadow: red 0px 1px 25px;
+    font-weight: bold;
+    border: none;
+}
+.choicesbutton:hover{
+    background-position: left;
+    box-shadow: rgb(57, 209, 57) 0px 1px 25px;
+}

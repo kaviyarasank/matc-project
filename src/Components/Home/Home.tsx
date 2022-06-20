@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from "react";
 import CardComponent from "../CustomCard/card";
 import "./Home.scss";
 import SecondCard from "../CustomCard/secondCard";
-import { Button} from "reactstrap";
 import choices from "../../assets/choices.png"
 import choicesone from "../../assets/choicesone.png"
 import pay from "../../assets/pay.png"
@@ -16,6 +15,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { likeState } from "../../Redux/LikeAction";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Button from "../CustomButton/Button";
 
 function Home() {
     let navigate = useNavigate();
@@ -136,7 +136,7 @@ const handleLike=(data:any)=>{
                         <div className="">
                             <p className="Div-text">Select Your New<br /> Perfect Style</p>
                             <h5 className="quotes">“Everyone looks at your watch and it represents who you are,<br /> your values and your personal style.”</h5>
-                            <button className="homeshop-btn mt-5" onClick={shopNow}>Shop Now</button>
+                            <button className="homeshop-btn mt-5" onClick={shopNow} data-testid="firstShop-button">Shop Now</button>
                         </div>
                         <img src="https://preview.colorlib.com/theme/timezone/assets/img/hero/xwatch.png.pagespeed.ic.LlRtijfV2T.webp" className="watch mt-5" alt="" />
                     </div>
@@ -149,9 +149,9 @@ const handleLike=(data:any)=>{
                     <h1 className="popular mt-5">New Arraivals</h1>
                     {res === undefined && <Loader />}
                     {loading ? null : (
-                        <div className="row justify-content-center firstcard mt-5">
+                        <div className="row justify-content-center firstcard mt-5"  >
                             {res && res?.length > 0 && res?.slice(3, 6).map((data: any) => (
-                                <div className="col-4 responsiveColHome">
+                                <div className="col-4 responsiveColHome" data-testid="listApi-div">
                                     <CardComponent
                                         name={data.name?.slice(0, 30)}
                                         image={data.image}
@@ -196,7 +196,8 @@ const handleLike=(data:any)=>{
                         <div className="col-6 mt-5">
                             <h1 className="choiceshead">Watch of Choice</h1>
                             <p className="mt-5 choicestext">Enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
-                            <Button className="choicesbutton mt-5" onClick={shopNow}>SHOP WATCHES</Button>
+                            {/* <Button className="choicesbutton mt-5" onClick={shopNow}>SHOP WATCHES</Button> */}
+                            <Button onClick={shopNow} name="SHOP WATCHES" testid="button"/>
                         </div>
                         <div className="col-6">
                             <img src={choices} alt="" className="lasthomeimage"/>
@@ -212,7 +213,8 @@ const handleLike=(data:any)=>{
                         <div className="col-6 mt-5">
                             <h1 className="choiceshead">Watch of Choice</h1>
                             <p className="mt-5 choicestext">Enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
-                            <Button className="choicesbutton mt-5" onClick={shopNow}>SHOP WATCHES</Button>
+                            {/* <Button className="choicesbutton mt-5" onClick={shopNow}>SHOP WATCHES</Button> */}
+                            <Button onClick={shopNow} name="SHOP WATCHES"/>
                         </div>
                     </div>
 

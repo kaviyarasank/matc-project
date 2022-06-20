@@ -1,10 +1,6 @@
-import { useEffect } from "react";
 import "./About.scss";
 
 function About(){
-    useEffect(() => {
-          window.scrollTo(0, 0)
-      }, [])
     return(
      <div className="aboutMain">
          <div className="firstDivabout">

@@ -1,13 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./Contact.scss"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
 function Contact(){
-    useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
 
     const[value, setValue] = useState({
         name:"",
@@ -70,14 +67,14 @@ if(value.name !== "" && value.email !=="" && value.Address !== "" && value.messa
                     <div className="col-md-6">
                         <div className="md-form mb-0">
                             <label className="colorWhite">Your name</label>
-                            <input type="text" id="name" name="name" value={value.name} className="form-control mt-2" onChange={handleChange}></input>
+                            <input type="text" data-testid="con-name" id="name" name="name" value={value.name} className="form-control mt-2" onChange={handleChange}></input>
                         </div>
                     </div>
 
                     <div className="col-md-6">
                         <div className="md-form mb-0">
                             <label className="colorWhite">Your email</label>
-                            <input type="text" id="email" name="email" value={value.email} className="form-control mt-2" onChange={handleChange}></input>
+                            <input type="text" data-testid="con-email" id="email" name="email" value={value.email} className="form-control mt-2" onChange={handleChange}></input>
                         </div>
                     </div>
 
@@ -88,14 +85,14 @@ if(value.name !== "" && value.email !=="" && value.Address !== "" && value.messa
 <div className="col-md-6">
     <div className="md-form mb-0">
         <label className="colorWhite mt-2">Contact Number</label>
-        <input type="text" id="name" name="mobileNo" value={value.mobileNo} className="form-control mt-2" onChange={handleChange}></input>
+        <input type="text" data-testid="con-mobileNo" id="name" name="mobileNo" value={value.mobileNo} className="form-control mt-2" onChange={handleChange}></input>
     </div>
 </div>
 
 <div className="col-md-6">
     <div className="md-form mb-0">
         <label className="colorWhite mt-2">Address</label>
-        <input type="text" id="email" name="Address" value={value.Address} className="form-control mt-2" onChange={handleChange}></input>
+        <input type="text" data-testid="con-Address" id="email" name="Address" value={value.Address} className="form-control mt-2" onChange={handleChange}></input>
     </div>
 </div>
 
@@ -105,7 +102,7 @@ if(value.name !== "" && value.email !=="" && value.Address !== "" && value.messa
                     <div className="col-md-12">
                         <div className="md-form mb-0">
                             <label className="mt-2 colorWhite">Subject</label>
-                            <input type="text" id="subject" name="subject" value={value.subject} className="form-control mt-2" onChange={handleChange}></input>
+                            <input type="text"  data-testid="con-subject" id="subject" name="subject" value={value.subject} className="form-control mt-2" onChange={handleChange}></input>
                         </div>
                     </div>
                 </div>
@@ -116,7 +113,7 @@ if(value.name !== "" && value.email !=="" && value.Address !== "" && value.messa
 
                         <div className="md-form">
                             <label className="mt-2 colorWhite">Your message</label>
-                            <textarea  id="message" name="message" value={value.message} className="form-control md-textarea" onChange={handleChange} mt-2></textarea>
+                            <textarea   data-testid="con-message" id="message" name="message" value={value.message} className="form-control md-textarea" onChange={handleChange}></textarea>
                         </div>
 
                     </div>
@@ -125,7 +122,7 @@ if(value.name !== "" && value.email !=="" && value.Address !== "" && value.messa
             </form>
 
             <div className="text-center text-md-left mt-3">
-                <button className="btn btn-light red sendbtn" onClick={handleButton}>Send</button>
+                <button className="btn btn-light red sendbtn" data-testid="con-button" onClick={handleButton}>Send</button>
             </div>
             <div className="status"></div>
         </div>

@@ -207,6 +207,7 @@ password: Yup.string().required()
             type="text"
             name="email"
             className="inputBox"
+            data-testid="email-input"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
@@ -217,6 +218,7 @@ password: Yup.string().required()
           <Input
             type="password"
             name="password"
+            data-testid="email-Password"
             className="inputBox"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -224,7 +226,7 @@ password: Yup.string().required()
           <p className="errorMesg">{formik.touched.password && formik.errors.password}</p>
         </div>
         <div className="pb-2">
-              <Button type="submit" className="btn btn-dark w-100 font-weight-bold mt-2">Submit</Button>
+              <Button type="submit" className="btn btn-dark w-100 font-weight-bold mt-2" data-testid="submit-button">Submit</Button>
             </div>
       </form>
     )}

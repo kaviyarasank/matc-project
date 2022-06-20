@@ -19,7 +19,7 @@
   }
   .login-div{
     float: right;
-    margin: 10px 80px;
+    margin: 10px 40px;
     display: flex;
   }
   .logoImage{
@@ -120,7 +120,7 @@
 
   .nav-menu.active {
     background: red !important;
-    left: -16rem !important;
+    left: -14rem !important;
     opacity: 1;
     display: block !important;
     transition: all 0.5s ease;
@@ -156,6 +156,7 @@
     transform: translate(-100%, 60%);
     font-size: 1.8rem;
     cursor: pointer;
+    margin: -5px -18px;
   }
 
   .fa-times {

@@ -120,7 +120,7 @@ function Cart(){
                                     <img src={data?.image} className="img-fluid rounded-3"
                                       style={{ width: "120px" }} alt="Book" />
                                     <div className="flex-column ms-4">
-                                      <p className="mb-2 colorWhite">{data?.name?.slice(0, 30)}</p>
+                                      <p className="mb-2 colorWhite cartName">{data?.name?.slice(0, 30)}</p>
                                     </div>
                                   </div>
                                 </td>

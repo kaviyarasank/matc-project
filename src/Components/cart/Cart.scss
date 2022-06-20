@@ -50,3 +50,9 @@
             color: red;
             cursor: pointer;
         }
+
+        @media (max-width: 480px) {
+          .cartName{
+              display: none;
+          }  
+        }

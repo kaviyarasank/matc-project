@@ -48,3 +48,11 @@
 .emptyButton:hover{
     background-position: left;
 }
+
+@media only screen and (max-width: 999px) {
+    .cardButtonlike{
+        width: 80%;
+        margin-left: 1.5rem;
+    }
+  
+  }

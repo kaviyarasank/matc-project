@@ -96,12 +96,12 @@ password: Yup.string().required()
 
     <div className="container" style={{marginTop:"8rem", marginBottom:"10rem"}}>
       {login === false ?
-        <div className="row m-5 no-gutters shadow-lg">
+        <div className="row no-gutters shadow-lg">
         <div className="col-md-6 d-none d-md-block">
           <Analog/>
         </div>
 
-        <div className="col-md-6 bg-white p-5">
+        <div className="col-md-6 bg-white xs-mx-2 md:mx-10 lg:mx-52">
           <h3 className="pb-3 welcome">Welcome Back !</h3>
           
             <div className="form-style">
@@ -178,13 +178,13 @@ password: Yup.string().required()
       </div>
       :(
          
-      <div className="row m-5 no-gutters shadow-lg">
+      <div className="row no-gutters shadow-lg">
       <div className="col-md-6 d-none d-md-block">
      <Clock/>
         {/* <img src={"https://images.unsplash.com/photo-1533139502658-0198f920d8e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=742&q=80"} className="img-fluid logoreg" alt="" style={{ minHeight: "100%" }} /> */}
       </div>
 
-      <div className="col-md-6 bg-white p-5">
+      <div className="col-md-6 bg-white xs-mx-2 md:mx-10 lg:mx-52">
         <h3 className="pb-3 welcome">Welcome Back !</h3>
         <div className="form-style">
           <h3 className="welcome">Please Sign in now</h3>

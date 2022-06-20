@@ -167,6 +167,9 @@ justify-content: space-between;
     margin-top: 5rem;
     margin-left: 2rem;
 }
+.watch{
+  display: none;
+}
 .homeshop-btn{
   margin-top: 5rem;
 }
@@ -175,6 +178,7 @@ justify-content: space-between;
     .logoImage{
       margin: 0 !important;
     }
+  
   }
   @media only screen and (max-width: 320px) {
     .watch{

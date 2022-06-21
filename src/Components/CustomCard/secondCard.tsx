@@ -6,7 +6,6 @@ import Rating from '@mui/material/Rating';
   
   const SecondCard = (props:any) => {
     const[likes, setLikes] = React.useState(false);
-    console.log("props.value",props.value)
     const handleLikes=()=>{
       setLikes(!likes)
       props.likeButton()

@@ -17,5 +17,13 @@ describe("Cart", () => {
       );
   });
 
-  
+  test('increment-button', () => {
+    render(
+      <BrowserRouter>
+        <Cart />
+      </BrowserRouter>
+    );
+    const SubmitButton = screen.getByTestId("increment-button")
+    fireEvent.click(SubmitButton);
+  })
 });

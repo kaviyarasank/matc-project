@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import logo from "../../assets/rolex.jpg"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getLocalStorageValues } from "../../Helper/localStore";
@@ -16,14 +15,14 @@ import Analog from "./Analog"
 
 
 
-interface data {
+interface registerInter {
     name:string,
     mobileNo:string,
     email:string,
     password:string
 }
 
-interface datas {
+interface loginInter {
   email:string,
   password:string
 }
@@ -42,7 +41,7 @@ const dispatch = useDispatch<AppDispatch>();
     .string()
     .required('Please Enter your password')
     .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])(?=.{8,})/,
       "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
     ).required(),
     mobileNo:  Yup.string().matches(phoneRegExp, 'Phone number is not valid').required(),
@@ -50,7 +49,7 @@ const dispatch = useDispatch<AppDispatch>();
 const handleLogin=()=>{
    setLogin(true);
 }
-const handleRegister=(data:data)=>{
+const handleRegister=(data:registerInter)=>{
     console.log("data00-->",data)
     setLogin(true);
     localStorage.setItem("name", JSON.stringify(data));
@@ -64,24 +63,23 @@ setLogin(false);
 }
 const notify = () => toast.error('InValid User', {
   className: 'toast-error'
-});;
+});
 
 const notifyLog = () => toast.success('Login Successfully', {
   className: 'toast-success'
-});;
+});
 
 let acessLocalStorageValues = getLocalStorageValues();
  let formEmail = acessLocalStorageValues?.email;
  let fromPass = acessLocalStorageValues?.password
 
-const handleSubmit=(data:datas)=>{
+const handleSubmit=(data:loginInter)=>{
 console.log("")
 if(data.email === formEmail && data.password === fromPass){
 navigate("/");
 setError("");
 dispatch(postLogin(data));
 notifyLog();
-// window.location.reload();
 }else{
 notify()
 setError("InValid User");
@@ -102,7 +100,7 @@ password: Yup.string().required()
         </div>
 
         <div className="col-md-6 bg-white xs-mx-2 md:mx-10 lg:mx-52">
-          <h3 className="pb-3 welcome">Welcome Back !</h3>
+          <h3 className="pb-3 welcome mt-5">Welcome Back !</h3>
           
             <div className="form-style">
             <h3 className="welcome">Please Sign Up now</h3>
@@ -181,11 +179,10 @@ password: Yup.string().required()
       <div className="row no-gutters shadow-lg">
       <div className="col-md-6 d-none d-md-block">
      <Clock/>
-        {/* <img src={"https://images.unsplash.com/photo-1533139502658-0198f920d8e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=742&q=80"} className="img-fluid logoreg" alt="" style={{ minHeight: "100%" }} /> */}
       </div>
 
       <div className="col-md-6 bg-white xs-mx-2 md:mx-10 lg:mx-52">
-        <h3 className="pb-3 welcome">Welcome Back !</h3>
+        <h3 className="pb-3 welcome mt-5">Welcome Back !</h3>
         <div className="form-style">
           <h3 className="welcome">Please Sign in now</h3>
          {error && <div>

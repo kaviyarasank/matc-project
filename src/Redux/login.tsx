@@ -8,13 +8,12 @@ export const postLogin = createAsyncThunk(
 console.log("dataggggggg",data)
       const postData = await axios({
         method: 'POST',
-        url: 'http://localhost:3004/login',data
+        url: 'http://localhost:3002/login',data
 
-      }).then((response) => {
-      console.log("rrrrrrrr",response)
-      localStorage.setItem("token", JSON.stringify(response?.data));
+      }).then((res) => {
+      console.log("rrrrrrrr",res)
+      localStorage.setItem("token", JSON.stringify(res?.data));
       });
-  
       return postData;
     }
   );

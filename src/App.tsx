@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 function App() {
   let localValues = getLocalStorageValuesBoolean();
 
-  const notify = () => toast.error('BAD REQUEST FOUND', {
+  const notify = () => toast.error('INCOMING TOKEN EXPIRED', {
     className: 'toast-error'
   });
   const notifySuccess = () => toast.error('API EXCESSED OUT OF LIMIT', {
@@ -22,22 +22,26 @@ function App() {
   const logout=()=>{
       navigate("/")
       localStorage.removeItem("name");
+      localStorage.removeItem("token");
       notify();
   }
   
   const logoutSuccess=()=>{
     navigate("/")
     localStorage.removeItem("name");
+    localStorage.removeItem("token");
     notifySuccess();
   }
-  let userData = JSON.parse(localStorage.getItem("token") || "{}");
-  console.log("userDatauserData",userData?.Token)
+
   axios.interceptors.request.use(
     (config: any) => {
     console.log("config",config)
-        config.headers["X-RapidAPI-Key"] = "a08b46e4f2msh25a8dc2a3d14f2fp17daeajsna7b2bc642d72";
-        config.headers["X-RapidAPI-Host"] = "amazon-data-scraperapi.p.rapidapi.com";
-        // config.headers["x-access-token"] = userData?.Token
+    var userData = JSON.parse(localStorage.getItem("token") || "{}");
+    console.log("userDatauserData",userData?.Token)
+      config.headers["X-RapidAPI-Key"] = "a08b46e4f2msh25a8dc2a3d14f2fp17daeajsna7b2bc642d72";
+      config.headers["X-RapidAPI-Host"] = "ccc-amazon-scraperapi.p.rapidapi.com";
+      config.headers["X-access-token"] = `${userData?.Token}`
+
       return config;
     },
     function (error: any) {
@@ -46,8 +50,13 @@ function App() {
   );
   
   axios.interceptors.response.use(
-    (response) => {
-      console.log("responsemmm",response?.data)
+    (response:any) => {
+      console.log("responsemmm",response)
+
+      axios({
+        method: 'POST',
+        url: 'http://localhost:3002/checkAuth'
+      });
       if(response?.data?.statusCode === 403){
         logoutSuccess();
       }

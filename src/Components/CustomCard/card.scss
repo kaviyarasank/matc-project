@@ -56,7 +56,7 @@ margin-left: 1rem !important;
 }
 .cardButton{
     position: absolute;
-    z-index: 3;
+    z-index: 0;
     margin-top: 20px;
     margin-left:7%;
     border-radius: 10px;
@@ -92,7 +92,7 @@ box-shadow: inset 13px 13px 24px #d0d0d0,
     font-size: 40px;
     position: absolute;
     display: none;
-    z-index: 3;
+    z-index: 0;
 }
 .heartTrue{
     color: #ff2020;

@@ -32,18 +32,11 @@ function Home() {
     const notify = () => toast.success('Product Added Successfully', {
         className: 'toast-success'
       });
-// useEffect(()=>{
-// if(likeStatess.length > 0){
-// setLike(true)
-// }else{
-//     setLike(false);
-// }
-// },[likeStatess.length])
-
     const fetch = useCallback(
         () => {
             try {
                 dispatch(fetchPlayerList());
+                
             } catch (err) {
                 console.log(err);
             }
@@ -91,9 +84,6 @@ function Home() {
         addProducts(cartProduct);
         notify();
     }
-    // useEffect(() => {
-    //       window.scrollTo(0, 0)
-    //   }, [])
 
 
     const addLikes = useCallback(

@@ -11,7 +11,6 @@ import { FaStore } from "react-icons/fa";
 import Color from "./Helper/Color";
 import randomColor from "randomcolor";
 import { useCallback, useMemo, useState } from "react";
-import { GiHamburgerMenu } from "react-icons/gi";
 
 
 function Navigation() {
@@ -23,6 +22,7 @@ function Navigation() {
 
   const handleLogout=()=>{
     localStorage.removeItem("name");
+    localStorage.removeItem("token");
     navigate("/");
     window.location.reload();
   }

@@ -1,5 +1,5 @@
 import React from "react";
-import { render as rtlrender, cleanup ,fireEvent} from "@testing-library/react";
+import { render as rtlrender, cleanup } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { store } from "../../Redux/Store";
 import Button from "./Button";

@@ -3,13 +3,12 @@ import {useNavigate} from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../Redux/Store";
 import { clear, clearCart, decrement, increament } from "../../Redux/CardAction";
-import { useCallback } from "react";
+import { useCallback,Suspense, lazy } from "react";
 import { cartTotalPriceSelector } from "./cartTotal";
 import { MdAutoDelete } from 'react-icons/md';
 import StripeCheckout from 'react-stripe-checkout';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Suspense, lazy } from 'react';
 
 
 
@@ -137,7 +136,7 @@ function Cart(){
                                     <input id="form1" min="0" name="quantity" value={data?.quantity} type="number"
                                       className="form-control form-control-sm" style={{ width: "50px" }} />
 
-                                    <button className="btn btn-link px-2"
+                                    <button className="btn btn-link px-2" data-testid = "Increment-button"
                                       onClick={() => handleplus(data?.id)}
                                     >
                                       <i className="fas fa-plus colorWhite"></i>

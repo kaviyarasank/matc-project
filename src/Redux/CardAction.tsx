@@ -12,21 +12,21 @@ const cartSlice = createSlice({
 
       const find = state.find((item:any) => item.id === id);
 console.log("find",find)
-      if (find) {
-        return state.map((item:any) =>
-          item.id === id
-            ? {
-                ...item,
-                quantity: item.quantity + 1
-              }
-            : item
-        );
-      } else {
+      // if (find) {
+      //   return state.map((item:any) =>
+      //     item.id === id
+      //       ? {
+      //           ...item,
+      //           quantity: item.quantity + 1
+      //         }
+      //       : item
+      //   );
+      // } else {
         state.push({
           ...payload,
           quantity: 1
         });
-      }
+      // }
     },
     increament(state, { payload }) {
       console.log("======>",payload)

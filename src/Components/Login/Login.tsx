@@ -3,7 +3,6 @@ import timezone from "../../assets/loginLogo.png";
 
 function Clock() {
   var myCurrentDate = new Date();
-  console.log("myCurrentDate", myCurrentDate);
 
   return (
     <div>

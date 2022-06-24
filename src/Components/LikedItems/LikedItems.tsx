@@ -14,7 +14,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function LikedItems() {
     const res = useSelector((state: any) => state?.like);
-    console.log("resssssssssssss", res)
     const dispatch = useDispatch<AppDispatch>();
 
     const closeLikedItems = (id: any) => {
@@ -40,7 +39,6 @@ function LikedItems() {
     );
 
     const handleAdd = (product: any) => {
-        console.log("product", product)
         let cartProduct = {
             ...product,
             count: 1

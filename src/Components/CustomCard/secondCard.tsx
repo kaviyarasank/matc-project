@@ -22,7 +22,7 @@ import Rating from '@mui/material/Rating';
   value={props.value}
  className="rating"
 />
-            <Button className='cardButton' onClick={props.addtocart}>{"Add To Cart"}</Button>
+            <button className='cardButton border-0' data-testid="card-button" onClick={props.addtocart}>{"Add To Cart"}</button>
           </CardBody>
         </Card>
         <div className='cardtextdiv mt-3'>

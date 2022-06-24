@@ -13,6 +13,15 @@ function Footer(){
         document.documentElement.clientHeight + window.scrollY >=
         (document.documentElement.scrollHeight || document.documentElement.clientHeight)
   
+      window.onscroll = function() {
+        var totalPageHeight = document.body.scrollHeight; 
+        var scrollPoint = window.scrollY + window.innerHeight;
+        if(scrollPoint >= totalPageHeight)
+        {
+          setIsBottomVisible(true);
+        }
+    }
+
     useEffect(()=>{
       setIsBottomVisible(bottomVisible())
     },[isBottomVisible])
@@ -31,17 +40,17 @@ function Footer(){
     <footer >
       <div className={` ${isBottomVisible ? "d-flex align-item-center justify-content-center footer-Box mb-1 row  footer-rowcon":"disappear"}  `}>
           <div className="col">
-          <img src={timezone} alt=""/>
+          <img src={timezone} alt="" data-testid="footer-image" />
           <div>
           <p className="footer-link"> Asorem ipsum adipolor sdit amet, consectetur adipisicing elitcf sed do eiusmod tem.</p>
           </div>
               </div>
           <div className="col">
               <p className="footer-heading">Quick Links</p>
-              <div><button className="footer-links" onClick={handleAbout}>About</button></div>
+              <div><button className="footer-links" data-testid="footer-aboutBtn" onClick={handleAbout}>About</button></div>
               <div><button className="footer-links">Offers & Discounts</button></div>
               <div><button className="footer-links">Get Coupon</button></div>
-              <div><button className="footer-links" onClick={handleContact}>Contact Us</button></div>
+              <div><button className="footer-links" data-testid="footer-contactbtn" onClick={handleContact}>Contact Us</button></div>
               
               </div>
           <div className="col">

@@ -28,7 +28,6 @@ function Navigation() {
   }
   let localValues = getLocalStorageValuesBoolean();
   const cart = useSelector((state:any) => state.cart);
-  console.log("localValues==>",cart?.length)
   
   
   const memoColor = useMemo(
@@ -40,7 +39,6 @@ function Navigation() {
   const handleClick = () => {
     setActive(!active);
   };
-  console.log("aaaaaaa",active)
 
   const handleHome =()=>{
     navigate("/")

@@ -15,9 +15,7 @@ function Tracking(){
     let details = JSON.parse(localStorage.getItem("name") || "{}");
     let profile = JSON.parse(localStorage.getItem("profile") || "{}");
     let amount = JSON.parse(localStorage.getItem("productAmount") || "{}");
-    console.log("address--===>",address);
-    console.log("userData--===>",userData);
-    console.log("details--===>",details);
+
 const backToOrder=()=>{
     navigate("/");
 }
@@ -32,7 +30,6 @@ var myFutureDate=new Date(myCurrentDate);
     const Print: any = useReactToPrint({
         content: () => componentRef.current,
       });
-    console.log("myFutureDate",myFutureDate)
     localStorage.setItem("deliveryDate", JSON.stringify(myFutureDate));
 const handle=()=>{
     setModal(!modal)

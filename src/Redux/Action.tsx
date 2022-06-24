@@ -8,8 +8,8 @@ export const fetchPlayerList = createAsyncThunk(
 
       const fetchData = await axios({
         method: 'GET',
-  url: 'https://ccc-amazon-scraperapi.p.rapidapi.com/search/rolexWatch',
-  params: {api_key: '79687d0f243f12887fb0d5f40ee0e4d9'},
+  url: 'https://amazon-india-web-scraper.p.rapidapi.com/search/rolexWatch',
+  params: {api_key: '5e807588161dda4445ec22b79036a4c0'},
 
       }).then((response) => {
         if (response.status !== 200) {
@@ -34,13 +34,10 @@ export const fetchPlayerList = createAsyncThunk(
     }
   };
   
-  // Reducers
   const teamSlice = createSlice({
     name: "team",
     initialState: teamInitialState,
-    // Non-async reducers
     reducers: {},
-    // Async reducers
     extraReducers: {
       
       [fetchPlayerList.fulfilled.type]: (state, action) => {

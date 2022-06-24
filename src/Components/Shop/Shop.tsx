@@ -20,7 +20,6 @@ function Shop(){
       });
       const playerList = useSelector((state:any) => state.team.playerList);
       let res = playerList?.data?.results;
-      console.log("playerList",res)
       const fetch = useCallback(
           () => {
             try {
@@ -64,7 +63,6 @@ function Shop(){
     }, [])
     
 const handleAdd=(product:any)=>{
-  console.log("product",product)
   let cartProduct = {
       ...product,
       id:unique_id,

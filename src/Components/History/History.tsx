@@ -31,7 +31,6 @@ function History(){
   </thead>
   <tbody>
       {userData?.map((data:any)=>{
-          console.log("datadatadata",data)
           return(
     <tr>
       <td>{data?.name}</td>

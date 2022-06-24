@@ -29,7 +29,6 @@ function Cart(){
       className: 'toast-success'
     });
     const totalPrice = useSelector(cartTotalPriceSelector);
-    console.log("totalPrice",cart)
 
     
     const handleClear=(id:any)=>{
@@ -53,7 +52,6 @@ function Cart(){
     );
 
       const onToken = (token: any) => {
-          console.log("token",token);
           localStorage.setItem("address", JSON.stringify(token));
           notify();
           localStorage.setItem("cartProduct", JSON.stringify(cart));
@@ -111,7 +109,6 @@ function Cart(){
                         </thead>
                         <tbody>
                           {cart && cart?.map((data: any) => {
-                            console.log("dataaaa", data);
                             return (
                               <tr>
                                 <td>
@@ -136,7 +133,7 @@ function Cart(){
                                     <input id="form1" min="0" name="quantity" value={data?.quantity} type="number"
                                       className="form-control form-control-sm" style={{ width: "50px" }} />
 
-                                    <button className="btn btn-link px-2" data-testid = "Increment-button"
+                                    <button className="btn btn-link px-2" data-testid = "increment-button"
                                       onClick={() => handleplus(data?.id)}
                                     >
                                       <i className="fas fa-plus colorWhite"></i>

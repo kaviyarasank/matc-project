@@ -11,7 +11,7 @@ import { AppDispatch } from "../../Redux/Store";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../Loader/loader";
 import { addToCart } from "../../Redux/CardAction";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuid } from 'uuid';
 import { likeState } from "../../Redux/LikeAction";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -22,13 +22,12 @@ function Home() {
     const dispatch = useDispatch<AppDispatch>();
     const [loading, setLoading] = useState(false);
     const playerList = useSelector((state: any) => state.team.playerList);
-    const unique_id = uuidv4();
+    const unique_id = uuid();
     const cart = useSelector((state: any) => state?.like);
     let res = playerList?.data?.results;
     const likeStatess = cart?.map((like:any)=>{
         return like.like
     })
-    console.log("response-->",likeStatess)
     const notify = () => toast.success('Product Added Successfully', {
         className: 'toast-success'
       });
@@ -186,7 +185,6 @@ const handleLike=(data:any)=>{
                         <div className="col-6 mt-5">
                             <h1 className="choiceshead">Watch of Choice</h1>
                             <p className="mt-5 choicestext">Enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
-                            {/* <Button className="choicesbutton mt-5" onClick={shopNow}>SHOP WATCHES</Button> */}
                             <Button onClick={shopNow} name="SHOP WATCHES" testid="button"/>
                         </div>
                         <div className="col-6">
@@ -203,7 +201,6 @@ const handleLike=(data:any)=>{
                         <div className="col-6 mt-5">
                             <h1 className="choiceshead">Watch of Choice</h1>
                             <p className="mt-5 choicestext">Enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
-                            {/* <Button className="choicesbutton mt-5" onClick={shopNow}>SHOP WATCHES</Button> */}
                             <Button onClick={shopNow} name="SHOP WATCHES"/>
                         </div>
                     </div>

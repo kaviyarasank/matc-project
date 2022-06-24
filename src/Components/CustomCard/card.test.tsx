@@ -2,7 +2,7 @@ import { render as rtlrender, cleanup, screen,fireEvent} from "@testing-library/
 import { Provider } from "react-redux";
 import { store } from "../../Redux/Store";
 import { BrowserRouter} from "react-router-dom";
-import Cart from "./cart";
+import SecondCard from "./secondCard";
 
 const render = (component: any) =>
     rtlrender(<Provider store={store}>{component}</Provider>);
@@ -12,18 +12,21 @@ describe("Cart", () => {
   test("render Cart component Without crashing", () => {
       render(
         <BrowserRouter>
-        <Cart />
+        <SecondCard/>
       </BrowserRouter>
       );
   });
 
-  test('increment-button', () => {
+  test('renders card button', () => {
     render(
-      <BrowserRouter>
-        <Cart />
+        <BrowserRouter>
+        <SecondCard/>
       </BrowserRouter>
     );
-    const primaryButton = screen.getByRole('button')
-    expect(primaryButton).toHaveClass()
+    const mockOnClick = jest.fn();
+    const SubmitButton = screen.getByTestId("card-button")
+    fireEvent.click(SubmitButton);
+    expect(mockOnClick).toHaveBeenCalledTimes(0)
+
   })
 });

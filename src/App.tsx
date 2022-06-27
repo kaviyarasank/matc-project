@@ -39,7 +39,7 @@ function App() {
     var userData = JSON.parse(localStorage.getItem("token") || "{}");
     console.log("userDatauserData",userData?.Token)
       config.headers["X-RapidAPI-Key"] = "a08b46e4f2msh25a8dc2a3d14f2fp17daeajsna7b2bc642d72";
-      config.headers["X-RapidAPI-Host"] = "ccc-amazon-scraperapi.p.rapidapi.com";
+      config.headers["X-RapidAPI-Host"] = "amazon-data-scraper67.p.rapidapi.com";
       config.headers["X-access-token"] = `${userData?.Token}`
 
       return config;

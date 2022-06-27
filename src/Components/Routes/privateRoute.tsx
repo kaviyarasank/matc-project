@@ -14,11 +14,16 @@ import Shop from "../Shop/Shop";
 import Tracking from "../Track/Tracking";
 import { ErrorBoundary } from "react-error-boundary";
 import "./Routes.scss";
+import { Suspense, lazy } from "react";
+
 
 function PrivateRouter() {
   let localValues = getLocalStorageValuesBoolean();
   console.log("localValues", localValues);
-
+// const Home = lazy(()=> import("../Home/Home"));
+// const Shop = lazy(()=>import("../Shop/Shop"));
+// const Contact = lazy(()=>import("../Contact/Contact"));
+// const About = lazy(()=>import("../About/About"));
   function ErrorFallback() {
     return (
       <div role="alert">
@@ -83,6 +88,7 @@ function PrivateRouter() {
     <div className="App">
       {localValues ? <Navigation /> : <div></div>}
       <ErrorBoundary FallbackComponent={ErrorFallback}>
+      {/* <Suspense fallback={<div className="text-center mt-5 shop">Loading...</div>}> */}
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/shop" element={<Shop />}></Route>
@@ -94,6 +100,7 @@ function PrivateRouter() {
           <Route path="/Tracking" element={<Tracking />}></Route>
           <Route path="/History" element={<History />}></Route>
         </Routes>
+        {/* </Suspense> */}
         <ScrollToTop />
         {localValues ? <Footer /> : <div></div>}
       </ErrorBoundary>

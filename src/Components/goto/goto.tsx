@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { FaAngleUp } from 'react-icons/fa';
+import { FaAngleUp, FaShareSquare } from 'react-icons/fa';
 import "./goto.scss";
+import { RWebShare } from "react-web-share";
+
 
 const ScrollToTop = () => {
     const [showTopBtn, setShowTopBtn] = useState(false);
@@ -9,10 +11,10 @@ const ScrollToTop = () => {
     useEffect(() => {
 
         let progressBarHandler = () => {
-            
+
             const totalScroll = document.documentElement.scrollTop;
             const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scroll:any = `${totalScroll / windowHeight}`;
+            const scroll: any = `${totalScroll / windowHeight}`;
 
             setScroll(scroll);
         }
@@ -36,6 +38,8 @@ const ScrollToTop = () => {
             behavior: "smooth",
         });
     };
+
+    var currentLocation = window.location;
     return (
         <><div id="progressBarContainer">
             <div id="progressBar" style={{ transform: `scale(${scroll}, 1)`, opacity: `${scroll}` }} />
@@ -45,6 +49,17 @@ const ScrollToTop = () => {
                         className="icon-position icon-style"
                         onClick={goToTop} />
                 )}{" "}
+
+                <RWebShare
+                    data={{
+                        text: "Watche make friends for life",
+                        url: `${currentLocation}`,
+                        title: "Share this Website"
+                    }}
+                    onClick={() => console.info("share successful!")}
+                >
+                    <button className='icon-position icon-style shareButton'><FaShareSquare /></button>
+                </RWebShare>
             </div></>
     );
 };

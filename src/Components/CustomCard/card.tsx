@@ -7,13 +7,14 @@ value: number,
 name:string,
 price:string,
 image:string,
-addtocarts:any
+addtocarts:any,
+key:string
   }
 
 const CardComponent = (props:data) => {
   return (
     <div>
-      <Card className='card-box'>
+      <Card className='card-box' key={props.key}>
         <CardBody className='cardbodybox'>
         <CardImg  src={props.image} alt="Card image cap" className='cardimages'/>
         <Rating

@@ -15,6 +15,8 @@ import Tracking from "../Track/Tracking";
 import { ErrorBoundary } from "react-error-boundary";
 import "./Routes.scss";
 import { Suspense, lazy } from "react";
+import { RWebShare } from "react-web-share";
+
 
 
 function PrivateRouter() {
@@ -88,7 +90,6 @@ function PrivateRouter() {
     <div className="App">
       {localValues ? <Navigation /> : <div></div>}
       <ErrorBoundary FallbackComponent={ErrorFallback}>
-      {/* <Suspense fallback={<div className="text-center mt-5 shop">Loading...</div>}> */}
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/shop" element={<Shop />}></Route>

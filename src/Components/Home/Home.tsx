@@ -22,12 +22,13 @@ function Home() {
     const dispatch = useDispatch<AppDispatch>();
     const [loading, setLoading] = useState(false);
     const playerList = useSelector((state: any) => state.team.playerList);
-    const unique_id = uuid();
-    const cart = useSelector((state: any) => state?.like);
-    let res = playerList?.data?.results;
-    const likeStatess = cart?.map((like:any)=>{
-        return like.like
-    })
+console.log("playerList",playerList)
+    let newCardDatas = playerList?.data?.results?.map((data: any) => {
+        return {
+          ...data,
+          id: uuid(),
+        };
+      });
     const notify = () => toast.success('Product Added Successfully', {
         className: 'toast-success'
       });
@@ -47,16 +48,16 @@ function Home() {
         fetch()
     }, [fetch])
     useEffect(() => {
-        if (res === undefined) {
+        if (newCardDatas === undefined) {
             setLoading(true);
         }
-    }, [res])
+    }, [newCardDatas])
 
     useEffect(() => {
-        if (res) {
+        if (newCardDatas) {
             setLoading(false);
         }
-    }, [res])
+    }, [newCardDatas])
 
     const shopNow = () => {
         navigate("/shop");
@@ -77,7 +78,6 @@ function Home() {
         console.log("product", product)
         let cartProduct = {
             ...product,
-            id: unique_id,
             count: 1
         }
         addProducts(cartProduct);
@@ -100,7 +100,6 @@ function Home() {
 const handleLike=(data:any)=>{
     let cartProduct = {
         ...data,
-        id: unique_id,
         like: true
     }
     addLikes(cartProduct);
@@ -136,12 +135,13 @@ const handleLike=(data:any)=>{
             <div className="homeshop-divtwo">
                 <div className="container">
                     <h1 className="popular mt-5">New Arraivals</h1>
-                    {res === undefined && <Loader />}
+                    {newCardDatas === undefined && <Loader />}
                     {loading ? null : (
                         <div className="row justify-content-center firstcard mt-5"  >
-                            {res && res?.length > 0 && res?.slice(3, 6).map((data: any) => (
+                            {newCardDatas && newCardDatas?.length > 0 && newCardDatas?.slice(3, 6).map((data: any) => (
                                 <div className="col-4 responsiveColHome" data-testid="listApi-div">
                                     <CardComponent
+                                    key={uuid()}
                                         name={data.name?.slice(0, 30)}
                                         image={data.image}
                                         price={data.price_string?.slice(0, 10)}
@@ -155,10 +155,10 @@ const handleLike=(data:any)=>{
                     <h2 className="popular">Popular Items</h2>
                     <p className="text-center popularItems mt-5">Rolex watches are crafted with scrupulous attention to detail</p>
                     <div className="mt-5">
-                        {res === undefined && <Loader />}
+                        {newCardDatas === undefined && <Loader />}
                         {loading ? null : (
                             <div className="row justify-content-center mt-5">
-                                {res && res?.length > 0 && res.map((data: any) => (
+                                {newCardDatas && newCardDatas?.length > 0 && newCardDatas.map((data: any) => (
                                     <div className="col-4 responsiveColHome">
                                         <SecondCard
                                             likeButton={()=>handleLike(data)}

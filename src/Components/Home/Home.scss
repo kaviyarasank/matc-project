@@ -151,7 +151,7 @@ justify-content: space-between;
   }
   @media only screen and (max-width: 1199px) {
     .choices{
-      display: block;
+      display: block !important;
       text-align: -webkit-center;
     }
    
@@ -170,7 +170,7 @@ justify-content: space-between;
     margin-left: 2rem;
 }
 .watch{
-  display: none;
+  display: none !important;
 }
 .homeshop-btn{
   margin-top: 5rem;
@@ -184,6 +184,6 @@ justify-content: space-between;
   }
   @media only screen and (max-width: 320px) {
     .watch{
-      display: none;
+      display: none !important;
     }
   }

@@ -22,6 +22,9 @@ const CardComponent = (props:data) => {
   value={props.value}
  className="rating"
 />
+{/* <div className="center">
+        <button className="border-0 bg-light"  onClick={props.addtocarts}><span data-attr="Buy">Buy</span><span data-attr="To">To</span><span data-attr="Cart"></span></button>
+    </div> */}
           <Button className='cardButton' onClick={props.addtocarts}>Add To Cart</Button>
         </CardBody>
       

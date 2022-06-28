@@ -70,7 +70,7 @@ function LikedItems() {
                                 <Card className='card-boxLike'>
                                     <AiOutlineCloseSquare className="closemodal" onClick={() => closeLikedItems(data?.id)} />
                                     <CardBody className='cardbodybox'>
-                                        <CardImg src={data.image} alt="Card image cap" className='cardimages' />
+                                        <CardImg src={data.image} alt="Card image cap" className='cardimages emptycartImages' />
                                         <Button data-testid="submitbutton" className='cardButtonlike' onClick={() => handleAdd(data)} >{"Add To Cart"}</Button>
                                         <Accordion>
                                             <Accordion.Item eventKey={data?.id} className="my-2">

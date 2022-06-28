@@ -3,6 +3,32 @@
     width: 100%;
     background-image: url("../../assets/redwatch.jpg");
 }
+.mainInput {
+    position: relative;
+    margin-top: -3rem;
+  }
+ 
+  
+  @media only screen and (min-width:1850px){
+    .videoPlayContact{
+        position: absolute;
+        width: 100%;
+        height: fit-content;
+    filter: blur(8px);
+    }
+  }
+  @media only screen and (max-width:1849px){
+    .videoPlayContact{
+      display: none;
+    }
+    .red{
+        color: red !important;
+        background: #ffffff !important;
+    }
+    .sendbtn{
+        background: #ffffff !important;
+    }
+  }
 .formsections{
     height: 100%;
     background: rgba(255, 255, 255, 0.055); 
@@ -12,13 +38,13 @@
 }
 .contactSecondDiv{
     height: 1000px;
-    padding: 2rem;
+    padding-top: 1px;
 }
 .colorWhite{
     color: #ffffff;
 }
 .red{
-    color: rgb(240, 61, 61);
+    color: #ffffff;
 }
 .sendbtn{
     font-size: 22px;

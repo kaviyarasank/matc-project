@@ -56,3 +56,15 @@
               display: none;
           }  
         }
+
+        button span:nth-child(1):after {
+            content:0 !important;
+            padding: 15px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #262626;
+            transform-origin: bottom;
+            transform: rotateX(0deg) translateY(0%);
+            transition: 0.5s;
+        }

@@ -2,6 +2,7 @@ import { Card, CardImg,CardBody, Button } from 'reactstrap';
     import "./card.scss"
     import * as React from 'react';
 import Rating from '@mui/material/Rating';
+import "../CustomButton/Button.scss";
     // AiOutlineHeart
   
   const SecondCard = (props:any) => {
@@ -22,6 +23,9 @@ import Rating from '@mui/material/Rating';
   value={props.value}
  className="rating"
 />
+        {/* <div className="center">
+        <button className="border-0 bg-light" onClick={props.addtocart}><span data-attr="Add">Add</span><span data-attr="To">To</span><span data-attr="Cart"></span></button>
+    </div> */}
             <button className='cardButton border-0' data-testid="card-button" onClick={props.addtocart}>{"Add To Cart"}</button>
           </CardBody>
         </Card>

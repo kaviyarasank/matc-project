@@ -67,3 +67,34 @@ height:50px;
     font-family: 'Lobster', cursive;
     font-size: 24px;
 }
+@media only screen and (max-width: 995px) {
+
+  .wrapper {
+    width: 95% !important;
+    height: 80vh !important;
+}
+  .watch-strap .strap-circle {
+    height: 409px !important;
+    width: 371px !important;
+}
+
+
+.watch-case {
+    height: 350px !important ;
+    width: 300px !important;
+}
+
+.watch-strap .strap-circle {
+    height: 370px !important;
+    width: 320px !important;
+}
+
+.watch-lace {
+    right: -59px !important;
+}
+
+.watch-strap .strap {
+    height: 480px !important;
+    width: 210px !important;
+}
+}

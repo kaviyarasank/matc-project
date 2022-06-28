@@ -177,7 +177,7 @@ password: Yup.string().required()
       :(
          
       <div className="row no-gutters shadow-lg">
-      <div className="col-md-6 d-none d-md-block">
+      <div className="col-md-6 d-none d-md-block loginClocknone">
      <Clock/>
       </div>
 

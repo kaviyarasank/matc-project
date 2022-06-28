@@ -6,20 +6,24 @@ import {useDispatch, useSelector } from "react-redux";
 import { useCallback, useEffect, useState } from "react";
 import Loader from "../Loader/loader";
 import { addToCart } from "../../Redux/CardAction";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuid } from 'uuid';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { likeState } from "../../Redux/LikeAction";
 
 function Shop(){
-  const unique_id = uuidv4();
   const [loading , setLoading] = useState(false);
       const dispatch = useDispatch<AppDispatch>();
       const notify = () => toast.success('Product Added Successfully', {
         className: 'toast-success'
       });
       const playerList = useSelector((state:any) => state.team.playerList);
-      let res = playerList?.data?.results;
+      let newCardDatas = playerList?.data?.results?.map((data: any) => {
+        return {
+          ...data,
+          id: uuid(),
+        };
+      });
       const fetch = useCallback(
           () => {
             try {
@@ -36,16 +40,16 @@ function Shop(){
       },[fetch])
       
       useEffect(()=>{
-        if(res === undefined){
+        if(newCardDatas === undefined){
             setLoading(true);
         }
-        },[res])
+        },[newCardDatas])
         
         useEffect(()=>{
-            if(res){
+            if(newCardDatas){
                 setLoading(false);
             }
-            },[res])
+            },[newCardDatas])
 
 
     const addProducts = useCallback(
@@ -65,7 +69,6 @@ function Shop(){
 const handleAdd=(product:any)=>{
   let cartProduct = {
       ...product,
-      id:unique_id,
       count:1
   }
   notify();
@@ -86,7 +89,6 @@ const addLikes = useCallback(
 const handleLike=(data:any)=>{
 let cartProduct = {
   ...data,
-  id: unique_id,
   like: true
 }
 addLikes(cartProduct);
@@ -143,10 +145,10 @@ addLikes(cartProduct);
             pauseOnHover
             className={"toastMargin"}
           />
-            {res === undefined && <Loader/>}
+            {newCardDatas === undefined && <Loader/>}
             {loading ? null : (
             <div className="row justify-content-center mt-5">
-               {res && res?.length > 0 && res.map((data:any) => (
+               {newCardDatas && newCardDatas?.length > 0 && newCardDatas.map((data:any) => (
                     <div className="col-4 responsiveColHome">
                           <SecondCard
                            likeButton={()=>handleLike(data)}

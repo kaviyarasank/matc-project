@@ -41,6 +41,10 @@ if(value.name !== "" && value.email !=="" && value.Address !== "" && value.messa
     return(
         <div className="mainDivContact">
 <div className="contactSecondDiv">
+
+<video className="videoPlayContact" autoPlay loop >
+                        <source src={"https://content.rolex.com/dam/homepage/hss/watches/professional-watches/explorer/m124273-0001/homepage-explorer-m124273-0001.mp4"} type="video/mp4" />
+                    </video>
 <ToastContainer
             position="top-right"
             autoClose={5000}
@@ -53,6 +57,7 @@ if(value.name !== "" && value.email !=="" && value.Address !== "" && value.messa
             pauseOnHover
             className={"toastMargin"}
           />
+            <div className="mainInput">
 <section className="mb-4 formsections container px-5 py-4">
 
     <h2 className="h1-responsive font-weight-bold text-center colorWhite">Contact us</h2>
@@ -122,7 +127,7 @@ if(value.name !== "" && value.email !=="" && value.Address !== "" && value.messa
             </form>
 
             <div className="text-center text-md-left mt-3">
-                <button className="btn btn-light red sendbtn" data-testid="con-button" onClick={handleButton}>Send</button>
+                <button className="btn btn-light red sendbtn choicesbutton" data-testid="con-button" onClick={handleButton}>Send</button>
             </div>
             <div className="status"></div>
         </div>
@@ -147,6 +152,7 @@ Trichy, 620018</p>
     </div>
 
 </section>
+</div>
 </div>
         </div>
     )

@@ -1,6 +1,6 @@
 {
   "name": "matc-project",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": false,
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.22.1",

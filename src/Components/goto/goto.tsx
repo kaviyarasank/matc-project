@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaAngleUp, FaShareSquare } from 'react-icons/fa';
 import "./goto.scss";
 import { RWebShare } from "react-web-share";
 import Chatbot from '../ChatBox/ChatBoat';
 import { MdOutlineMessage } from 'react-icons/md';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {
-    Button, Modal, ModalFooter,
-    ModalHeader, ModalBody
-} from "reactstrap"
+import {Modal,ModalBody} from "reactstrap"
 
 
 const ScrollToTop = () => {

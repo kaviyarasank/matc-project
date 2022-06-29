@@ -223,3 +223,8 @@
         .dropBoxwidth{
           width: 10vw;
         }
+        @media only screen and (max-width: 1199px) {
+          .historyNone{
+            display: none;
+          }
+        }

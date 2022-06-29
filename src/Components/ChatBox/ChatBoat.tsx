@@ -1,7 +1,6 @@
 import{ useState } from "react";
 import API from "./API";
 import BotMessage from "./BotMessage";
-import "./ChatBot.scss";
 import Header from "./Header";
 import Input from "./Input";
 import Messages from "./Message";

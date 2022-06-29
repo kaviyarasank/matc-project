@@ -29,6 +29,7 @@
     background-color: #e61313;
     border: 2px solid #fff;
     height: 50px;
+    border-radius: 50%;
     width: 50px;
     color: #fff;
     cursor: pointer;
@@ -95,7 +96,6 @@
 .messageButton{
   margin-bottom: 12rem;
   text-align: center;
-  height: 40px !important;
   font-size: 20px !important;
 }
 .modal-content{

@@ -1,12 +1,8 @@
 import axios from "axios";
 
-
-console.log("")
-
 const API = {
   GetChatbotResponse: async (message: string) => {
-    console.log("message-->",message)
-    return new Promise(function(resolve, reject) {
+    return new Promise(function(resolve) {
       setTimeout(function() {
         if (message === "hi") resolve("Welcome to chatbot!");
         else {

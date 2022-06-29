@@ -134,7 +134,7 @@ const handleLike=(data:any)=>{
             </div>
             <div className="homeshop-divtwo">
                 <div className="container">
-                    <h1 className="popular mt-5">New Arraivals</h1>
+                    <h1 className="popular mt-5">New Arrivals</h1>
                     {newCardDatas === undefined && <Loader />}
                     {loading ? null : (
                         <div className="row justify-content-center firstcard mt-5"  >

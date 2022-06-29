@@ -3,7 +3,7 @@ import { FaAngleUp, FaShareSquare } from 'react-icons/fa';
 import "./goto.scss";
 import { RWebShare } from "react-web-share";
 import Chatbot from '../ChatBox/ChatBoat';
-import { MdOutlineMessage } from 'react-icons/md';
+import { TbMessageCircle } from 'react-icons/tb';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Modal,ModalBody} from "reactstrap"
 
@@ -63,7 +63,7 @@ const ScrollToTop = () => {
                         </ModalBody>
                     </Modal>
                 </div >
-            <MdOutlineMessage className='icon-positionMessage icon-styleMessage messageButton' onClick={handleMessage}/>
+            <TbMessageCircle className='icon-positionMessage icon-styleMessage messageButton' onClick={handleMessage}/>
                 {showTopBtn && (
                     <FaAngleUp
                         className="icon-position icon-style"

@@ -1,4 +1,3 @@
-import React from "react";
 import { render as rtlrender, cleanup, screen,fireEvent} from "@testing-library/react";
 import { Provider } from "react-redux";
 import { store } from "../../Redux/Store";
@@ -27,4 +26,22 @@ describe("Home", () => {
     const SubmitButton = screen.getByTestId("firstShop-button")
     fireEvent.click(SubmitButton);
   })
+
+  test('Fetch api calls', async () => {
+    render( <BrowserRouter>
+      <Home />
+    </BrowserRouter>)
+    const text = await screen.findByText("Popular Items")
+    expect(text).toBeInTheDocument()
+  })
+
+  // test('list api using axios', () => {
+  //   render(
+  //   <BrowserRouter>
+  //     <Home />
+  //   </BrowserRouter>);
+  //   const getApiList = screen.getByTestId("listApi-div")
+  //   expect(getApiList).toBeInTheDocument();
+
+  // });
 });

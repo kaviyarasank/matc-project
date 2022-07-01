@@ -55,7 +55,7 @@ const ScrollToTop = () => {
       </div>
       <div className="top-to-btm">
         <div>
-          <Modal isOpen={modal} toggle={toggle} modalTransition={{ timeout: 500 }}>
+          <Modal isOpen={modal} toggle={toggle} modalTransition={{ timeout: 500 }} className="modalmainContent">
             <ModalBody>
               <ChatbotMessage />
             </ModalBody>

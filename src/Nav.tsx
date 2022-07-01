@@ -43,6 +43,7 @@ function Navigation() {
   const handleHome =()=>{
     navigate("/")
   }
+  let userData = JSON.parse(localStorage.getItem('cartProduct') || '{}');
   return (
       <div className={localValues ? "d-flex navbar-header" : "d-none"}  style={{backgroundColor:color}} >
         <div className="logoImage"><img src={timezone} alt="" onClick={handleHome} className="cursor-pointer"/></div>
@@ -69,7 +70,7 @@ function Navigation() {
             <div className="row d-flex dropBoxwidth">
               <Link to="/likedItems" className="dropText logoutbtn text-center text-decoration-none">LikedList</Link>
               <Link to="/profile" className="dropText logoutbtn text-center text-decoration-none">Profile</Link>
-              <Link to="/Tracking" className="dropText logoutbtn text-center text-decoration-none">TrackYourOrder</Link>
+              {userData.length !== 0 ? <Link to="/Tracking" className="dropText logoutbtn text-center text-decoration-none">TrackYourOrder</Link> : ""}
               <Link to="/History" className="dropText logoutbtn text-center text-decoration-none historyNone">History</Link>
               </div>
               <div className="row d-flex">

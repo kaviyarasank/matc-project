@@ -140,10 +140,10 @@ function Home() {
         <div></div>
       </div>
       <img
-              src="https://preview.colorlib.com/theme/timezone/assets/img/hero/xwatch.png.pagespeed.ic.LlRtijfV2T.webp"
-              className="mobileviewwatch"
-              alt=""
-            />
+        src="https://preview.colorlib.com/theme/timezone/assets/img/hero/xwatch.png.pagespeed.ic.LlRtijfV2T.webp"
+        className="mobileviewwatch"
+        alt=""
+      />
       <div className="homeshop-divtwo">
         <div className="container">
           <h1 className="popular mt-5">New Arrivals</h1>
@@ -208,9 +208,9 @@ function Home() {
             <div className="col-6 mt-5">
               <h1 className="choiceshead">Watch of Choice</h1>
               <p className="mt-5 choicestext">
-                Enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                esse.
+                When it comes to watches, it’s ironic that you can spend thousands on an exquisitely
+                made mechanical watch, and yet it will be less accurate than a five-quid digital
+                bought from a petrol station
               </p>
               <Button onClick={shopNow} name="SHOP WATCHES" testid="button" />
             </div>
@@ -227,9 +227,9 @@ function Home() {
             <div className="col-6 mt-5">
               <h1 className="choiceshead">Watch of Choice</h1>
               <p className="mt-5 choicestext">
-                Enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                esse.
+                I had always wanted a watch. Unlike diamonds, watches were practical. They were for
+                people on the run, people with appointments to keep and schedules to meet. That was
+                the kind of person I wanted to be
               </p>
               <Button onClick={shopNow} name="SHOP WATCHES" />
             </div>

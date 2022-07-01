@@ -6,11 +6,10 @@ export const fetchPlayerList = createAsyncThunk(
   async () => {
     const fetchData = await axios({
       method: 'GET',
-      url: 'https://kue-balok-amazon-scraper.p.rapidapi.com/search/rolexWatch',
-      params: { api_key: '3ce665bfa50b336b23f980a1ab4d0753' },
+      url: 'https://abiola-amazon-data-scraper.p.rapidapi.com/search/rolexWatch',
       headers: {
         'X-RapidAPI-Key': 'a08b46e4f2msh25a8dc2a3d14f2fp17daeajsna7b2bc642d72',
-        'X-RapidAPI-Host': 'kue-balok-amazon-scraper.p.rapidapi.com'
+        'X-RapidAPI-Host': 'abiola-amazon-data-scraper.p.rapidapi.com'
       }
     }).then((response) => {
       if (response.status !== 200) {

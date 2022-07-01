@@ -4,11 +4,16 @@ import * as React from 'react';
 import Rating from '@mui/material/Rating';
 import '../CustomButton/Button.scss';
 import { Button } from 'button-customs';
+import { clear } from '../../Redux/CardAction';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../Redux/Store';
 
 const SecondCard = (props: any) => {
+  const dispatch = useDispatch<AppDispatch>();
   const [likes, setLikes] = React.useState(false);
   const handleLikes = () => {
     setLikes(!likes);
+    dispatch(clear(props.id));
     props.likeButton();
   };
 

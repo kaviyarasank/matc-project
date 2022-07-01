@@ -58,4 +58,21 @@
   }
 .likedImage{
     width: 50%;
+    height: 70vh;
 }
+
+.cardimages {
+    height: 410px;
+    width: 100%;
+    background: none;
+    object-fit: contain;
+  
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+    -webkit-transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
+  }
+  .cardimages:hover {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }

@@ -79,7 +79,7 @@ function LikedItems() {
                       <CardImg
                         src={data.image}
                         alt="Card image cap"
-                        className="cardimages emptycartImages"
+                        className="cardimages"
                       />
                       <Button
                         data-testid="submitbutton"

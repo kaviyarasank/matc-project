@@ -98,7 +98,7 @@ function Register() {
             <Analog />
           </div>
 
-          <div className="col-md-6 bg-white xs-mx-2 md:mx-10 lg:mx-52">
+          <div className="col-md-6 bg-white xs-mx-2 md:mx-10 lg:mx-52 loginDivPadd">
             <h3 className="pb-3 welcome mt-5">Welcome Back !</h3>
 
             <div className="form-style">
@@ -118,7 +118,7 @@ function Register() {
                       <label className="loginLabel">Name</label>
                       <Input
                         type="text"
-                        className="inputBox"
+                        className="inputBox mt-2"
                         name="name"
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
@@ -129,7 +129,7 @@ function Register() {
                       <label className="loginLabel">MobileNo</label>
                       <Input
                         type="text"
-                        className="inputBox"
+                        className="inputBox mt-2"
                         name="mobileNo"
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
@@ -143,7 +143,7 @@ function Register() {
                       <Input
                         type="text"
                         name="email"
-                        className="inputBox"
+                        className="inputBox mt-2"
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                       />
@@ -154,7 +154,7 @@ function Register() {
                       <Input
                         type="password"
                         name="password"
-                        className="inputBox"
+                        className="inputBox mt-2"
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                       />
@@ -163,7 +163,7 @@ function Register() {
                       </p>
                     </div>
                     <div className="pb-2">
-                      <Button type="submit" className="btn btn-dark w-100 font-weight-bold mt-2">
+                      <Button type="submit" className="btn btn-dark loginSubBtn font-weight-bold mt-2">
                         Submit
                       </Button>
                     </div>
@@ -185,7 +185,7 @@ function Register() {
             <Clock />
           </div>
 
-          <div className="col-md-6 bg-white xs-mx-2 md:mx-10 lg:mx-52">
+          <div className="col-md-6 bg-white xs-mx-2 md:mx-10 lg:mx-52 loginDivPadd">
             <h3 className="pb-3 welcome mt-5">Welcome Back !</h3>
             <div className="form-style">
               <h3 className="welcome">Please Sign in now</h3>
@@ -208,7 +208,7 @@ function Register() {
                       <Input
                         type="text"
                         name="email"
-                        className="inputBox"
+                        className="inputBox mt-3"
                         data-testid="email-input"
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
@@ -221,7 +221,7 @@ function Register() {
                         type="password"
                         name="password"
                         data-testid="email-Password"
-                        className="inputBox"
+                        className="inputBox mt-3"
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                       />
@@ -232,7 +232,7 @@ function Register() {
                     <div className="pb-2">
                       <Button
                         type="submit"
-                        className="btn btn-dark w-100 font-weight-bold mt-2"
+                        className="btn btn-dark font-weight-bold mt-2 loginSubBtn"
                         data-testid="submit-button">
                         Submit
                       </Button>
@@ -240,16 +240,6 @@ function Register() {
                   </form>
                 )}
               </Formik>
-              <div className="sideline">OR</div>
-              <div>
-                <Button
-                  type="submit"
-                  color="primary"
-                  className="btn w-100 font-weight-bold mt-2"
-                  href="https://www.facebook.com/login/">
-                  Login With Facebook
-                </Button>
-              </div>
               <div className="pt-4 text-center">
                 You Not Have a Account, Please !{' '}
                 <Button className="border-0 bg-light signup-text" onClick={handleSignUp}>

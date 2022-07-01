@@ -3,8 +3,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Markazi+Text&display=swap');
 .form-style input{
 height:50px;
-border-radius:0;
-border:1px solid #ebebeb;	
+border: 1px solid #9e9e9e;
+border-radius: 13px;
+margin: auto;
 }
 .inputBox{
     width: 85%;
@@ -44,6 +45,7 @@ height:50px;
         font-size: 18px;
     color: red;
     font-family: 'Markazi Text', serif;
+    text-align: center;
     }
     .error-msg{
         font-size: 20px;
@@ -97,4 +99,20 @@ height:50px;
     height: 480px !important;
     width: 210px !important;
 }
+}
+
+.loginSubBtn{
+    width: 50%;
+    margin: auto;
+    display: block;
+}
+.loginDivPadd{
+    padding: 40px;
+}
+@media only screen and (max-width: 769px) {
+    .loginDivPadd{
+        padding: 40px;
+        border-radius: 50px;
+        box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    }
 }

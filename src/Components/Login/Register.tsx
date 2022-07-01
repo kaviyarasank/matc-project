@@ -11,7 +11,6 @@ import { AppDispatch } from '../../Redux/Store';
 import { useDispatch } from 'react-redux';
 import { postLogin } from '../../Redux/login';
 import Clock from './Login';
-import Analog from './Analog';
 
 interface registerInter {
   name: string;
@@ -91,11 +90,11 @@ function Register() {
   });
 
   return (
-    <div className="container" style={{ marginTop: '8rem', marginBottom: '10rem' }}>
+    <div className="container" style={{ marginTop: '3rem', marginBottom: '1rem' }}>
       {login === false ? (
-        <div className="row no-gutters shadow-lg">
-          <div className="col-md-6 d-none d-md-block">
-            <Analog />
+        <div className="row">
+          <div className="col-md-6 d-none d-md-block loginClocknone">
+            <Clock />
           </div>
 
           <div className="col-md-6 bg-white xs-mx-2 md:mx-10 lg:mx-52 loginDivPadd">
@@ -180,7 +179,7 @@ function Register() {
           </div>
         </div>
       ) : (
-        <div className="row no-gutters shadow-lg">
+        <div className="row">
           <div className="col-md-6 d-none d-md-block loginClocknone">
             <Clock />
           </div>

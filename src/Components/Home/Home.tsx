@@ -139,6 +139,11 @@ function Home() {
         </div>
         <div></div>
       </div>
+      <img
+              src="https://preview.colorlib.com/theme/timezone/assets/img/hero/xwatch.png.pagespeed.ic.LlRtijfV2T.webp"
+              className="mobileviewwatch"
+              alt=""
+            />
       <div className="homeshop-divtwo">
         <div className="container">
           <h1 className="popular mt-5">New Arrivals</h1>

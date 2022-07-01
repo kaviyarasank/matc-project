@@ -127,6 +127,9 @@
 display: flex;
 justify-content: space-between;
 }
+.mobileviewwatch{
+  display: none;
+}
   @media only screen and (max-width: 999px) {
     .firstcard{
       display: block !important;
@@ -135,10 +138,18 @@ justify-content: space-between;
       width: 100% !important;
       margin: inherit !important;
     }
+    .watch{
+      display: none !important;
+    }
+    .mobileviewwatch{
+      display: block !important;
+      margin: auto;
+      height: 300px;
+      animation: beat 7.5s infinite ;
+    }
   }
   .payLoad{
     margin-top: 2rem;
-    // margin-bottom: -20rem;
   }
   .toastMargin{
     margin-top: 7rem;
@@ -168,9 +179,7 @@ justify-content: space-between;
     margin-top: 5rem;
     margin-left: 2rem;
 }
-.watch{
-  display: none !important;
-}
+
 .homeshop-btn{
   margin-top: 5rem;
 }

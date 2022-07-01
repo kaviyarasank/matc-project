@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Contact.scss';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,6 +12,9 @@ function Contact() {
     subject: '',
     message: ''
   });
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const handleChange = (e: any) => {
     setValue({ ...value, [e.target.name]: e.target.value });
   };

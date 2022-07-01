@@ -133,7 +133,7 @@ function Tracking() {
         </article>
 
         <div className="modalPopUp">
-          <Modal isOpen={modal} toggle={toggle} modalTransition={{ timeout: 500 }}>
+          <Modal isOpen={modal} toggle={toggle} modalTransition={{ timeout: 500 }} className="modalmainContent">
             <ModalBody className="modalBodyPopUp">
               <div className="modalpopRemit-wrapper">
                 <div className="modalpopRemit-title">

@@ -104,3 +104,16 @@
 .modalmainContent{
   text-align: -webkit-center;
 }
+@media only screen and (max-width: 999px) {
+  .icon-styleMessage{
+    height: 40px;
+    width: 40px;
+  }
+  .icon-style{
+    height: 40px;
+    width: 40px;
+  }
+  .shareButton{
+    padding: 0px 5px 0px 5px;
+  }
+}

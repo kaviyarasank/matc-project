@@ -1,19 +1,16 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
-const initialState:any = []
+const initialState: any = [];
 
 const cartSlice = createSlice({
-  name: "cart",
-  initialState:initialState,
+  name: 'cart',
+  initialState: initialState,
   reducers: {
     addToCart(state, { payload }) {
-      console.log("payload",payload)
       const { id } = payload;
-
-      const find = state.find((item:any) => item.id === id);
-console.log("find",find)
+      const find = state.find((item: any) => item.id === id);
       if (find) {
-        return state.map((item:any) =>
+        return state.map((item: any) =>
           item.id === id
             ? {
                 ...item,
@@ -29,8 +26,7 @@ console.log("find",find)
       }
     },
     increament(state, { payload }) {
-      console.log("======>",payload)
-      return state.map((item:any) =>
+      return state.map((item: any) =>
         item.id === payload
           ? {
               ...item,
@@ -40,8 +36,7 @@ console.log("find",find)
       );
     },
     decrement(state, { payload }) {
-      console.log("ssssss",state)
-      return state.map((item:any) =>
+      return state.map((item: any) =>
         item.id === payload
           ? {
               ...item,
@@ -50,18 +45,16 @@ console.log("find",find)
           : item
       );
     },
-    clear(state,{payload}) {
-      return state.filter((item:any) =>
-        item.id !== payload
-      );
+    clear(state, { payload }) {
+      return state.filter((item: any) => item.id !== payload);
     },
     clearCart() {
-      return []
+      return [];
     }
   }
 });
 
-export const { addToCart, increament, decrement, clear,clearCart} = cartSlice.actions;
+export const { addToCart, increament, decrement, clear, clearCart } = cartSlice.actions;
 const cartReducer = cartSlice.reducer;
 
 export default cartReducer;

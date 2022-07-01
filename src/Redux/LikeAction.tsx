@@ -1,19 +1,17 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
-const initialState:any = []
+const initialState: any = [];
 
 const cartSlice = createSlice({
-  name: "like",
-  initialState:initialState,
+  name: 'like',
+  initialState: initialState,
   reducers: {
     likeState(state, { payload }) {
-      console.log("likesssss",payload)
       const { id } = payload;
 
-      const find = state.find((item:any) => item.id === id);
-console.log("find",find)
+      const find = state.find((item: any) => item.id === id);
       if (find) {
-        return state.map((item:any) =>
+        return state.map((item: any) =>
           item.id === id
             ? {
                 ...item,
@@ -28,15 +26,13 @@ console.log("find",find)
         });
       }
     },
-    clearLikes(state,{payload}) {
-      return state.filter((item:any) =>
-        item.id !== payload
-      );
+    clearLikes(state, { payload }) {
+      return state.filter((item: any) => item.id !== payload);
     }
   }
 });
 
-export const {clearLikes ,likeState} = cartSlice.actions;
+export const { clearLikes, likeState } = cartSlice.actions;
 const likeReducer = cartSlice.reducer;
 
 export default likeReducer;

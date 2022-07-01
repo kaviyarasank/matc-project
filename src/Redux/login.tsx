@@ -1,46 +1,42 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 export const postLogin = createAsyncThunk(
-    "team/playerListLoading",
+  'team/playerListLoading',
 
-    async (data:any) => {
-      const postData = await axios({
-        method: 'POST',
-        url: 'http://localhost:3002/login',data
+  async (data: any) => {
+    const postData = await axios({
+      method: 'POST',
+      url: 'http://localhost:3002/login',
+      data
+    }).then((res) => {
+      localStorage.setItem('token', JSON.stringify(res?.data));
+    });
+    return postData;
+  }
+);
 
-      }).then((res) => {
-      localStorage.setItem("token", JSON.stringify(res?.data));
-      });
-      return postData;
+const teamInitialState = {
+  playerList: {
+    status: 'idle',
+    data: {},
+    error: {}
+  }
+};
+
+const loginReducer = createSlice({
+  name: 'login',
+  initialState: teamInitialState,
+  reducers: {},
+  extraReducers: {
+    [postLogin.fulfilled.type]: (state, action) => {
+      state.playerList = {
+        status: 'success',
+        data: action.meta.arg,
+        error: {}
+      };
     }
-  );
-  
-  const teamInitialState = {
-    playerList: {
-      status: "idle",
-      data: {},
-      error: {}
-    }
-  };
-  
-  const loginReducer = createSlice({
-    name: "login",
-    initialState: teamInitialState,
-    reducers: {},
-    extraReducers: {
-      
-      [postLogin.fulfilled.type]: (state, action) => {
-        console.log("straiiiioo",action.meta.arg)
-        state.playerList = {
-          status: "success",
-          data: action.meta.arg,
-          error: {}
-        };
-      },
-  
-    }
-  });
-  
-  export default loginReducer.reducer;
-  
+  }
+});
+
+export default loginReducer.reducer;

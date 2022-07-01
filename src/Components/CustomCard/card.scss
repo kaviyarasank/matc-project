@@ -1,122 +1,120 @@
-body{
-    background-color: #e0e0e0;
+body {
+  background-color: #e0e0e0;
 }
-.card-box{
-    position: relative;
-    width: 100%;
-    height: 550px;
-    border: none;
-    border-radius: 24px !important;
-background: #e0e0e0 !important;
-box-shadow:  13px 13px 24px #d0d0d0,
-             -13px -13px 24px #f0f0f0 !important;
-    transition: all 10s ease-in-out !important;
+.card-box {
+  position: relative;
+  width: 100%;
+  height: 550px;
+  border: none;
+  border-radius: 24px !important;
+  background: #e0e0e0 !important;
+  box-shadow: 13px 13px 24px #d0d0d0, -13px -13px 24px #f0f0f0 !important;
+  transition: all 10s ease-in-out !important;
 }
 @media only screen and (max-width: 999px) {
-    .card-box{
-        width: 100% ;   
-    }
-    .card-box:hover .cardButton{
-        margin-left: 20px;
-    }
+  .card-box {
+    width: 100%;
   }
-  @media only screen and (max-width: 500px) {
-.cardtextdiv{
-margin-left: 1rem !important;
+  .card-box:hover .cardButton {
+    margin-left: 20px;
+  }
 }
+@media only screen and (max-width: 500px) {
+  .cardtextdiv {
+    margin-left: 1rem !important;
   }
+}
 @-webkit-keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
-.cardimages{
-    height: 410px;
-    width: 100%;
-    background: none;
-    object-fit: contain;
+.cardimages {
+  height: 410px;
+  width: 100%;
+  background: none;
+  object-fit: contain;
 
-    -webkit-transform: scale(0.9);
-	transform: scale(0.9);
-	-webkit-transition: .3s ease-in-out;
-	transition: .3s ease-in-out;
+  -webkit-transform: scale(0.9);
+  transform: scale(0.9);
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
-.cardimages:hover{
-    -webkit-transform: scale(1.0);
-	transform: scale(1.0);
+.cardimages:hover {
+  -webkit-transform: scale(1);
+  transform: scale(1);
 }
-.cardButton{
-    position: absolute;
-    z-index: 0;
-    margin-top: 20px;
-    margin-left:7%;
-    border-radius: 10px !important;
-    width: 80%;
-    background-color: transparent;
-    display: none !important;
-    color: #ffffff !important;
-    transition:  background-color 0.5s ease-in-out !important;
+.cardButton {
+  position: absolute;
+  z-index: 0;
+  margin-top: 20px;
+  margin-left: 7%;
+  border-radius: 10px !important;
+  width: 80%;
+  background-color: transparent;
+  display: none !important;
+  color: #ffffff !important;
+  transition: background-color 0.5s ease-in-out !important;
 }
-.rating{
-    margin-top: 10px;
+.rating {
+  margin-top: 10px;
 }
-.card-box:hover .cardButton{
-   background-color: #ff2020;
-   display: block !important;
+.card-box:hover .cardButton {
+  background-color: #ff2020;
+  display: block !important;
 }
-.card-box:hover{
-    border-radius: 24px !important;
-background: #e0e0e0 !important;
-box-shadow: inset 13px 13px 24px #d0d0d0,
-            inset -13px -13px 24px #f0f0f0 !important;
+.card-box:hover {
+  border-radius: 24px !important;
+  background: #e0e0e0 !important;
+  box-shadow: inset 13px 13px 24px #d0d0d0, inset -13px -13px 24px #f0f0f0 !important;
 }
-.cardtext{
-    font-size: 17px;
-    font-family: sans-serif;
-    font-weight: bold;
+.cardtext {
+  font-size: 17px;
+  font-family: sans-serif;
+  font-weight: bold;
 }
-.cardtextdiv{
-    margin-left: 7rem;
-    margin-top: 0rem;
-    display: inline-flex;
+.cardtextdiv {
+  margin-left: 7rem;
+  margin-top: 0rem;
+  display: inline-flex;
 }
-.heart{
-    font-size: 40px;
-    position: absolute;
-    display: none;
-    z-index: 1;
+.heart {
+  font-size: 40px;
+  position: absolute;
+  display: none;
+  z-index: 1;
 }
-.heartTrue{
-    color: #ff2020;
-    font-size: 40px;
-    display: block;
-    position: absolute;
-    z-index: 1;
+.heartTrue {
+  color: #ff2020;
+  font-size: 40px;
+  display: block;
+  position: absolute;
+  z-index: 1;
 }
 .card-box:hover .heart {
-   display: block;
+  display: block;
 }
-.prices{
-    font-size: 20px;
-    margin-left: 10px;
-    margin-top: -5px;
-    color: red;
+.prices {
+  font-size: 20px;
+  margin-left: 10px;
+  margin-top: -5px;
+  color: red;
 }

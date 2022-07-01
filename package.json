@@ -72,7 +72,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files",
+    "build": "babel src -d lib",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

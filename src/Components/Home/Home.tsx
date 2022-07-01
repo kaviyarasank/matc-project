@@ -144,7 +144,7 @@ function Home() {
           <h1 className="popular mt-5">New Arrivals</h1>
           {newCardDatas === undefined && <Loader />}
           {loading ? null : (
-            <div className="row justify-content-center firstcard mt-5">
+            <div className="row justify-content-center mt-5">
               {newCardDatas &&
                 newCardDatas?.length > 0 &&
                 newCardDatas?.slice(3, 6).map((data: any) => (

@@ -7,7 +7,7 @@ import timezone from "./assets/loginLogo.png";
 import { getLocalStorageValuesBoolean } from "./Helper/localStore";
 import { useSelector } from "react-redux";
 import { NavDropdown } from "react-bootstrap";
-import { FaStore } from "react-icons/fa";
+import { GrMoreVertical } from "react-icons/gr";
 import Color from "./Helper/Color";
 import randomColor from "randomcolor";
 import { useCallback, useMemo, useState } from "react";
@@ -64,7 +64,7 @@ function Navigation() {
         </div>
         <p className="cartLength">{cart?.length}</p>
             <Link to="/cart" className="login-icon carticon"><BsCart3/></Link>
-              <FaStore className="store"/>
+              <GrMoreVertical className="store"/>
             <NavDropdown title="" id="basic-nav-dropdown" className="dropNav">
             <div className="row d-flex dropBoxwidth">
               <Link to="/likedItems" className="dropText logoutbtn text-center text-decoration-none">LikedList</Link>

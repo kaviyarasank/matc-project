@@ -1,13 +1,18 @@
 import axios from 'axios';
 import PrivateRouter from './Components/Routes/privateRoute';
 import PublicRouter from './Components/Routes/publicRoute';
-import { getLocalStorageValuesBoolean } from './Helper/localStore';
+import { getLocalStorageValues } from './Helper/localStore';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useCallback, useEffect } from 'react';
+import { fectchAccess } from './Redux/Access';
+import { AppDispatch } from './Redux/Store';
+import { useDispatch, useSelector } from 'react-redux';
 
 function App() {
-  const localValues = getLocalStorageValuesBoolean();
+  const dispatch = useDispatch<AppDispatch>();
+  const localValues = getLocalStorageValues();
 
   const notify = () =>
     toast.error('INCOMING TOKEN EXPIRED', {
@@ -68,6 +73,34 @@ function App() {
     }
   );
 
+
+  const fetch = useCallback(() => {
+    try {
+      dispatch(fectchAccess());
+    } catch (err) {
+      console.log(err);
+    }
+  }, [dispatch]);
+
+  useEffect(()=>{
+    fetch();
+  },[fetch])
+
+  const playerList = useSelector((state: any) => state.access.playerList);
+
+  let validEmail = false;
+  let validPassword = false;
+
+  Object.values(playerList?.data)?.forEach((res:any) => {
+    if(res.email === localValues.email){
+      validEmail= true;
+    }
+    if(res.password === localValues.password ){
+      validPassword = true;
+    }
+  });
+  
+
   return (
     <div className="App">
       <ToastContainer
@@ -82,7 +115,7 @@ function App() {
         pauseOnHover
         className={'toastMargin'}
       />
-      {localValues ? <PrivateRouter /> : <PublicRouter />}
+      {validEmail  && validPassword ? <PrivateRouter /> : <PublicRouter />}
     </div>
   );
 }

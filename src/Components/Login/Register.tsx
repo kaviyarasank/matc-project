@@ -1,28 +1,32 @@
 import './Login.scss';
 import { Button, Input } from 'reactstrap';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { getLocalStorageValues } from '../../Helper/localStore';
 import { AppDispatch } from '../../Redux/Store';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { postLogin } from '../../Redux/login';
 import Clock from './Login';
+import { fectchAccess } from '../../Redux/Access';
+import { postRegister } from '../../Redux/RegisterAction';
 
 interface registerInter {
   name: string;
   mobileNo: string;
   email: string;
   password: string;
+  confirmPassword:string;
 }
 
 interface loginInter {
   email: string;
   password: string;
 }
+
+
 function Register() {
   const dispatch = useDispatch<AppDispatch>();
 
@@ -42,15 +46,37 @@ function Register() {
         'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character'
       )
       .required(),
-    mobileNo: Yup.string().matches(phoneRegExp, 'Phone number is not valid').required()
+      mobileNo: Yup.string().matches(phoneRegExp, 'Phone number is not valid').required(),
+      confirmPassword:Yup.string().required()
   });
   const handleLogin = () => {
     setLogin(true);
   };
+
+  const fetch = useCallback(() => {
+    try {
+      dispatch(fectchAccess());
+    } catch (err) {
+      console.log(err);
+    }
+  }, [dispatch]);
+
+  useEffect(()=>{
+    fetch();
+  },[fetch])
+
+  const playerList = useSelector((state: any) => state.access.playerList);
+
+const [sameError, setSameError] = useState("")
   const handleRegister = (data: registerInter) => {
     console.log('data00-->', data);
-    setLogin(true);
-    localStorage.setItem('name', JSON.stringify(data));
+    if(data.password === data.confirmPassword){
+      dispatch(postRegister(data));
+      localStorage.setItem('name', JSON.stringify(data));
+      setLogin(true);
+    }else{
+      setSameError("Password and ConfirmPassword DoesNot Matched"); 
+    }
   };
 
   const [error, setError] = useState('');
@@ -68,16 +94,25 @@ function Register() {
       className: 'toast-success'
     });
 
-  let acessLocalStorageValues = getLocalStorageValues();
-  let formEmail = acessLocalStorageValues?.email;
-  let fromPass = acessLocalStorageValues?.password;
+  let validEmail = false;
+  let validPassword = false;
 
   const handleSubmit = (data: loginInter) => {
-    console.log('');
-    if (data.email === formEmail && data.password === fromPass) {
+    playerList?.data?.forEach((res:any) => {
+      console.log("foreact",res)
+      if(res.email === data.email){
+        validEmail= true;
+      }
+      if(res.password === data.password ){
+        validPassword = true;
+      }
+    });
+
+    if (validEmail && validPassword) {
+    localStorage.setItem('name', JSON.stringify(data));
+      dispatch(postLogin(data));
       navigate('/');
       setError('');
-      dispatch(postLogin(data));
       notifyLog();
     } else {
       notify();
@@ -107,7 +142,8 @@ function Register() {
                   name: '',
                   email: '',
                   mobileNo: '',
-                  password: ''
+                  password: '',
+                  confirmPassword:''
                 }}
                 validationSchema={schema}
                 onSubmit={(data) => handleRegister(data)}>
@@ -159,6 +195,19 @@ function Register() {
                       />
                       <p className="errorMesg">
                         {formik.touched.password && formik.errors.password}
+                      </p>
+                    </div>
+                    <div className="pb-3">
+                      <label className="loginLabel">Confirm Password</label>
+                      <Input
+                        type="password"
+                        name="confirmPassword"
+                        className="inputBox mt-2"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                      />
+                      <p className="errorMesg">
+                        {formik.touched.confirmPassword && formik.errors.confirmPassword || sameError}
                       </p>
                     </div>
                     <div className="pb-2">

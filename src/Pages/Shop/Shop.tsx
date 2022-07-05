@@ -1,10 +1,10 @@
-import SecondCard from '../CustomCard/secondCard';
+import SecondCard from '../../Components/CustomCard/secondCard';
 import './Shop.scss';
 import { fetchPlayerList } from '../../Redux/Action';
 import { AppDispatch } from '../../Redux/Store';
 import { useDispatch, useSelector } from 'react-redux';
 import { useCallback, useEffect, useState } from 'react';
-import Loader from '../Loader/loader';
+import Loader from '../../Components/Loader/loader';
 import { addToCart } from '../../Redux/CardAction';
 import { v4 as uuid } from 'uuid';
 import { ToastContainer, toast } from 'react-toastify';

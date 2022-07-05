@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import Register from '../../Components/Login/Register';
+import Register from "../Pages/Login/Register";
 
 function PublicRouter() {
   return (

@@ -10,7 +10,7 @@ import StripeCheckout from 'react-stripe-checkout';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from '../Loader/loader';
-import "../Contact/Contact.scss";
+import "../../Pages/Contact/Contact.scss";
 
 function Cart() {
   let navigate = useNavigate();

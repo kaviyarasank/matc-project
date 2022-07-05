@@ -1,6 +1,6 @@
 import axios from 'axios';
-import PrivateRouter from './Components/Routes/privateRoute';
-import PublicRouter from './Components/Routes/publicRoute';
+import PrivateRouter from './Routes/privateRoute';
+import PublicRouter from './Routes/publicRoute';
 import { getLocalStorageValues } from './Helper/localStore';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
@@ -15,7 +15,7 @@ function App() {
   const localValues = getLocalStorageValues();
 
   const notify = () =>
-    toast.error('INCOMING TOKEN EXPIRED', {
+    toast.error('BAD REQUEST FOUND', {
       className: 'toast-error'
     });
   const notifySuccess = () =>

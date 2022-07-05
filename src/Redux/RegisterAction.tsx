@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const postRegister = createAsyncThunk(
-  'register',
+  'register/playerListLoading',
 
   async (data: any) => {
     const postData = await axios({

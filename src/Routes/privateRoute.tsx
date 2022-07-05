@@ -1,25 +1,25 @@
 import { Routes, Route } from 'react-router-dom';
-import Home from '../../Components/Home/Home';
-import { getLocalStorageValuesBoolean } from '../../Helper/localStore';
-import Navigation from '../../Nav';
-import Cart from '../cart/cart';
-import Footer from '../Footer/Footer';
-import ScrollToTop from '../goto/goto';
-import Profile from '../Profile/Profile';
-import Shop from '../Shop/Shop';
-import Tracking from '../Track/Tracking';
+import Home from '../Pages/Home/Home';
+import { getLocalStorageValuesBoolean } from '../Helper/localStore';
+import Navigation from '../Nav';
+import Cart from '../Components/cart/cart';
+import Footer from '../Components/Footer/Footer';
+import ScrollToTop from '../Components/goto/goto';
+import Profile from '../Pages/Profile/Profile';
+import Shop from '../Pages/Shop/Shop';
+import Tracking from '../Pages/Track/Tracking';
 import { ErrorBoundary } from 'react-error-boundary';
-import Error from '../../Helper/Error';
+import Error from '../Helper/Error';
 import { Suspense, lazy } from 'react';
-import Loader from '../Loader/loader';
-import '../../Helper/Error.scss';
+import Loader from '../Components/Loader/loader';
+import "../Helper/Error.scss";
 
 function PrivateRouter() {
   const localValues = getLocalStorageValuesBoolean();
-  const LikedItems = lazy(() => import('../LikedItems/LikedItems'));
-  const History = lazy(() => import('../History/History'));
-  const About = lazy(() => import('../About/About'));
-  const Contact = lazy(() => import('../Contact/Contact'));
+  const LikedItems = lazy(() => import('../Pages/LikedItems/LikedItems'));
+  const History = lazy(() => import('../Pages/History/History'));
+  const About = lazy(() => import('../Pages/About/About'));
+  const Contact = lazy(() => import('../Pages/Contact/Contact'));
 
   function ErrorFallback() {
     return <Error />;

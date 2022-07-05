@@ -66,14 +66,25 @@ function Register() {
   },[fetch])
 
   const playerList = useSelector((state: any) => state.access.playerList);
+ 
+  const notifySameUser = () =>
+  toast.error('User Already Found', {
+    className: 'toast-error'
+  });
+  console.log("registerAccess",playerList)
+  const [sameError, setSameError] = useState("")
 
-const [sameError, setSameError] = useState("")
   const handleRegister = (data: registerInter) => {
-    console.log('data00-->', data);
+    const reEmail = playerList?.data?.find((val:any)=>val.email === data.email)
+    console.log('data00-->', reEmail);
     if(data.password === data.confirmPassword){
-      dispatch(postRegister(data));
-      localStorage.setItem('name', JSON.stringify(data));
-      setLogin(true);
+      if(reEmail !== undefined){
+        notifySameUser();
+      }else{
+        dispatch(postRegister(data));
+        localStorage.setItem('name', JSON.stringify(data));
+        setLogin(true);
+      }
     }else{
       setSameError("Password and ConfirmPassword DoesNot Matched"); 
     }
@@ -98,6 +109,8 @@ const [sameError, setSameError] = useState("")
   let validPassword = false;
 
   const handleSubmit = (data: loginInter) => {
+
+    console.log("loginiiiii")
     playerList?.data?.forEach((res:any) => {
       console.log("foreact",res)
       if(res.email === data.email){
@@ -108,13 +121,13 @@ const [sameError, setSameError] = useState("")
       }
     });
 
-    if (validEmail && validPassword) {
+    if(validEmail && validPassword) {
     localStorage.setItem('name', JSON.stringify(data));
       dispatch(postLogin(data));
       navigate('/');
       setError('');
       notifyLog();
-    } else {
+    }else{
       notify();
       setError('InValid User');
     }
@@ -125,7 +138,7 @@ const [sameError, setSameError] = useState("")
   });
 
   return (
-    <div className="container" style={{ marginTop: '3rem', marginBottom: '1rem' }}>
+    <div className="container" style={{ marginTop: '3rem', marginBottom: '1rem',width:'75%' }}>
       {login === false ? (
         <div className="row">
           <div className="col-md-6 d-none d-md-block loginClocknone">
@@ -133,7 +146,7 @@ const [sameError, setSameError] = useState("")
           </div>
 
           <div className="col-md-6 bg-white xs-mx-2 md:mx-10 lg:mx-52 loginDivPadd">
-            <h3 className="pb-3 welcome mt-5">Welcome Back !</h3>
+            <h3 className="pb-3 welcome">Welcome Back !</h3>
 
             <div className="form-style">
               <h3 className="welcome">Please Sign Up now</h3>
@@ -234,7 +247,7 @@ const [sameError, setSameError] = useState("")
           </div>
 
           <div className="col-md-6 bg-white xs-mx-2 md:mx-10 lg:mx-52 loginDivPadd">
-            <h3 className="pb-3 welcome mt-5">Welcome Back !</h3>
+            <h3 className="pb-3 welcome">Welcome Back !</h3>
             <div className="form-style">
               <h3 className="welcome">Please Sign in now</h3>
               {error && (

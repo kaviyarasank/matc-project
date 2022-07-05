@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
-import CardComponent from '../CustomCard/card';
+import CardComponent from '../../Components/CustomCard/card';
 import './Home.scss';
-import SecondCard from '../CustomCard/secondCard';
+import SecondCard from '../../Components/CustomCard/secondCard';
 import choices from '../../assets/choices.png';
 import choicesone from '../../assets/choicesone.png';
 import pay from '../../assets/pay.png';
@@ -9,13 +9,13 @@ import { useNavigate } from 'react-router-dom';
 import { fetchPlayerList } from '../../Redux/Action';
 import { AppDispatch } from '../../Redux/Store';
 import { useDispatch, useSelector } from 'react-redux';
-import Loader from '../Loader/loader';
+import Loader from '../../Components/Loader/loader';
 import { addToCart } from '../../Redux/CardAction';
 import { v4 as uuid } from 'uuid';
 import { likeState } from '../../Redux/LikeAction';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Button from '../CustomButton/Button';
+import Button from '../../Components/CustomButton/Button';
 
 function Home() {
   let navigate = useNavigate();
@@ -132,7 +132,7 @@ function Home() {
             </div>
             <img
               src="https://preview.colorlib.com/theme/timezone/assets/img/hero/xwatch.png.pagespeed.ic.LlRtijfV2T.webp"
-              className="watch mt-5"
+              className="watch"
               alt=""
             />
           </div>

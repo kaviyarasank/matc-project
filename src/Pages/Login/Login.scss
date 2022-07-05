@@ -2,10 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Markazi+Text&display=swap');
 .form-style input{
-height:50px;
-border: 1px solid #9e9e9e;
-border-radius: 13px;
-margin: auto;
+    height: 40px;
+    border: 1px solid #9e9e9e;
+    border-radius: 10px;
+    margin: auto;
 }
 .inputBox{
     width: 85%;
@@ -63,11 +63,11 @@ height:50px;
     font-family: 'Courgette', cursive;
     text-align: center;
     color: red;
-    font-size: 35px;
+    font-size: 30px;
 }
 .loginLabel{
     font-family: 'Lobster', cursive;
-    font-size: 24px;
+    font-size: 20px;
 }
 @media only screen and (max-width: 995px) {
 
@@ -102,7 +102,8 @@ height:50px;
 }
 
 .loginSubBtn{
-    width: 50%;
+    width: 30%;
+    height: 40px;
     margin: auto;
     display: block;
 }

@@ -141,7 +141,7 @@ function Home() {
       </div>
       <img
         src="https://preview.colorlib.com/theme/timezone/assets/img/hero/xwatch.png.pagespeed.ic.LlRtijfV2T.webp"
-        className="mobileviewwatch"
+        className="mobileviewwatch mt-5"
         alt=""
       />
       <div className="homeshop-divtwo">

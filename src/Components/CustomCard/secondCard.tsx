@@ -26,7 +26,7 @@ const SecondCard = (props: any) => {
             <Button
               name={'Add To Cart'}
               onClick={props.addtocart}
-              height={''}
+              height={'40px'}
               width={'100%'}
               borderRadius={'10px'}
               testid={'card-button'}
@@ -37,7 +37,7 @@ const SecondCard = (props: any) => {
               boxShadow={''}
               border={'none'}
               backgroundSize={''}
-              fontSize={'17px'}
+              fontSize={'15px'}
             />
           </div>
         </CardBody>

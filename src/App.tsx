@@ -15,7 +15,7 @@ function App() {
   const localValues = getLocalStorageValues();
 
   const notify = () =>
-    toast.error('BAD REQUEST FOUND', {
+    toast.error('INCOMING TOKEN EXPIRED', {
       className: 'toast-error'
     });
   const notifySuccess = () =>
@@ -66,7 +66,7 @@ function App() {
     function (error) {
       console.log('error', error);
 
-      if (error?.code === 'ERR_BAD_REQUEST') {
+      if (error?.response?.data?.message === "Unauthorized!") {
         logout();
       }
       return Promise.reject(error);

@@ -23,7 +23,7 @@ const CardComponent = (props: data) => {
             <Button
               name={'Add To Cart'}
               onClick={props.addtocarts}
-              height={''}
+              height={'40px'}
               width={'100%'}
               borderRadius={'10px'}
               testid={'card-button'}
@@ -34,7 +34,7 @@ const CardComponent = (props: data) => {
               boxShadow={''}
               border={'none'}
               backgroundSize={''}
-              fontSize={'17px'}
+              fontSize={'15px'}
             />
           </div>
         </CardBody>

@@ -66,7 +66,7 @@ function App() {
     function (error) {
       console.log('error', error);
 
-      if (error?.response?.data?.message === "Unauthorized!") {
+      if (error?.response?.status === 401) {
         logout();
       }
       return Promise.reject(error);

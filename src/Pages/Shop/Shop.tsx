@@ -10,6 +10,7 @@ import { v4 as uuid } from 'uuid';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { likeState } from '../../Redux/LikeAction';
+import CarousalShop from "./Carousal";
 
 function Shop() {
   const [loading, setLoading] = useState(false);
@@ -93,38 +94,8 @@ function Shop() {
   return (
     <div className="shop">
       <div className="firstDiv">
-        <div className="carosual">
-          <div className="wrapper">
-            <div className="clock">
-              <div className="clock-circles">
-                <div className="clock-circles__item"></div>
-                <div className="clock-circles__item"></div>
-                <div className="clock-circles__item"></div>
-                <div className="clock-circles__item">
-                  <div className="wave"></div>
-                  <div className="wave"></div>
-                  <div className="wave"></div>
-                  <div className="wave"></div>
-                  <div className="wave"></div>
-                </div>
-              </div>
-              <div className="clock-indicators">
-                <div className="clock-indicators__item"></div>
-                <div className="clock-indicators__item"></div>
-                <div className="clock-indicators__item"></div>
-                <div className="clock-indicators__item"></div>
-                <div className="clock-indicators__item"></div>
-                <div className="clock-indicators__item"></div>
-                <div className="clock-indicators__item"></div>
-                <div className="clock-indicators__item"></div>
-              </div>
-              <div className="clock-times">
-                <div className="clock-times__second"></div>
-                <div className="clock-times__minute"></div>
-                <div className="clock-times__hour"></div>
-              </div>
-            </div>
-          </div>
+      <div className="carosual">
+        <CarousalShop/>
         </div>
       </div>
       <div className="secondDiv container">

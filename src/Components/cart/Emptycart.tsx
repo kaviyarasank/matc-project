@@ -1,11 +1,16 @@
 import './EmptyCart.scss';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
 function Empty() {
   let navigate = useNavigate();
   const handleShop = () => {
     navigate('/');
   };
+  const Title = styled.h1`
+  text-align: center;
+  color: blue;
+`;
   return (
     <div className="EmptymainDiv">
       <div className="emptysecDiv">
@@ -14,7 +19,7 @@ function Empty() {
           alt=""
           className="mx-auto text-center d-block emptycartImages"
         />
-        <h1 className="emptyText mt-4">Your shopping cart is empty</h1>
+        <Title className="mt-4">Your shopping cart is empty</Title>
         <p className="emptyPara mt-3">
           Return to the store to add items for your delivery slot. <br />
           Before proceed to checkout you must add some products to your shopping cart.

@@ -54,10 +54,12 @@ function App() {
     (response: any) => {
       console.log('responsemmm', response);
 
-      axios({
-        method: 'POST',
-        url: 'http://localhost:8080/checkAuth'
-      });
+      if(response){
+        axios({
+          method: 'POST',
+          url: 'http://localhost:8080/checkAuth'
+        });
+      }
       if (response?.data?.statusCode === 403) {
         logoutSuccess();
       }

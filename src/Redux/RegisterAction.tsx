@@ -7,7 +7,7 @@ export const postRegister = createAsyncThunk(
   async (data: any) => {
     const postData = await axios({
       method: 'POST',
-      url: ' https://75ab-2405-201-e01d-51-25cc-f21e-169-955a.ngrok.io/register',
+      url: 'https://98c4-2405-201-e01d-51-25cc-f21e-169-955a.ngrok.io/register',
       data
     }).then((res) => {
      console.log("registerres",res)

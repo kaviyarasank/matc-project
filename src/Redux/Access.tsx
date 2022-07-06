@@ -6,7 +6,7 @@ export const fectchAccess = createAsyncThunk(
   async () => {
     const fetchData = await axios({
       method: 'GET',
-      url: 'http://localhost:3002/',
+      url: 'http://localhost:8080/',
     }).then((response) => {
       if (response.status !== 200) {
         console.error('no fetched data');

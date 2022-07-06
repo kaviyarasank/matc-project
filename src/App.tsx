@@ -56,7 +56,7 @@ function App() {
 
       axios({
         method: 'POST',
-        url: 'http://localhost:3002/checkAuth'
+        url: 'http://localhost:8080/checkAuth'
       });
       if (response?.data?.statusCode === 403) {
         logoutSuccess();

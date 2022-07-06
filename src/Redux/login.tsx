@@ -7,7 +7,7 @@ export const postLogin = createAsyncThunk(
   async (data: any) => {
     const postData = await axios({
       method: 'POST',
-      url: 'http://localhost:3002/login',
+      url: 'http://localhost:8080/login',
       data
     }).then((res) => {
       localStorage.setItem('token', JSON.stringify(res?.data));

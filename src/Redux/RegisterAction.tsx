@@ -7,7 +7,7 @@ export const postRegister = createAsyncThunk(
   async (data: any) => {
     const postData = await axios({
       method: 'POST',
-      url: 'http://localhost:3002/register',
+      url: 'http://localhost:8080/register',
       data
     }).then((res) => {
      console.log("registerres",res)

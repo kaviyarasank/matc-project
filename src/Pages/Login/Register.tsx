@@ -138,7 +138,7 @@ function Register() {
   });
 
   return (
-    <div className="container registerMainCon" style={{ marginTop: '3rem', marginBottom: '1rem'}}>
+    <div className="container registerMainCon" style={{ marginTop: '5rem', marginBottom: '1rem'}}>
       {login === false ? (
         <div className="row">
           <div className="col-md-6 d-none d-md-block loginClocknone">

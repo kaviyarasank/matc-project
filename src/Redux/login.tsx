@@ -7,7 +7,7 @@ export const postLogin = createAsyncThunk(
   async (data: any) => {
     const postData = await axios({
       method: 'POST',
-      url: 'http://localhost:8080/login',
+      url: 'https://9845-2405-201-e01d-51-a3fd-5b91-b916-9c9c.ngrok.io/login',
       data
     }).then((res) => {
       localStorage.setItem('token', JSON.stringify(res?.data));

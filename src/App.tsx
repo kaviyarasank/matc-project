@@ -41,8 +41,6 @@ function App() {
   
   axios.interceptors.request.use(
     (config: any) => {
-      let userData = JSON.parse(localStorage.getItem('token') || '{}');
-      config.headers['X-access-token'] = `${userData?.Token}`;
       return config;
     },
     function (error: any) {
@@ -57,7 +55,7 @@ function App() {
       if(response){
         axios({
           method: 'POST',
-          url: 'http://localhost:8080/checkAuth'
+          url: 'https://9845-2405-201-e01d-51-a3fd-5b91-b916-9c9c.ngrok.io/checkAuth'
         });
       }
       if (response?.data?.statusCode === 403) {

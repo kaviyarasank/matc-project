@@ -55,7 +55,7 @@ function App() {
       if(response){
         axios({
           method: 'POST',
-          url: 'https://9845-2405-201-e01d-51-a3fd-5b91-b916-9c9c.ngrok.io/checkAuth'
+          url: 'http://localhost:8080/checkAuth'
         });
       }
       if (response?.data?.statusCode === 403) {

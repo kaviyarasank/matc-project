@@ -6,7 +6,7 @@ export const fectchAccess = createAsyncThunk(
   async () => {
     const fetchData = await axios({
       method: 'GET',
-      url: 'https://98c4-2405-201-e01d-51-25cc-f21e-169-955a.ngrok.io',
+      url: 'http://localhost:8080/',
     })
     .then((response) => {
       if (response.status !== 200) {

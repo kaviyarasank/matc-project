@@ -115,8 +115,10 @@ height:50px;
 }
     .loginDivPadd{
         padding: 40px;
-        border-radius: 50px;
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        box-shadow: 0 -1px 78px rgba(189, 189, 189, 0.6)  ; 
+	-webkit-box-shadow: 0 -1px 78px rgba(189, 189, 189, 0.6)  ; 
+	-moz-box-shadow: 0 -1px 78px rgba(189, 189, 189, 0.6)  ; 
+    border-radius: 50px;
     }
 .registreRoleximg{
     width: 90%;
@@ -124,4 +126,10 @@ height:50px;
 }
 .registerMainCon{
     width: 70%;
+}
+.divShadow{
+    box-shadow: 0 -1px 78px rgba(189, 189, 189, 0.6)  ; 
+	-webkit-box-shadow: 0 -1px 78px rgba(189, 189, 189, 0.6)  ; 
+	-moz-box-shadow: 0 -1px 78px rgba(189, 189, 189, 0.6)  ; 
+    border-radius: 50px;
 }

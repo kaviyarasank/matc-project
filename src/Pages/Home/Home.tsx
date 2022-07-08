@@ -119,7 +119,7 @@ function Home() {
                 Select Your New
                 <br /> Perfect Style
               </p>
-              <h5 className="quotes">
+                  <h5 className="quotes">
                 “Everyone looks at your watch and it represents who you are,
                 <br /> your values and your personal style.”
               </h5>

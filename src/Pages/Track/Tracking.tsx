@@ -1,18 +1,53 @@
 import './Tracking.scss';
 import { useNavigate } from 'react-router-dom';
-import { useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import timezone from '../../assets/timezone.png';
 import { Modal, ModalBody } from 'reactstrap';
 import { AiOutlineCloseSquare } from 'react-icons/ai';
+import { AppDispatch } from '../../Redux/Store';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProduct } from '../../Redux/getProductInfo';
+import { fetchAddress } from "../../Redux/getAddress";
 
 function Tracking() {
   const componentRef = useRef<any>();
   let navigate = useNavigate();
-  let userData = JSON.parse(localStorage.getItem('cartProduct') || '{}');
-  let address = JSON.parse(localStorage.getItem('address') || '{}');
   let profile = JSON.parse(localStorage.getItem('profile') || '{}');
   let amount = JSON.parse(localStorage.getItem('productAmount') || '{}');
+  const dispatch = useDispatch<AppDispatch>();
+
+
+  const playerList = useSelector((state: any) => state.getProduct.playerList);
+
+  const addresInfo = useSelector((state: any) => state.addressInfo.playerList);
+
+  let userData = playerList?.data
+  const address = addresInfo?.data[0]
+  const fetch = useCallback(() => {
+    try {
+      dispatch(fetchProduct());
+    } catch (err) {
+      console.log(err);
+    }
+  }, [dispatch]);
+
+
+  const getfetchAddress = useCallback(() => {
+    try {
+      dispatch(fetchAddress());
+    } catch (err) {
+      console.log(err);
+    }
+  }, [dispatch]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      fetch();
+      getfetchAddress()
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [fetch, getfetchAddress])
+
 
   const backToOrder = () => {
     navigate('/');
@@ -53,12 +88,14 @@ function Tracking() {
                 </div>
                 <div className="col">
                   {' '}
-                  <strong>Delivery Address:</strong> <br /> {address?.card?.name},<br />
-                  {address?.card?.address_line1},<br />
-                  {address?.card?.address_city},{address?.card?.address_zip}
+                  <strong>Delivery Address:</strong> <br /> {address?.card?.name}<br />
+                  {address === undefined && <div className="spinner-border text-danger mx-auto d-block" role="status">
+                    <span className="sr-only">Loading...</span>
+                  </div>}
+                  {address?.card?.address_line1}<br />
+                  {address?.card?.address_city}<br/>{address?.card?.address_zip}
                   <br />
-                  {address?.card?.address_country}, | <i className="fa fa-phone"></i>{' '}
-                  {profile?.mobileNo}.
+                  {address?.card?.address_country}<br/>
                 </div>
                 <div className="col">
                   {' '}
@@ -109,7 +146,7 @@ function Tracking() {
             <hr />
 
             <ul className="row">
-              {userData?.map((data: any) => (
+              {Object.values(userData)?.map((data: any) => (
                 <li className="col-md-4">
                   <figure className="itemside mb-3">
                     <div className="aside">
@@ -217,9 +254,8 @@ function Tracking() {
                                         </tr>
                                       </thead>
                                       <tbody>
-                                        {userData &&
-                                          userData?.map((data: any) => {
-                                            console.log('dataaaa', data);
+                                        {
+                                          Object.values(userData)?.map((data: any) => {
                                             return (
                                               <tr>
                                                 <td>{data?.name}</td>

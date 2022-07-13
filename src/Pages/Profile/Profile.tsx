@@ -1,34 +1,65 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import './Profile.scss';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getLocalStorageValues } from '../../Helper/localStore';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '../../Redux/Store';
+import { postProfile } from '../../Redux/ProfileAction';
+import { fetchProfile } from '../../Redux/getProfileInfoAction';
 
 function Profile() {
   const local = getLocalStorageValues();
-
+  const dispatch = useDispatch<AppDispatch>();
+  
   const [img, setImg] = useState<any>(
     'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg'
   );
 
-  const [value, setValue] = useState({
-    name: '' || local.name,
+  const playerList = useSelector((state: any) => state.getProfile.playerList);
+  
+  let userData = JSON.parse(localStorage.getItem("name") || "{}");
+  console.log("userDatauserData",userData.email)
+  const data:any = Object.values(playerList?.data)?.find((val:any)=>val.email === userData.email)
+  console.log("profileUserData",data)
+  console.log("ProfileplayerList",Object.values(playerList.data)?.find((val:any)=>val.email === userData.email))
+
+  const fetch = useCallback(() => {
+    try {
+      dispatch(fetchProfile());
+    } catch (err) {
+      console.log(err);
+    }
+  }, [dispatch]);
+
+  useEffect(()=>{
+    fetch();
+  },[fetch])
+
+  const [value, setValue] = useState<any>({
+    name: '',
     surname: '',
-    mobileNo: '' || local.mobileNo,
+    mobileNo: '',
     address1: '',
     address2: '',
     postalCode: '',
     state: '',
     city: '',
-    email: '' || local.email,
+    email: '',
     country: ''
   });
+  useEffect(()=>{
+if(data !== undefined){
+  setValue(data)
+}
+  },[data])
+
   const notify = () =>
     toast.success('Profile Updated Successfully', {
       className: 'toast-success'
     });
 
-  const [read, setRead] = useState(false);
+  const [read, setRead] = useState(true);
   const handleImage = (e: any) => {
     setImg(URL.createObjectURL(e.target.files[0]));
   };
@@ -51,29 +82,30 @@ function Profile() {
       country: value.country,
       img: img
     };
-    localStorage.setItem('profile', JSON.stringify(data));
+    // localStorage.setItem('profile', JSON.stringify(data));
+    dispatch(postProfile(data));
     setRead(true);
     notify();
   };
   const editProfile = () => {
     setRead(false);
   };
-  const getLocalStorageValuesProfile = () => {
-    let userData = JSON.parse(localStorage.getItem('profile') || '{}');
-    return userData;
-  };
-  let userDataProfile = getLocalStorageValuesProfile();
+  // const getLocalStorageValuesProfile = () => {
+  //   let userData = JSON.parse(localStorage.getItem('profile') || '{}');
+  //   return userData;
+  // };
+  // let userDataProfile = getLocalStorageValuesProfile();
 
-  useEffect(() => {
-    if (userDataProfile !== {}) {
-      setRead(true);
-      setValue(userDataProfile);
-    } else {
-      setRead(false);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (userDataProfile !== {}) {
+  //     setRead(true);
+  //     setValue(userDataProfile);
+  //   } else {
+  //     setRead(false);
+  //   }
+  // }, []);
 
-  console.log('userDataProfile', userDataProfile);
+  // console.log('userDataProfile', userDataProfile);
   return (
     <div className="ProfileMainDiv">
       <div className="container rounded bg-white mt-5 mb-5">
@@ -84,8 +116,8 @@ function Profile() {
               {read === false && (
                 <input className="" type="file" onChange={handleImage} disabled={read} />
               )}
-              <span className="font-weight-bold mt-4">{userDataProfile?.name}</span>
-              <span className="text-black-50">{userDataProfile?.email}</span>
+              <span className="font-weight-bold mt-4">{data?.name}</span>
+              <span className="text-black-50">{data?.email}</span>
               <span> </span>
             </div>
           </div>

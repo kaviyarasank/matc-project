@@ -16,6 +16,8 @@ import { likeState } from '../../Redux/LikeAction';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Button from '../../Components/CustomButton/Button';
+import {checkAuth} from "../../Helper/CheckAuth";
+import { postProductCart } from '../../Redux/AddToCart';
 
 function Home() {
   let navigate = useNavigate();
@@ -42,6 +44,7 @@ function Home() {
 
   useEffect(() => {
     fetch();
+    checkAuth();
   }, [fetch]);
   useEffect(() => {
     if (newCardDatas === undefined) {
@@ -77,6 +80,7 @@ function Home() {
     };
     addProducts(cartProduct);
     notify();
+    dispatch(postProductCart(cartProduct))
   };
 
   const addLikes = useCallback(

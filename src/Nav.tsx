@@ -5,12 +5,15 @@ import { BsCart3 } from 'react-icons/bs';
 import { AiOutlineLogout } from 'react-icons/ai';
 import timezone from "./assets/loginLogo.png";
 import { getLocalStorageValuesBoolean } from "./Helper/localStore";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavDropdown } from "react-bootstrap";
 import { GrMoreVertical } from "react-icons/gr";
 import Color from "./Helper/Color";
 import randomColor from "randomcolor";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { fetchCartInfo } from "./Redux/getCartInfo";
+import { AppDispatch } from "./Redux/Store";
+import { fetchProduct } from "./Redux/getProductInfo";
 
 
 function Navigation() {
@@ -26,10 +29,27 @@ function Navigation() {
     navigate("/");
     window.location.reload();
   }
+  const dispatch = useDispatch<AppDispatch>();
+
   let localValues = getLocalStorageValuesBoolean();
   const cart = useSelector((state:any) => state.cart);
+
+  const cartInfoDetails = useSelector((state:any) => state.getCartInfo.playerList?.data);
+  console.log("cartInfoDetails",cartInfoDetails)
   
-  
+
+  const fetch = useCallback(() => {
+    try {
+      dispatch(fetchCartInfo());
+    } catch (err) {
+      console.log(err);
+    }
+  }, [dispatch]);
+
+  useEffect(()=>{
+    fetch();
+  },[fetch])
+
   const memoColor = useMemo(
     () => <Color handleChange={callbackColorChange} color={color} />,
     [color, callbackColorChange]
@@ -43,7 +63,27 @@ function Navigation() {
   const handleHome =()=>{
     navigate("/")
   }
-  let userData = JSON.parse(localStorage.getItem('cartProduct') || '{}');
+
+  const playerList = useSelector((state: any) => state.getProduct.playerList);
+  
+  let userData = playerList?.data
+  console.log("state.getProduct.playerList",playerList)
+  const fetchPr = useCallback(() => {
+    try {
+      dispatch(fetchProduct());
+    } catch (err) {
+      console.log(err);
+    }
+  }, [dispatch]);
+
+  useEffect(()=>{
+    const timer = setTimeout(() => {
+      fetchPr();
+    }, 1000);
+    return () => clearTimeout(timer);
+  },[fetchPr])
+
+  
   return (
       <div className={localValues ? "d-flex navbar-header" : "d-none"}  style={{backgroundColor:color}} >
         <div className="logoImage"><img src={timezone} alt="" onClick={handleHome} className="cursor-pointer"/></div>

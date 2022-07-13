@@ -5,7 +5,7 @@ import { getLocalStorageValues } from './Helper/localStore';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { fectchAccess } from './Redux/Access';
 import { AppDispatch } from './Redux/Store';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,6 +14,7 @@ function App() {
   const dispatch = useDispatch<AppDispatch>();
   const localValues = getLocalStorageValues();
 
+  console.log("localvalues--==>",localValues)
   const notify = () =>
     toast.error('INCOMING TOKEN EXPIRED', {
       className: 'toast-error'
@@ -27,7 +28,7 @@ function App() {
   const logout = () => {
     navigate('/');
     localStorage.removeItem('name');
-    localStorage.removeItem('token');
+    // localStorage.removeItem('token');
     notify();
   };
 
@@ -37,42 +38,6 @@ function App() {
     localStorage.removeItem('token');
     notifySuccess();
   };
-
-  
-  axios.interceptors.request.use(
-    (config: any) => {
-      return config;
-    },
-    function (error: any) {
-      return Promise.reject(error);
-    }
-  );
-
-  axios.interceptors.response.use(
-    (response: any) => {
-      console.log('responsemmm', response);
-
-      if(response){
-        axios({
-          method: 'POST',
-          url: 'http://localhost:8080/checkAuth'
-        });
-      }
-      if (response?.data?.statusCode === 403) {
-        logoutSuccess();
-      }
-      return response;
-    },
-    function (error) {
-      console.log('error', error);
-
-      if (error?.response?.status === 401) {
-        logout();
-      }
-      return Promise.reject(error);
-    }
-  );
-
 
   const fetch = useCallback(() => {
     try {
@@ -99,7 +64,47 @@ function App() {
       validPassword = true;
     }
   });
+
+  axios.interceptors.request.use(
+    (config: any) => {
+     let userData = JSON.parse(localStorage.getItem('token') || '{}');
+
+      config.headers['X-access-token']=`${userData?.Token}`
+      return config;
+    },
+    function (error: any) {
+      return Promise.reject(error);
+    }
+  );
+
+
+  axios.interceptors.response.use(
+    (response: any) => {
+      console.log('responsemmm', response);
+      if(response){
+       
+      }
+      if (response?.data?.statusCode === 403) {
+        logoutSuccess();
+      }
+      if(response?.data?.status === "LoginSuccess"){
+
+      }
+      return response;
+    },
+    function (error) {
+      console.log('error=======>', error);
+
+      if (error?.response?.status === 401) {
+        logout();
+      }
+      return Promise.reject(error);
+    }
+  );
+
+
   
+
 
   return (
     <div className="App">
@@ -115,7 +120,7 @@ function App() {
         pauseOnHover
         className={'toastMargin'}
       />
-      {validEmail  && validPassword ? <PrivateRouter /> : <PublicRouter />}
+      {validEmail && validPassword  ? <PrivateRouter /> : <PublicRouter />}
     </div>
   );
 }

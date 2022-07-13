@@ -6,13 +6,17 @@ import ChatbotMessage from '../ChatBox/ChatBoat';
 import { TbMessageCircle } from 'react-icons/tb';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Modal, ModalBody } from 'reactstrap';
+import { AppDispatch } from '../../Redux/Store';
+import { useDispatch } from 'react-redux';
+import { postPath } from '../../Redux/pathAction';
 
 const ScrollToTop = () => {
   const [showTopBtn, setShowTopBtn] = useState(false);
   const [scroll, setScroll] = useState(0);
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
-
+  const dispatch = useDispatch<AppDispatch>();
+  
   useEffect(() => {
     let progressBarHandler = () => {
       const totalScroll = document.documentElement.scrollTop;
@@ -48,6 +52,11 @@ const ScrollToTop = () => {
   const handleMessage = () => {
     toggle();
   };
+console.log("currentLocation",currentLocation)
+  const hanldeShare=()=>{
+    console.log("8888888888888",currentLocation)
+    dispatch(postPath(currentLocation));
+  }
   return (
     <>
       <div id="progressBarContainer">
@@ -72,9 +81,9 @@ const ScrollToTop = () => {
             url: `${currentLocation}`,
             title: 'Share this Website by using'
           }}
-          onClick={() => console.info('share successful!')}>
-          <button className="icon-positionMessage icon-styleMessage shareButton">
-            <FaShareSquare />
+          onClick={() => hanldeShare}>
+          <button className="icon-positionMessage icon-styleMessage shareButton" onClick={hanldeShare}>
+            <FaShareSquare onClick={hanldeShare}/>
           </button>
         </RWebShare>
       </div>

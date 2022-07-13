@@ -1,16 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const postRegister = createAsyncThunk(
-  'register',
+export const postProductCart = createAsyncThunk(
+  'addProductreducer',
 
   async (data: any) => {
     const postData = await axios({
       method: 'POST',
-      url: 'http://localhost:8080/register',
+      url: 'http://localhost:8080/addToCart',
       data
     }).then((res) => {
-     console.log("registerres",res)
+     console.log("postProduct",res)
     });
     return postData;
   }
@@ -24,12 +24,12 @@ const teamInitialState = {
   }
 };
 
-const registerReducer = createSlice({
-  name: 'register',
+const addProductreducer = createSlice({
+  name: 'products',
   initialState: teamInitialState,
   reducers: {},
   extraReducers: {
-    [postRegister.fulfilled.type]: (state, action) => {
+    [postProductCart.fulfilled.type]: (state, action) => {
       state.playerList = {
         status: 'success',
         data: action.meta.arg,
@@ -39,4 +39,4 @@ const registerReducer = createSlice({
   }
 });
 
-export default registerReducer.reducer;
+export default addProductreducer.reducer;

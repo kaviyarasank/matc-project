@@ -53,7 +53,7 @@ const SecondCard = (props: any) => {
       </Card>
       <div className="cardtextdiv mt-3">
         <p className="cardtext">{props.name}</p>
-        <p className="prices">{props.price}</p>
+        <p className="prices">{props.price === undefined ? "$ 0" : props.price}</p>
       </div>
     </div>
   );

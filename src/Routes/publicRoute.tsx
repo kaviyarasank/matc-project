@@ -5,7 +5,7 @@ function PublicRouter() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Register />}></Route>
+        <Route path="*" element={<Register />}></Route>
       </Routes>
     </div>
   );

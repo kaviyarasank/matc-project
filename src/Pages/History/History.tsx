@@ -1,9 +1,33 @@
 import './History.scss';
 import { useReactToPrint } from 'react-to-print';
-import { useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProduct } from '../../Redux/getProductInfo';
+import { AppDispatch } from '../../Redux/Store';
 
 function History() {
-  let userData = JSON.parse(localStorage.getItem('cartProduct') || '{}');
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const playerList = useSelector((state: any) => state.getProduct.playerList);
+  
+  let userData = playerList?.data
+  const fetchPr = useCallback(() => {
+    try {
+      dispatch(fetchProduct());
+    } catch (err) {
+      console.log(err);
+    }
+  }, [dispatch]);
+
+  useEffect(()=>{
+    const timer = setTimeout(() => {
+      fetchPr();
+    }, 1000);
+    return () => clearTimeout(timer);
+  },[fetchPr])
+
+  
   let deliveryDate = JSON.parse(localStorage.getItem('deliveryDate') || '{}');
   var myCurrentDate = new Date();
   const componentRef = useRef<any>();

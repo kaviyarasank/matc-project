@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './Contact.scss';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { checkAuth } from '../../Helper/CheckAuth';
 
 function Contact() {
   const [value, setValue] = useState({
@@ -12,21 +13,71 @@ function Contact() {
     subject: '',
     message: ''
   });
+  const[error,setError]=useState<any>("")
   useEffect(() => {
     window.scrollTo(0, 0);
+    checkAuth();
   }, []);
   const handleChange = (e: any) => {
     setValue({ ...value, [e.target.name]: e.target.value });
+    setError({...error,[e.target.name]:""});
   };
   const notify = () =>
     toast.success('Message Send Successfully', {
       className: 'toast-success'
     });
-  const notifyFail = () =>
-    toast.error('All Field Should Be Mandatory', {
-      className: 'toast-error'
-    });
+
   const handleButton = () => {
+
+    var errorobject={name:"",email:"",Address:"",message:"",mobileNo:"",subject:""}
+    let emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    let numberPattern = /^[0-9]{10}$/;
+    if(!value.name){
+      errorobject.name="Name is required"
+    }
+    else{
+      setError({...error,"name":""});
+    }
+    
+    if(!value.email){
+      errorobject.email="Email is required "
+    }else if(!emailPattern.test(value.email)){
+      errorobject.email="Email is InValid format "
+    }
+    else{
+      setError({...error,"email":""});
+    }
+
+    if(!value.Address){
+      errorobject.Address="Address is required "
+    }
+    else{
+      setError({...error,"Address":""});
+    }
+
+    if(!value.message){
+      errorobject.message="message is required "
+    }
+    else{
+      setError({...error,"message":""});
+    }
+
+    if(!value.mobileNo){
+      errorobject.mobileNo="mobileNo is required "
+    }else if(!numberPattern.test(value.mobileNo)){
+      errorobject.mobileNo="mobileNo Accept Only 10 Degit"
+    }
+    else{
+      setError({...error,"mobileNo":""});
+    }
+
+    if(!value.subject){
+      errorobject.subject="subject is required "
+    }
+    else{
+      setError({...error,"subject":""});
+    }
+
     if (
       value.name !== '' &&
       value.email !== '' &&
@@ -44,8 +95,11 @@ function Contact() {
         subject: '',
         message: ''
       });
+      return true;
     } else {
-      notifyFail();
+      // notifyFail();
+      setError(errorobject);
+      return false
     }
   };
   return (
@@ -95,13 +149,17 @@ function Contact() {
                           className="form-control mt-2"
                           onChange={handleChange}></input>
                       </div>
+                      {error&&error?.name&&(
+                                    <small 
+                                    className="mb-3 text-normal errorTextColor">{error.name}</small>
+                                     )}
                     </div>
 
                     <div className="col-md-6">
                       <div className="md-form mb-0">
                         <label className="colorWhite">Your email</label>
                         <input
-                          type="text"
+                          type="email"
                           data-testid="con-email"
                           id="email"
                           name="email"
@@ -109,6 +167,10 @@ function Contact() {
                           className="form-control mt-2"
                           onChange={handleChange}></input>
                       </div>
+                      {error&&error?.email&&(
+                                    <small 
+                                    className="mb-3 text-normal errorTextColor">{error.email}</small>
+                                     )}
                     </div>
                   </div>
 
@@ -117,7 +179,7 @@ function Contact() {
                       <div className="md-form mb-0">
                         <label className="colorWhite mt-2">Contact Number</label>
                         <input
-                          type="text"
+                          type="number"
                           data-testid="con-mobileNo"
                           id="name"
                           name="mobileNo"
@@ -125,6 +187,10 @@ function Contact() {
                           className="form-control mt-2"
                           onChange={handleChange}></input>
                       </div>
+                      {error&&error?.mobileNo&&(
+                                    <small 
+                                    className="mb-3 text-normal errorTextColor">{error.mobileNo}</small>
+                                     )}
                     </div>
 
                     <div className="col-md-6">
@@ -139,6 +205,10 @@ function Contact() {
                           className="form-control mt-2"
                           onChange={handleChange}></input>
                       </div>
+                      {error&&error?.Address&&(
+                                    <small 
+                                    className="mb-3 text-normal errorTextColor">{error.Address}</small>
+                                     )}
                     </div>
                   </div>
 
@@ -155,6 +225,10 @@ function Contact() {
                           className="form-control mt-2"
                           onChange={handleChange}></input>
                       </div>
+                      {error&&error?.subject&&(
+                                    <small 
+                                    className="mb-3 text-normal errorTextColor">{error.subject}</small>
+                                     )}
                     </div>
                   </div>
 
@@ -170,6 +244,10 @@ function Contact() {
                           className="form-control md-textarea"
                           onChange={handleChange}></textarea>
                       </div>
+                      {error&&error?.message&&(
+                                    <small 
+                                    className="mb-3 text-normal errorTextColor">{error.message}</small>
+                                     )}
                     </div>
                   </div>
                 </form>

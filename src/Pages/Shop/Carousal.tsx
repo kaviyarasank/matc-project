@@ -18,7 +18,6 @@ const items = [
 ];
 
 const Card = (props:any) => {
-    console.log("nnnnnnnn",props)
   return (
     <li className="card">
       <img src={props.copy} alt="" className="caroImg"/>

@@ -11,6 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { likeState } from '../../Redux/LikeAction';
 import CarousalShop from "./Carousal";
+import { checkAuth } from '../../Helper/CheckAuth';
 
 function Shop() {
   const [loading, setLoading] = useState(false);
@@ -36,6 +37,7 @@ function Shop() {
 
   useEffect(() => {
     fetch();
+    checkAuth();
   }, [fetch]);
 
   useEffect(() => {

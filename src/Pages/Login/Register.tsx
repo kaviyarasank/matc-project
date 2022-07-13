@@ -12,6 +12,8 @@ import { postLogin } from '../../Redux/login';
 import Clock from './Login';
 import { fectchAccess } from '../../Redux/Access';
 import { postRegister } from '../../Redux/RegisterAction';
+import { fetchPathname } from '../../Redux/getPathname';
+import { postPath } from '../../Redux/pathAction';
 
 interface registerInter {
   name: string;
@@ -34,8 +36,6 @@ function Register() {
 
   const [login, setLogin] = useState(true);
 
-  const phoneRegExp =
-    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
   const schema = Yup.object().shape({
     name: Yup.string().required(),
     email: Yup.string().email('Invalid email format').required(),
@@ -46,7 +46,7 @@ function Register() {
         'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character'
       )
       .required(),
-      mobileNo: Yup.string().matches(phoneRegExp, 'Phone number is not valid').required(),
+      mobileNo: Yup.string().required().min(10).max(10),
       confirmPassword:Yup.string().required()
   });
   const handleLogin = () => {
@@ -61,22 +61,34 @@ function Register() {
     }
   }, [dispatch]);
 
+
+  const fetchPathnames = useCallback(() => {
+    try {
+      dispatch(fetchPathname());
+    } catch (err) {
+      console.log(err);
+    }
+  }, [dispatch]);
+
   useEffect(()=>{
     fetch();
-  },[fetch])
+    fetchPathnames();
+  },[fetch, fetchPathnames])
 
   const playerList = useSelector((state: any) => state.access.playerList);
  
+  const sharedPath = useSelector((state: any) => state.getPathInfo.playerList);
+ 
+  let localPath = sharedPath?.data[0]?.pathname
+  console.log("sharedPath",localPath)
   const notifySameUser = () =>
   toast.error('User Already Found', {
     className: 'toast-error'
   });
-  console.log("registerAccess",playerList)
   const [sameError, setSameError] = useState("")
 
   const handleRegister = (data: registerInter) => {
     const reEmail = playerList?.data?.find((val:any)=>val.email === data.email)
-    console.log('data00-->', reEmail);
     if(data.password === data.confirmPassword){
       if(reEmail !== undefined){
         notifySameUser();
@@ -90,6 +102,14 @@ function Register() {
     }
   };
 
+  useEffect(()=>{
+if(login){
+  const timer = setTimeout(() => {
+    dispatch(fectchAccess());
+  }, 1000);
+  return () => clearTimeout(timer);
+}
+  },[dispatch, login])
   const [error, setError] = useState('');
 
   const handleSignUp = () => {
@@ -105,14 +125,14 @@ function Register() {
       className: 'toast-success'
     });
 
+  let locationPath:any = localStorage.getItem("currentLocation");
+  console.log("locationPath",locationPath)
+
   let validEmail = false;
   let validPassword = false;
 
   const handleSubmit = (data: loginInter) => {
-
-    console.log("loginiiiii")
     playerList?.data?.forEach((res:any) => {
-      console.log("foreact",res)
       if(res.email === data.email){
         validEmail= true;
       }
@@ -120,13 +140,22 @@ function Register() {
         validPassword = true;
       }
     });
-
+var pathObject = {}
     if(validEmail && validPassword) {
-    localStorage.setItem('name', JSON.stringify(data));
-      dispatch(postLogin(data));
-      navigate('/');
-      setError('');
-      notifyLog();
+      if(localPath === undefined){
+        localStorage.setItem('name', JSON.stringify(data));
+          dispatch(postLogin(data));
+          navigate('/');
+          setError('');
+          notifyLog();
+      }else{
+        localStorage.setItem('name', JSON.stringify(data));
+        dispatch(postLogin(data));
+        dispatch(postPath(pathObject));
+        navigate(`${localPath}`);
+        setError('');
+        notifyLog();
+      }
     }else{
       notify();
       setError('InValid User');
@@ -146,7 +175,6 @@ function Register() {
           </div>
 
           <div className="col-md-6 bg-white xs-mx-2 md:mx-10 lg:mx-52 loginDivPadd">
-            <h3 className="pb-3 welcome">Welcome Back !</h3>
 
             <div className="form-style">
               <h3 className="welcome">Please Sign Up now</h3>

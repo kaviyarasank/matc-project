@@ -11,6 +11,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from '../Loader/loader';
 import "../../Pages/Contact/Contact.scss";
+import { postProduct } from '../../Redux/AddProducts';
+import { postAddress } from '../../Redux/AddressAction';
 
 function Cart() {
   let navigate = useNavigate();
@@ -47,9 +49,9 @@ function Cart() {
     }, []);
 
     const onToken = (token: any) => {
-      localStorage.setItem('address', JSON.stringify(token));
       notify();
-      localStorage.setItem('cartProduct', JSON.stringify(cart));
+      dispatch(postProduct(cart));
+      dispatch(postAddress(token));
       localStorage.setItem('productAmount', JSON.stringify(totalPrice));
       allClear();
       navigate('/Tracking');

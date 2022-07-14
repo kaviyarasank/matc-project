@@ -1,53 +1,18 @@
 import './Tracking.scss';
 import { useNavigate } from 'react-router-dom';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import timezone from '../../assets/timezone.png';
 import { Modal, ModalBody } from 'reactstrap';
 import { AiOutlineCloseSquare } from 'react-icons/ai';
-import { AppDispatch } from '../../Redux/Store';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchProduct } from '../../Redux/getProductInfo';
-import { fetchAddress } from "../../Redux/getAddress";
 
 function Tracking() {
   const componentRef = useRef<any>();
   let navigate = useNavigate();
+  let userData = JSON.parse(localStorage.getItem('cartProduct') || '{}');
+  let address = JSON.parse(localStorage.getItem('address') || '{}');
   let profile = JSON.parse(localStorage.getItem('profile') || '{}');
   let amount = JSON.parse(localStorage.getItem('productAmount') || '{}');
-  const dispatch = useDispatch<AppDispatch>();
-
-
-  const playerList = useSelector((state: any) => state.getProduct.playerList);
-
-  const addresInfo = useSelector((state: any) => state.addressInfo.playerList);
-
-  let userData = playerList?.data
-  const address = addresInfo?.data[0]
-  const fetch = useCallback(() => {
-    try {
-      dispatch(fetchProduct());
-    } catch (err) {
-      console.log(err);
-    }
-  }, [dispatch]);
-
-
-  const getfetchAddress = useCallback(() => {
-    try {
-      dispatch(fetchAddress());
-    } catch (err) {
-      console.log(err);
-    }
-  }, [dispatch]);
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      fetch();
-      getfetchAddress()
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, [fetch, getfetchAddress])
-
 
   const backToOrder = () => {
     navigate('/');
@@ -88,14 +53,12 @@ function Tracking() {
                 </div>
                 <div className="col">
                   {' '}
-                  <strong>Delivery Address:</strong> <br /> {address?.card?.name}<br />
-                  {address === undefined && <div className="spinner-border text-danger mx-auto d-block" role="status">
-                    <span className="sr-only">Loading...</span>
-                  </div>}
-                  {address?.card?.address_line1}<br />
-                  {address?.card?.address_city}<br/>{address?.card?.address_zip}
+                  <strong>Delivery Address:</strong> <br /> {address?.card?.name},<br />
+                  {address?.card?.address_line1},<br />
+                  {address?.card?.address_city},{address?.card?.address_zip}
                   <br />
-                  {address?.card?.address_country}<br/>
+                  {address?.card?.address_country}, | <i className="fa fa-phone"></i>{' '}
+                  {profile?.mobileNo}.
                 </div>
                 <div className="col">
                   {' '}
@@ -146,8 +109,8 @@ function Tracking() {
             <hr />
 
             <ul className="row">
-              {Object.values(userData)?.map((data: any) => (
-                <li className="col-md-4">
+              {userData?.map((data: any, index: any) => (
+                <li className="col-md-4" key={index}>
                   <figure className="itemside mb-3">
                     <div className="aside">
                       <img src={data?.image} className="img-sm border" alt="" />
@@ -170,7 +133,11 @@ function Tracking() {
         </article>
 
         <div className="modalPopUp">
-          <Modal isOpen={modal} toggle={toggle} modalTransition={{ timeout: 500 }} className="modalmainContent">
+          <Modal
+            isOpen={modal}
+            toggle={toggle}
+            modalTransition={{ timeout: 500 }}
+            className="modalmainContent">
             <ModalBody className="modalBodyPopUp">
               <div className="modalpopRemit-wrapper">
                 <div className="modalpopRemit-title">
@@ -254,9 +221,11 @@ function Tracking() {
                                         </tr>
                                       </thead>
                                       <tbody>
-                                        {
-                                          Object.values(userData)?.map((data: any) => {
+                                        {userData &&
+                                          userData?.map((data: any) => {
+                                            console.log('dataaaa', data);
                                             return (
+                                              // eslint-disable-next-line react/jsx-key
                                               <tr>
                                                 <td>{data?.name}</td>
                                                 <td className="text-center">{data?.quantity}</td>

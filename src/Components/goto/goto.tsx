@@ -6,17 +6,13 @@ import ChatbotMessage from '../ChatBox/ChatBoat';
 import { TbMessageCircle } from 'react-icons/tb';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Modal, ModalBody } from 'reactstrap';
-import { AppDispatch } from '../../Redux/Store';
-import { useDispatch } from 'react-redux';
-import { postPath } from '../../Redux/pathAction';
 
 const ScrollToTop = () => {
   const [showTopBtn, setShowTopBtn] = useState(false);
   const [scroll, setScroll] = useState(0);
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
-  const dispatch = useDispatch<AppDispatch>();
-  
+
   useEffect(() => {
     let progressBarHandler = () => {
       const totalScroll = document.documentElement.scrollTop;
@@ -52,11 +48,6 @@ const ScrollToTop = () => {
   const handleMessage = () => {
     toggle();
   };
-console.log("currentLocation",currentLocation)
-  const hanldeShare=()=>{
-    console.log("8888888888888",currentLocation)
-    dispatch(postPath(currentLocation));
-  }
   return (
     <>
       <div id="progressBarContainer">
@@ -64,7 +55,11 @@ console.log("currentLocation",currentLocation)
       </div>
       <div className="top-to-btm">
         <div>
-          <Modal isOpen={modal} toggle={toggle} modalTransition={{ timeout: 500 }} className="modalmainContent">
+          <Modal
+            isOpen={modal}
+            toggle={toggle}
+            modalTransition={{ timeout: 500 }}
+            className="modalmainContent">
             <ModalBody>
               <ChatbotMessage />
             </ModalBody>
@@ -81,9 +76,9 @@ console.log("currentLocation",currentLocation)
             url: `${currentLocation}`,
             title: 'Share this Website by using'
           }}
-          onClick={() => hanldeShare}>
-          <button className="icon-positionMessage icon-styleMessage shareButton" onClick={hanldeShare}>
-            <FaShareSquare onClick={hanldeShare}/>
+          onClick={() => console.info('share successful!')}>
+          <button className="icon-positionMessage icon-styleMessage shareButton">
+            <FaShareSquare />
           </button>
         </RWebShare>
       </div>

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import './Contact.scss';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import { checkAuth } from '../../Helper/CheckAuth';
 
 function Contact() {
@@ -13,14 +12,14 @@ function Contact() {
     subject: '',
     message: ''
   });
-  const[error,setError]=useState<any>("")
+  const [error, setError] = useState<any>('');
   useEffect(() => {
     window.scrollTo(0, 0);
     checkAuth();
   }, []);
   const handleChange = (e: any) => {
     setValue({ ...value, [e.target.name]: e.target.value });
-    setError({...error,[e.target.name]:""});
+    setError({ ...error, [e.target.name]: '' });
   };
   const notify = () =>
     toast.success('Message Send Successfully', {
@@ -28,54 +27,47 @@ function Contact() {
     });
 
   const handleButton = () => {
-
-    var errorobject={name:"",email:"",Address:"",message:"",mobileNo:"",subject:""}
-    let emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    var errorobject = { name: '', email: '', Address: '', message: '', mobileNo: '', subject: '' };
+    let emailPattern = /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/;
     let numberPattern = /^[0-9]{10}$/;
-    if(!value.name){
-      errorobject.name="Name is required"
-    }
-    else{
-      setError({...error,"name":""});
-    }
-    
-    if(!value.email){
-      errorobject.email="Email is required "
-    }else if(!emailPattern.test(value.email)){
-      errorobject.email="Email is InValid format "
-    }
-    else{
-      setError({...error,"email":""});
+    if (!value.name) {
+      errorobject.name = 'Name is required';
+    } else {
+      setError({ ...error, name: '' });
     }
 
-    if(!value.Address){
-      errorobject.Address="Address is required "
-    }
-    else{
-      setError({...error,"Address":""});
-    }
-
-    if(!value.message){
-      errorobject.message="message is required "
-    }
-    else{
-      setError({...error,"message":""});
+    if (!value.email) {
+      errorobject.email = 'Email is required ';
+    } else if (!emailPattern.test(value.email)) {
+      errorobject.email = 'Email is InValid format ';
+    } else {
+      setError({ ...error, email: '' });
     }
 
-    if(!value.mobileNo){
-      errorobject.mobileNo="mobileNo is required "
-    }else if(!numberPattern.test(value.mobileNo)){
-      errorobject.mobileNo="mobileNo Accept Only 10 Degit"
-    }
-    else{
-      setError({...error,"mobileNo":""});
+    if (!value.Address) {
+      errorobject.Address = 'Address is required ';
+    } else {
+      setError({ ...error, Address: '' });
     }
 
-    if(!value.subject){
-      errorobject.subject="subject is required "
+    if (!value.message) {
+      errorobject.message = 'message is required ';
+    } else {
+      setError({ ...error, message: '' });
     }
-    else{
-      setError({...error,"subject":""});
+
+    if (!value.mobileNo) {
+      errorobject.mobileNo = 'mobileNo is required ';
+    } else if (!numberPattern.test(value.mobileNo)) {
+      errorobject.mobileNo = 'mobileNo Accept Only 10 Degit';
+    } else {
+      setError({ ...error, mobileNo: '' });
+    }
+
+    if (!value.subject) {
+      errorobject.subject = 'subject is required ';
+    } else {
+      setError({ ...error, subject: '' });
     }
 
     if (
@@ -97,9 +89,8 @@ function Contact() {
       });
       return true;
     } else {
-      // notifyFail();
       setError(errorobject);
-      return false
+      return false;
     }
   };
   return (
@@ -113,18 +104,6 @@ function Contact() {
             type="video/mp4"
           />
         </video>
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          className={'toastMargin'}
-        />
         <div className="mainInput">
           <section className="mb-4 formsections container px-5 py-4">
             <h2 className="h1-responsive font-weight-bold text-center colorWhite">Contact us</h2>
@@ -149,10 +128,9 @@ function Contact() {
                           className="form-control mt-2"
                           onChange={handleChange}></input>
                       </div>
-                      {error&&error?.name&&(
-                                    <small 
-                                    className="mb-3 text-normal errorTextColor">{error.name}</small>
-                                     )}
+                      {error && error?.name && (
+                        <small className="mb-3 text-normal errorTextColor">{error.name}</small>
+                      )}
                     </div>
 
                     <div className="col-md-6">
@@ -167,10 +145,9 @@ function Contact() {
                           className="form-control mt-2"
                           onChange={handleChange}></input>
                       </div>
-                      {error&&error?.email&&(
-                                    <small 
-                                    className="mb-3 text-normal errorTextColor">{error.email}</small>
-                                     )}
+                      {error && error?.email && (
+                        <small className="mb-3 text-normal errorTextColor">{error.email}</small>
+                      )}
                     </div>
                   </div>
 
@@ -187,10 +164,9 @@ function Contact() {
                           className="form-control mt-2"
                           onChange={handleChange}></input>
                       </div>
-                      {error&&error?.mobileNo&&(
-                                    <small 
-                                    className="mb-3 text-normal errorTextColor">{error.mobileNo}</small>
-                                     )}
+                      {error && error?.mobileNo && (
+                        <small className="mb-3 text-normal errorTextColor">{error.mobileNo}</small>
+                      )}
                     </div>
 
                     <div className="col-md-6">
@@ -205,10 +181,9 @@ function Contact() {
                           className="form-control mt-2"
                           onChange={handleChange}></input>
                       </div>
-                      {error&&error?.Address&&(
-                                    <small 
-                                    className="mb-3 text-normal errorTextColor">{error.Address}</small>
-                                     )}
+                      {error && error?.Address && (
+                        <small className="mb-3 text-normal errorTextColor">{error.Address}</small>
+                      )}
                     </div>
                   </div>
 
@@ -225,10 +200,9 @@ function Contact() {
                           className="form-control mt-2"
                           onChange={handleChange}></input>
                       </div>
-                      {error&&error?.subject&&(
-                                    <small 
-                                    className="mb-3 text-normal errorTextColor">{error.subject}</small>
-                                     )}
+                      {error && error?.subject && (
+                        <small className="mb-3 text-normal errorTextColor">{error.subject}</small>
+                      )}
                     </div>
                   </div>
 
@@ -244,10 +218,9 @@ function Contact() {
                           className="form-control md-textarea"
                           onChange={handleChange}></textarea>
                       </div>
-                      {error&&error?.message&&(
-                                    <small 
-                                    className="mb-3 text-normal errorTextColor">{error.message}</small>
-                                     )}
+                      {error && error?.message && (
+                        <small className="mb-3 text-normal errorTextColor">{error.message}</small>
+                      )}
                     </div>
                   </div>
                 </form>

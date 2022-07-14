@@ -1,26 +1,23 @@
 import './Login.scss';
 import { Button, Input } from 'reactstrap';
-import { useCallback, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AppDispatch } from '../../Redux/Store';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { postLogin } from '../../Redux/login';
 import Clock from './Login';
-import { fectchAccess } from '../../Redux/Access';
-import { postRegister } from '../../Redux/RegisterAction';
-import { fetchPathname } from '../../Redux/getPathname';
-import { postPath } from '../../Redux/pathAction';
+import { getLocalStorageValues } from '../../Helper/localStore';
 
 interface registerInter {
   name: string;
   mobileNo: string;
   email: string;
   password: string;
-  confirmPassword:string;
+  confirmPassword: string;
 }
 
 interface loginInter {
@@ -28,13 +25,13 @@ interface loginInter {
   password: string;
 }
 
-
 function Register() {
   const dispatch = useDispatch<AppDispatch>();
 
   let navigate = useNavigate();
 
   const [login, setLogin] = useState(true);
+  const [sameError, setSameError] = useState('');
 
   const schema = Yup.object().shape({
     name: Yup.string().required(),
@@ -46,118 +43,50 @@ function Register() {
         'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character'
       )
       .required(),
-      mobileNo: Yup.string().required().min(10).max(10),
-      confirmPassword:Yup.string().required()
+    mobileNo: Yup.string().required().min(10).max(10),
+    confirmPassword: Yup.string().required()
   });
   const handleLogin = () => {
     setLogin(true);
   };
 
-  const fetch = useCallback(() => {
-    try {
-      dispatch(fectchAccess());
-    } catch (err) {
-      console.log(err);
-    }
-  }, [dispatch]);
-
-
-  const fetchPathnames = useCallback(() => {
-    try {
-      dispatch(fetchPathname());
-    } catch (err) {
-      console.log(err);
-    }
-  }, [dispatch]);
-
-  useEffect(()=>{
-    fetch();
-    fetchPathnames();
-  },[fetch, fetchPathnames])
-
-  const playerList = useSelector((state: any) => state.access.playerList);
- 
-  const sharedPath = useSelector((state: any) => state.getPathInfo.playerList);
- 
-  let localPath = sharedPath?.data[0]?.pathname
-  console.log("sharedPath",localPath)
-  const notifySameUser = () =>
-  toast.error('User Already Found', {
-    className: 'toast-error'
-  });
-  const [sameError, setSameError] = useState("")
-
   const handleRegister = (data: registerInter) => {
-    const reEmail = playerList?.data?.find((val:any)=>val.email === data.email)
-    if(data.password === data.confirmPassword){
-      if(reEmail !== undefined){
-        notifySameUser();
-      }else{
-        dispatch(postRegister(data));
-        localStorage.setItem('name', JSON.stringify(data));
-        setLogin(true);
-      }
-    }else{
-      setSameError("Password and ConfirmPassword DoesNot Matched"); 
+    if (data.password === data.confirmPassword) {
+      localStorage.setItem('name', JSON.stringify(data));
+      setLogin(true);
+    } else {
+      setSameError('Password and ConfirmPassword DoesNot Matched');
     }
   };
 
-  useEffect(()=>{
-if(login){
-  const timer = setTimeout(() => {
-    dispatch(fectchAccess());
-  }, 1000);
-  return () => clearTimeout(timer);
-}
-  },[dispatch, login])
   const [error, setError] = useState('');
 
   const handleSignUp = () => {
     setLogin(false);
   };
-  const notify = () =>
+  const invalidErrorToast = () =>
     toast.error('InValid User', {
       className: 'toast-error'
     });
 
-  const notifyLog = () =>
+  const loginToast = () =>
     toast.success('Login Successfully', {
       className: 'toast-success'
     });
 
-  let locationPath:any = localStorage.getItem("currentLocation");
-  console.log("locationPath",locationPath)
-
-  let validEmail = false;
-  let validPassword = false;
+  let acessLocalStorageValues = getLocalStorageValues();
+  let formEmail = acessLocalStorageValues?.email;
+  let fromPass = acessLocalStorageValues?.password;
 
   const handleSubmit = (data: loginInter) => {
-    playerList?.data?.forEach((res:any) => {
-      if(res.email === data.email){
-        validEmail= true;
-      }
-      if(res.password === data.password ){
-        validPassword = true;
-      }
-    });
-var pathObject = {}
-    if(validEmail && validPassword) {
-      if(localPath === undefined){
-        localStorage.setItem('name', JSON.stringify(data));
-          dispatch(postLogin(data));
-          navigate('/');
-          setError('');
-          notifyLog();
-      }else{
-        localStorage.setItem('name', JSON.stringify(data));
-        dispatch(postLogin(data));
-        dispatch(postPath(pathObject));
-        navigate(`${localPath}`);
-        setError('');
-        notifyLog();
-      }
-    }else{
-      notify();
+    console.log('');
+    if (data.email === formEmail && data.password === fromPass) {
+      navigate('/');
+      setError('');
+      dispatch(postLogin(data));
+      loginToast();
+    } else {
+      invalidErrorToast();
       setError('InValid User');
     }
   };
@@ -167,7 +96,7 @@ var pathObject = {}
   });
 
   return (
-    <div className="container registerMainCon" style={{ marginTop: '5rem', marginBottom: '1rem'}}>
+    <div className="container registerMainCon" style={{ marginTop: '5rem', marginBottom: '1rem' }}>
       {login === false ? (
         <div className="row divShadow">
           <div className="col-md-6 d-none d-md-block loginClocknone">
@@ -175,7 +104,6 @@ var pathObject = {}
           </div>
 
           <div className="col-md-6 bg-white xs-mx-2 md:mx-10 lg:mx-52 loginDivPadd">
-
             <div className="form-style">
               <h3 className="welcome">Please Sign Up now</h3>
               <Formik
@@ -184,7 +112,7 @@ var pathObject = {}
                   email: '',
                   mobileNo: '',
                   password: '',
-                  confirmPassword:''
+                  confirmPassword: ''
                 }}
                 validationSchema={schema}
                 onSubmit={(data) => handleRegister(data)}>
@@ -248,11 +176,14 @@ var pathObject = {}
                         onBlur={formik.handleBlur}
                       />
                       <p className="errorMesg">
-                        {formik.touched.confirmPassword && formik.errors.confirmPassword || sameError}
+                        {(formik.touched.confirmPassword && formik.errors.confirmPassword) ||
+                          sameError}
                       </p>
                     </div>
                     <div className="pb-2">
-                      <Button type="submit" className="btn btn-dark loginSubBtn font-weight-bold mt-2">
+                      <Button
+                        type="submit"
+                        className="btn btn-dark loginSubBtn font-weight-bold mt-2">
                         Submit
                       </Button>
                     </div>

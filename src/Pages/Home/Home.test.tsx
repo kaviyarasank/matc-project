@@ -1,20 +1,19 @@
-import { render as rtlrender, cleanup, screen,fireEvent} from "@testing-library/react";
-import { Provider } from "react-redux";
-import { store } from "../../Redux/Store";
-import Home from "./Home";
-import { BrowserRouter} from "react-router-dom";
+import { render as rtlrender, cleanup, screen, fireEvent } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { store } from '../../Redux/Store';
+import Home from './Home';
+import { BrowserRouter } from 'react-router-dom';
 
-const render = (component: any) =>
-    rtlrender(<Provider store={store}>{component}</Provider>);
-    afterEach(cleanup);
+const render = (component: any) => rtlrender(<Provider store={store}>{component}</Provider>);
+afterEach(cleanup);
 
-describe("Home", () => {
-  test("render Home component Without crashing", () => {
-      render(
-        <BrowserRouter>
+describe('Home', () => {
+  test('render Home component Without crashing', () => {
+    render(
+      <BrowserRouter>
         <Home />
       </BrowserRouter>
-      );
+    );
   });
 
   test('first shop button', () => {
@@ -23,25 +22,17 @@ describe("Home", () => {
         <Home />
       </BrowserRouter>
     );
-    const SubmitButton = screen.getByTestId("firstShop-button")
+    const SubmitButton = screen.getByTestId('firstShop-button');
     fireEvent.click(SubmitButton);
-  })
+  });
 
   test('Fetch api calls', async () => {
-    render( <BrowserRouter>
-      <Home />
-    </BrowserRouter>)
-    const text = await screen.findByText("Popular Items")
-    expect(text).toBeInTheDocument()
-  })
-
-  // test('list api using axios', () => {
-  //   render(
-  //   <BrowserRouter>
-  //     <Home />
-  //   </BrowserRouter>);
-  //   const getApiList = screen.getByTestId("listApi-div")
-  //   expect(getApiList).toBeInTheDocument();
-
-  // });
+    render(
+      <BrowserRouter>
+        <Home />
+      </BrowserRouter>
+    );
+    const text = await screen.findByText('Popular Items');
+    expect(text).toBeInTheDocument();
+  });
 });

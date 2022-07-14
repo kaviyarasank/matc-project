@@ -5,15 +5,6 @@ import Rating from '@mui/material/Rating';
 import '../CustomButton/Button.scss';
 import { Button } from 'button-customs';
 
-interface secondCards{
-  id:string;
-  image:string;
-  value:number;
-  addtocart:React.MouseEventHandler<HTMLButtonElement>;
-  name:string;
-  price:string;
-  likeButton:()=>void;
-}
 const SecondCard = (props: any) => {
   const [likes, setLikes] = React.useState(false);
   const handleLikes = () => {
@@ -46,14 +37,14 @@ const SecondCard = (props: any) => {
               boxShadow={''}
               border={'none'}
               backgroundSize={''}
-              fontSize={'15px'} 
-              />
+              fontSize={'15px'}
+            />
           </div>
         </CardBody>
       </Card>
       <div className="cardtextdiv mt-3">
         <p className="cardtext">{props.name}</p>
-        <p className="prices">{props.price === undefined ? "$ 0" : props.price}</p>
+        <p className="prices">{props.price === undefined ? '$ 0' : props.price}</p>
       </div>
     </div>
   );

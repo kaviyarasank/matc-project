@@ -10,9 +10,7 @@ import StripeCheckout from 'react-stripe-checkout';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from '../Loader/loader';
-import "../../Pages/Contact/Contact.scss";
-import { postProduct } from '../../Redux/AddProducts';
-import { postAddress } from '../../Redux/AddressAction';
+import '../../Pages/Contact/Contact.scss';
 
 function Cart() {
   let navigate = useNavigate();
@@ -49,9 +47,9 @@ function Cart() {
     }, []);
 
     const onToken = (token: any) => {
+      localStorage.setItem('address', JSON.stringify(token));
       notify();
-      dispatch(postProduct(cart));
-      dispatch(postAddress(token));
+      localStorage.setItem('cartProduct', JSON.stringify(cart));
       localStorage.setItem('productAmount', JSON.stringify(totalPrice));
       allClear();
       navigate('/Tracking');
@@ -107,6 +105,7 @@ function Cart() {
                           {cart &&
                             cart?.map((data: any) => {
                               return (
+                                // eslint-disable-next-line react/jsx-key
                                 <tr>
                                   <td>
                                     <div className="d-flex align-items-center">

@@ -1,3 +1,4 @@
+@import '../../App.scss';
 .cartmainDiv {
   margin-top: 6rem;
   // background-image: linear-gradient(to right, rgb(214, 129, 129) , rgb(160, 87, 77));
@@ -47,7 +48,7 @@
 .closemodal {
   font-size: 40px;
   float: right;
-  color: red;
+  color: $RedColor;
   cursor: pointer;
 }
 

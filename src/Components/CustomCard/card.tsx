@@ -9,13 +9,12 @@ interface data {
   price: string;
   image: string;
   addtocarts: any;
-  key: string;
 }
 
 const CardComponent = (props: data) => {
   return (
     <div>
-      <Card className="card-box" key={props.key}>
+      <Card className="card-box">
         <CardBody className="cardbodybox">
           <CardImg src={props.image} alt="Card image cap" className="cardimages" />
           <Rating name="simple-controlled" value={props.value} className="rating" />
@@ -41,7 +40,7 @@ const CardComponent = (props: data) => {
       </Card>
       <div className="cardtextdiv mt-3">
         <p className="cardtext">{props.name}</p>
-        <p className="prices">{props.price === undefined ? "$ 0" : props.price}</p>
+        <p className="prices">{props.price === undefined ? '$ 0' : props.price}</p>
       </div>
     </div>
   );

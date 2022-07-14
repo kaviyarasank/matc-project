@@ -1,5 +1,6 @@
 import SecondCard from '../../Components/CustomCard/secondCard';
 import './Shop.scss';
+import React from 'react';
 import { fetchPlayerList } from '../../Redux/Action';
 import { AppDispatch } from '../../Redux/Store';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,10 +8,9 @@ import { useCallback, useEffect, useState } from 'react';
 import Loader from '../../Components/Loader/loader';
 import { addToCart } from '../../Redux/CardAction';
 import { v4 as uuid } from 'uuid';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import { likeState } from '../../Redux/LikeAction';
-import CarousalShop from "./Carousal";
+import CarousalShop from './Carousal';
 import { checkAuth } from '../../Helper/CheckAuth';
 
 function Shop() {
@@ -21,7 +21,7 @@ function Shop() {
       className: 'toast-success'
     });
   const playerList = useSelector((state: any) => state.team.playerList);
-  let newCardDatas = playerList?.data?.results?.map((data: any) => {
+  let newShopProductsList = playerList?.data?.results?.map((data: any) => {
     return {
       ...data,
       id: uuid()
@@ -29,7 +29,10 @@ function Shop() {
   });
   const fetch = useCallback(() => {
     try {
-      dispatch(fetchPlayerList());
+      const timer = setTimeout(() => {
+        dispatch(fetchPlayerList());
+      }, 500);
+      return () => clearTimeout(timer);
     } catch (err) {
       console.log(err);
     }
@@ -41,16 +44,16 @@ function Shop() {
   }, [fetch]);
 
   useEffect(() => {
-    if (newCardDatas === undefined) {
+    if (newShopProductsList === undefined) {
       setLoading(true);
     }
-  }, [newCardDatas]);
+  }, [newShopProductsList]);
 
   useEffect(() => {
-    if (newCardDatas) {
+    if (newShopProductsList) {
       setLoading(false);
     }
-  }, [newCardDatas]);
+  }, [newShopProductsList]);
 
   const addProducts = useCallback(
     (product: any) => {
@@ -66,7 +69,7 @@ function Shop() {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleAdd = (product: any) => {
+  const handleAdd = (product: React.MouseEvent<HTMLOptionElement>) => {
     let cartProduct = {
       ...product,
       count: 1
@@ -85,7 +88,7 @@ function Shop() {
     [dispatch]
   );
 
-  const handleLike = (data: any) => {
+  const handleLike = (data: React.MouseEvent<HTMLOptionElement>) => {
     let cartProduct = {
       ...data,
       like: true
@@ -96,30 +99,18 @@ function Shop() {
   return (
     <div className="shop">
       <div className="firstDiv">
-      <div className="carosual">
-        <CarousalShop/>
+        <div className="carosual">
+          <CarousalShop />
         </div>
       </div>
       <div className="secondDiv container">
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          className={'toastMargin'}
-        />
-        {newCardDatas === undefined && <Loader />}
+        {newShopProductsList === undefined && <Loader />}
         {loading ? null : (
           <div className="row justify-content-center mt-5">
-            {newCardDatas &&
-              newCardDatas?.length > 0 &&
-              newCardDatas.map((data: any) => (
-                <div className="col-4 responsiveColHome">
+            {newShopProductsList &&
+              newShopProductsList?.length > 0 &&
+              newShopProductsList.map((data: any, index: any) => (
+                <div className="col-4 responsiveColHome" key={index}>
                   <SecondCard
                     likeButton={() => handleLike(data)}
                     name={data.name?.slice(0, 30)}

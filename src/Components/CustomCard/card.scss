@@ -1,5 +1,6 @@
+@import "../../App.scss";
 body {
-  background-color: #e0e0e0;
+  background-color: $bodyColor;
 }
 .card-box {
   position: relative;
@@ -7,7 +8,7 @@ body {
   height: 450px;
   border: none;
   border-radius: 24px !important;
-  background: #e0e0e0 !important;
+  background: $bodyColor !important;
   box-shadow: 13px 13px 24px #d0d0d0, -13px -13px 24px #f0f0f0 !important;
   transition: all 10s ease-in-out !important;
 }
@@ -78,12 +79,12 @@ body {
   margin-top: 10px;
 }
 .card-box:hover .cardButton {
-  background-color: #ff2020;
+  background-color: $RedColor;
   display: block !important;
 }
 .card-box:hover {
   border-radius: 24px !important;
-  background: #e0e0e0 !important;
+  background: $bodyColor !important;
   box-shadow: inset 13px 13px 24px #d0d0d0, inset -13px -13px 24px #f0f0f0 !important;
 }
 .cardtext {
@@ -103,7 +104,7 @@ body {
   z-index: 1;
 }
 .heartTrue {
-  color: #ff2020;
+  color: $RedColor;
   font-size: 40px;
   display: block;
   position: absolute;
@@ -116,5 +117,5 @@ body {
   font-size: 20px;
   margin-left: 10px;
   margin-top: -5px;
-  color: red;
+  color: $RedColor;
 }

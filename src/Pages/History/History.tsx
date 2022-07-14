@@ -1,33 +1,9 @@
 import './History.scss';
 import { useReactToPrint } from 'react-to-print';
-import { useCallback, useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchProduct } from '../../Redux/getProductInfo';
-import { AppDispatch } from '../../Redux/Store';
+import { useRef } from 'react';
 
 function History() {
-
-  const dispatch = useDispatch<AppDispatch>();
-
-  const playerList = useSelector((state: any) => state.getProduct.playerList);
-  
-  let userData = playerList?.data
-  const fetchPr = useCallback(() => {
-    try {
-      dispatch(fetchProduct());
-    } catch (err) {
-      console.log(err);
-    }
-  }, [dispatch]);
-
-  useEffect(()=>{
-    const timer = setTimeout(() => {
-      fetchPr();
-    }, 1000);
-    return () => clearTimeout(timer);
-  },[fetchPr])
-
-  
+  let userData = JSON.parse(localStorage.getItem('cartProduct') || '{}');
   let deliveryDate = JSON.parse(localStorage.getItem('deliveryDate') || '{}');
   var myCurrentDate = new Date();
   const componentRef = useRef<any>();
@@ -56,9 +32,9 @@ function History() {
           </tr>
         </thead>
         <tbody>
-          {userData?.map((data: any) => {
+          {userData?.map((data: any, index: any) => {
             return (
-              <tr>
+              <tr key={index}>
                 <td>{data?.name}</td>
                 <td>
                   <img src={data?.image} alt="" className="historyImages" />

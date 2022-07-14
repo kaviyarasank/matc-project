@@ -1,3 +1,4 @@
+@import '../../App.scss';
 .mainDivContact{
     margin-top: 6rem;
     width: 100%;
@@ -16,7 +17,7 @@
         height: fit-content;
     }
     .errorTextColor{
-        color: red;
+        color: $RedColor;
     }
   }
   @media only screen and (max-width:1849px){
@@ -24,7 +25,7 @@
       display: none;
     }
     .red{
-        color: red !important;
+        color:$RedColor !important;
         background: #ffffff !important;
     }
     .sendbtn{

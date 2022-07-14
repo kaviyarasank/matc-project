@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import './About.scss';
 
 function About() {
-  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

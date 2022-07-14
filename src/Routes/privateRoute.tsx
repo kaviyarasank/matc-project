@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Home from '../Pages/Home/Home';
 import { getLocalStorageValuesBoolean } from '../Helper/localStore';
-import Navigation from '../Nav';
+import Navigation from '../Pages/NavBar/Nav';
 import Cart from '../Components/cart/cart';
 import Footer from '../Components/Footer/Footer';
 import ScrollToTop from '../Components/goto/goto';
@@ -12,7 +12,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import Error from '../Helper/Error';
 import { Suspense, lazy } from 'react';
 import Loader from '../Components/Loader/loader';
-import "../Helper/Error.scss";
+import '../Helper/Error.scss';
 
 function PrivateRouter() {
   const localValues = getLocalStorageValuesBoolean();

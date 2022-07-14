@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nosifer&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Jomhuria&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
-
+@import '../../App.scss';
 .Home{
     margin-top: 6.2rem;
 }
@@ -37,11 +37,11 @@
     font-size: 20px;
     color: #ffffff;
     border:none;
-    background: #ff2020;
-    background: linear-gradient(to left, #ff2020 50%, rgb(57, 209, 57) 50%) right;
+    background: $RedColor;
+    background: linear-gradient(to left, $RedColor 50%, rgb(57, 209, 57) 50%) right;
     background-size: 200%;
     transition: .5s ease-out;
-    box-shadow: red 0px 1px 25px;
+    box-shadow: $RedColor 0px 1px 25px;
 }
 .homeshop-btn:hover{
   background-position: left;
@@ -77,7 +77,7 @@
 .popularItems{
     font-size: 30px;
     font-family: monospace,sans-serif;
-    color: rgb(233, 23, 23);
+    color: $RedColor;
     font-weight: bold;
 }
 .videoPlay{

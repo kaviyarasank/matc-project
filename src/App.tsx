@@ -1,37 +1,43 @@
 import axios from 'axios';
 import PrivateRouter from './Routes/privateRoute';
 import PublicRouter from './Routes/publicRoute';
-import { getLocalStorageValues } from './Helper/localStore';
+import { getLocalStorageValuesBoolean } from './Helper/localStore';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useCallback, useEffect, useState } from 'react';
-import { fectchAccess } from './Redux/Access';
-import { AppDispatch } from './Redux/Store';
-import { useDispatch, useSelector } from 'react-redux';
 
 function App() {
-  const dispatch = useDispatch<AppDispatch>();
-  const localValues = getLocalStorageValues();
-
-  console.log("localvalues--==>",localValues)
-  const notify = () =>
-    toast.error('INCOMING TOKEN EXPIRED', {
-      className: 'toast-error'
-    });
+  let localValuesBoolean = getLocalStorageValuesBoolean();
+  // const notify = () =>
+  //   toast.error('INCOMING TOKEN EXPIRED', {
+  //     className: 'toast-error'
+  //   });
   const notifySuccess = () =>
     toast.error('API EXCESSED OUT OF LIMIT', {
       className: 'toast-error'
     });
 
   const navigate = useNavigate();
-  const logout = () => {
-    navigate('/');
-    localStorage.removeItem('name');
-    // localStorage.removeItem('token');
-    notify();
+  // const logout = () => {
+  //   navigate('/');
+  //   localStorage.removeItem('name');
+  //   localStorage.removeItem('token');
+  //   notify();
+  // };
+  const refreshToken = () => {
+    let userData = JSON.parse(localStorage.getItem('token') || '{}');
+    const postData = axios({
+      method: 'POST',
+      url: 'http://localhost:8080/refresh',
+      headers: {
+        'X-access-token': `${userData.refreshToken}`
+      }
+    }).then((res) => {
+      console.log('response', res);
+      localStorage.setItem('token', JSON.stringify(res?.data));
+    });
+    return postData;
   };
-
   const logoutSuccess = () => {
     navigate('/');
     localStorage.removeItem('name');
@@ -39,37 +45,10 @@ function App() {
     notifySuccess();
   };
 
-  const fetch = useCallback(() => {
-    try {
-      dispatch(fectchAccess());
-    } catch (err) {
-      console.log(err);
-    }
-  }, [dispatch]);
-
-  useEffect(()=>{
-    fetch();
-  },[fetch])
-
-  const playerList = useSelector((state: any) => state.access.playerList);
-
-  let validEmail = false;
-  let validPassword = false;
-
-  Object.values(playerList?.data)?.forEach((res:any) => {
-    if(res.email === localValues.email){
-      validEmail= true;
-    }
-    if(res.password === localValues.password ){
-      validPassword = true;
-    }
-  });
-
   axios.interceptors.request.use(
     (config: any) => {
-     let userData = JSON.parse(localStorage.getItem('token') || '{}');
-
-      config.headers['X-access-token']=`${userData?.Token}`
+      let userData = JSON.parse(localStorage.getItem('token') || '{}');
+      config.headers['X-access-token'] = `${userData?.Token}`;
       return config;
     },
     function (error: any) {
@@ -77,34 +56,20 @@ function App() {
     }
   );
 
-
   axios.interceptors.response.use(
     (response: any) => {
-      console.log('responsemmm', response);
-      if(response){
-       
-      }
       if (response?.data?.statusCode === 403) {
         logoutSuccess();
       }
-      if(response?.data?.status === "LoginSuccess"){
-
-      }
       return response;
     },
-    function (error) {
-      console.log('error=======>', error);
-
+    function (error: any) {
       if (error?.response?.status === 401) {
-        logout();
+        refreshToken();
       }
       return Promise.reject(error);
     }
   );
-
-
-  
-
 
   return (
     <div className="App">
@@ -120,7 +85,7 @@ function App() {
         pauseOnHover
         className={'toastMargin'}
       />
-      {validEmail && validPassword  ? <PrivateRouter /> : <PublicRouter />}
+      {localValuesBoolean ? <PrivateRouter /> : <PublicRouter />}
     </div>
   );
 }

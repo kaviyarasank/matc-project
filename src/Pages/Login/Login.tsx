@@ -1,5 +1,5 @@
-import "./Clock.scss";
-import timezone from "../../assets/loginLogo.png";
+import './Clock.scss';
+import timezone from '../../assets/loginLogo.png';
 
 function Clock() {
   var myCurrentDate = new Date();
@@ -15,13 +15,6 @@ function Clock() {
           <div className="watch-strap-holder right-up"></div>
           <div className="watch-strap-holder right-bottom"></div>
           <div className="watch-lace">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
             <span className="top"></span>
             <span className="bottom"></span>
           </div>
@@ -30,15 +23,12 @@ function Clock() {
           <div className="reflection"></div>
           <div className="reflection bottom"></div>
           <div className="watch-center">
-           
             <div className="watch-tips">
               <span className="hours"></span>
               <span className="minutes"></span>
               <span className="seconds"></span>
             </div>
-            <div className="watch-date">
-              {myCurrentDate.toString()?.slice(0, 10)}
-            </div>
+            <div className="watch-date">{myCurrentDate.toString()?.slice(0, 10)}</div>
             <div className="watch-alert">
               <img src={timezone} alt="" />
             </div>
@@ -55,17 +45,7 @@ function Clock() {
               </ul>
             </div>
             <div className="watch-day">
-              <div className="sun">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>
+              <div className="sun"></div>
             </div>
             <div className="watch-week days">
               <span className="week-arrow"></span>

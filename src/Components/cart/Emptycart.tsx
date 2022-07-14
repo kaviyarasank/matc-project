@@ -8,9 +8,9 @@ function Empty() {
     navigate('/');
   };
   const Title = styled.h1`
-  text-align: center;
-  color: blue;
-`;
+    text-align: center;
+    color: blue;
+  `;
   return (
     <div className="EmptymainDiv">
       <div className="emptysecDiv">

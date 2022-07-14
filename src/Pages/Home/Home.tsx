@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import CardComponent from '../../Components/CustomCard/card';
 import './Home.scss';
 import SecondCard from '../../Components/CustomCard/secondCard';
@@ -13,57 +13,59 @@ import Loader from '../../Components/Loader/loader';
 import { addToCart } from '../../Redux/CardAction';
 import { v4 as uuid } from 'uuid';
 import { likeState } from '../../Redux/LikeAction';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import Button from '../../Components/CustomButton/Button';
-import {checkAuth} from "../../Helper/CheckAuth";
-import { postProductCart } from '../../Redux/AddToCart';
+import { checkAuth } from '../../Helper/CheckAuth';
 
 function Home() {
   let navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const [loading, setLoading] = useState(false);
-  const playerList = useSelector((state: any) => state.team.playerList);
-  let newCardDatas = playerList?.data?.results?.map((data: any) => {
+  const productList = useSelector((state: any) => state.team.playerList);
+  let newListDatas = productList?.data?.results?.map((data: any) => {
     return {
       ...data,
       id: uuid()
     };
   });
-  const notify = () =>
+  const productAddedToast = () =>
     toast.success('Product Added Successfully', {
       className: 'toast-success'
     });
-  const fetch = useCallback(() => {
+  const fetchProductList = useCallback(() => {
     try {
-      dispatch(fetchPlayerList());
+      const timer = setTimeout(() => {
+        dispatch(fetchPlayerList());
+      }, 500);
+      return () => clearTimeout(timer);
     } catch (err) {
       console.log(err);
     }
   }, [dispatch]);
 
   useEffect(() => {
-    fetch();
+    fetchProductList();
     checkAuth();
-  }, [fetch]);
-  useEffect(() => {
-    if (newCardDatas === undefined) {
-      setLoading(true);
-    }
-  }, [newCardDatas]);
+  }, [fetchProductList]);
 
   useEffect(() => {
-    if (newCardDatas) {
+    if (newListDatas === undefined) {
+      setLoading(true);
+    }
+  }, [newListDatas]);
+
+  useEffect(() => {
+    if (newListDatas) {
       setLoading(false);
     }
-  }, [newCardDatas]);
+  }, [newListDatas]);
 
   const shopNow = () => {
     navigate('/shop');
   };
 
   const addProducts = useCallback(
-    (product: any) => {
+    (product: React.MouseEvent<HTMLOptionElement>) => {
       try {
         dispatch(addToCart(product));
       } catch (err) {
@@ -73,14 +75,13 @@ function Home() {
     [dispatch]
   );
 
-  const handleAdd = (product: any) => {
+  const handleAdd = (product: React.MouseEvent<HTMLOptionElement>) => {
     let cartProduct = {
       ...product,
       count: 1
     };
     addProducts(cartProduct);
-    notify();
-    dispatch(postProductCart(cartProduct))
+    productAddedToast();
   };
 
   const addLikes = useCallback(
@@ -94,7 +95,7 @@ function Home() {
     [dispatch]
   );
 
-  const handleLike = (data: any) => {
+  const handleLike = (data: React.MouseEvent<HTMLOptionElement>) => {
     let cartProduct = {
       ...data,
       like: true
@@ -103,18 +104,6 @@ function Home() {
   };
   return (
     <div className="Home">
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        className={'toastMargin'}
-      />
       <div className="home-shopDiv">
         <div className="container">
           <div className="d-flex">
@@ -123,7 +112,7 @@ function Home() {
                 Select Your New
                 <br /> Perfect Style
               </p>
-                  <h5 className="quotes">
+              <h5 className="quotes">
                 “Everyone looks at your watch and it represents who you are,
                 <br /> your values and your personal style.”
               </h5>
@@ -151,15 +140,14 @@ function Home() {
       <div className="homeshop-divtwo">
         <div className="container">
           <h1 className="popular mt-5">New Arrivals</h1>
-          {newCardDatas === undefined && <Loader />}
+          {newListDatas === undefined && <Loader />}
           {loading ? null : (
             <div className="row justify-content-center mt-5">
-              {newCardDatas &&
-                newCardDatas?.length > 0 &&
-                newCardDatas?.slice(3, 6).map((data: any) => (
-                  <div className="col-4 responsiveColHome" data-testid="listApi-div">
+              {newListDatas &&
+                newListDatas?.length > 0 &&
+                newListDatas?.slice(3, 6).map((data: any, index: any) => (
+                  <div className="col-4 responsiveColHome" data-testid="listApi-div" key={index}>
                     <CardComponent
-                      key={uuid()}
                       name={data.name?.slice(0, 30)}
                       image={data.image}
                       price={data.price_string?.slice(0, 10)}
@@ -175,13 +163,13 @@ function Home() {
             Rolex watches are crafted with scrupulous attention to detail
           </p>
           <div className="mt-5">
-            {newCardDatas === undefined && <Loader />}
+            {newListDatas === undefined && <Loader />}
             {loading ? null : (
               <div className="row justify-content-center mt-5">
-                {newCardDatas &&
-                  newCardDatas?.length > 0 &&
-                  newCardDatas.map((data: any) => (
-                    <div className="col-4 responsiveColHome">
+                {newListDatas &&
+                  newListDatas?.length > 0 &&
+                  newListDatas.map((data: any, index: any) => (
+                    <div className="col-4 responsiveColHome" key={index}>
                       <SecondCard
                         likeButton={() => handleLike(data)}
                         name={data.name?.slice(0, 30)}

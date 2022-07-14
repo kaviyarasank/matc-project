@@ -1,65 +1,33 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Profile.scss';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import { getLocalStorageValues } from '../../Helper/localStore';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch } from '../../Redux/Store';
-import { postProfile } from '../../Redux/ProfileAction';
-import { fetchProfile } from '../../Redux/getProfileInfoAction';
 
 function Profile() {
   const local = getLocalStorageValues();
-  const dispatch = useDispatch<AppDispatch>();
-  
+
   const [img, setImg] = useState<any>(
     'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg'
   );
 
-  const playerList = useSelector((state: any) => state.getProfile.playerList);
-  
-  let userData = JSON.parse(localStorage.getItem("name") || "{}");
-  console.log("userDatauserData",userData.email)
-  const data:any = Object.values(playerList?.data)?.find((val:any)=>val.email === userData.email)
-  console.log("profileUserData",data)
-  console.log("ProfileplayerList",Object.values(playerList.data)?.find((val:any)=>val.email === userData.email))
-
-  const fetch = useCallback(() => {
-    try {
-      dispatch(fetchProfile());
-    } catch (err) {
-      console.log(err);
-    }
-  }, [dispatch]);
-
-  useEffect(()=>{
-    fetch();
-  },[fetch])
-
-  const [value, setValue] = useState<any>({
-    name: '',
+  const [value, setValue] = useState({
+    name: '' || local.name,
     surname: '',
-    mobileNo: '',
+    mobileNo: '' || local.mobileNo,
     address1: '',
     address2: '',
     postalCode: '',
     state: '',
     city: '',
-    email: '',
+    email: '' || local.email,
     country: ''
   });
-  useEffect(()=>{
-if(data !== undefined){
-  setValue(data)
-}
-  },[data])
-
-  const notify = () =>
+  const profileUpdatedMsg = () =>
     toast.success('Profile Updated Successfully', {
       className: 'toast-success'
     });
 
-  const [read, setRead] = useState(true);
+  const [read, setRead] = useState(false);
   const handleImage = (e: any) => {
     setImg(URL.createObjectURL(e.target.files[0]));
   };
@@ -82,30 +50,29 @@ if(data !== undefined){
       country: value.country,
       img: img
     };
-    // localStorage.setItem('profile', JSON.stringify(data));
-    dispatch(postProfile(data));
+    localStorage.setItem('profile', JSON.stringify(data));
     setRead(true);
-    notify();
+    profileUpdatedMsg();
   };
   const editProfile = () => {
     setRead(false);
   };
-  // const getLocalStorageValuesProfile = () => {
-  //   let userData = JSON.parse(localStorage.getItem('profile') || '{}');
-  //   return userData;
-  // };
-  // let userDataProfile = getLocalStorageValuesProfile();
+  const getLocalStorageValuesProfile = () => {
+    let userData = JSON.parse(localStorage.getItem('profile') || '{}');
+    return userData;
+  };
+  let userDataProfile = getLocalStorageValuesProfile();
 
-  // useEffect(() => {
-  //   if (userDataProfile !== {}) {
-  //     setRead(true);
-  //     setValue(userDataProfile);
-  //   } else {
-  //     setRead(false);
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (userDataProfile !== {}) {
+      setRead(true);
+      setValue(userDataProfile);
+    } else {
+      setRead(false);
+    }
+  }, []);
 
-  // console.log('userDataProfile', userDataProfile);
+  console.log('userDataProfile', userDataProfile);
   return (
     <div className="ProfileMainDiv">
       <div className="container rounded bg-white mt-5 mb-5">
@@ -116,16 +83,13 @@ if(data !== undefined){
               {read === false && (
                 <input className="" type="file" onChange={handleImage} disabled={read} />
               )}
-              <span className="font-weight-bold mt-4">{data?.name}</span>
-              <span className="text-black-50">{data?.email}</span>
+              <span className="font-weight-bold mt-4">{userDataProfile?.name}</span>
+              <span className="text-black-50">{userDataProfile?.email}</span>
               <span> </span>
             </div>
           </div>
           <div className="col-md-5 border-right">
             <div className="p-3 py-5">
-              <div>
-                <ToastContainer className="toastMargin" />
-              </div>
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <h4 className="text-right profileHead">Profile Settings</h4>
               </div>

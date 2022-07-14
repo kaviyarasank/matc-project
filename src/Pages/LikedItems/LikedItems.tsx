@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Card, CardBody, CardImg } from 'reactstrap';
-import Accordion from 'react-bootstrap/Accordion';
 import './LikedItems.scss';
 import { AiOutlineCloseSquare } from 'react-icons/ai';
 import { clearLikes } from '../../Redux/LikeAction';
@@ -9,7 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
 import { useCallback } from 'react';
 import { addToCart } from '../../Redux/CardAction';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
+import React from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 
 function LikedItems() {
@@ -39,7 +39,7 @@ function LikedItems() {
     [dispatch]
   );
 
-  const handleAdd = (product: any) => {
+  const handleAdd = (product: React.MouseEvent<HTMLOptionElement>) => {
     let cartProduct = {
       ...product,
       count: 1
@@ -50,59 +50,32 @@ function LikedItems() {
 
   return (
     <div className="likeFirstDiv">
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        className={'toastMargin'}
-      />
       <h1 className="d-none">LikedItems</h1>
       {res?.length > 0 ? (
         <div className="container">
           <div className="row justify-content-center mt-5">
             {res &&
               res?.length > 0 &&
-              res?.map((data: any) => (
-                <div className="col-4 mt-5 responsiveColHome">
+              res?.map((data: any, index: any) => (
+                <div className="col-4 mt-5 responsiveColHome" key={index}>
                   <Card className="card-boxLike">
                     <AiOutlineCloseSquare
                       className="closemodal"
                       onClick={() => closeLikedItems(data?.id)}
                     />
                     <CardBody className="cardbodybox">
-                      <CardImg
-                        src={data.image}
-                        alt="Card image cap"
-                        className="cardimages"
-                      />
+                      <CardImg src={data.image} alt="Card image cap" className="cardimages" />
                       <Button
                         data-testid="submitbutton"
                         className="cardButtonlike"
                         onClick={() => handleAdd(data)}>
                         {'Add To Cart'}
                       </Button>
-                      <Accordion>
-                        <Accordion.Item eventKey={data?.id} className="my-2">
-                          <Accordion.Header>Details</Accordion.Header>
-                          <Accordion.Body>
-                            <p className="cardtext">Name : {data?.name}</p>
-                            <p className="prices"> Price : {data?.price_string}</p>
-                            <Rating
-                              name="simple-controlled"
-                              value={data?.rating}
-                              className="rating"
-                            />
-                            <p className="cardtext">Reviews : {data?.total_reviews}</p>
-                            <p className="cardtext">Stock : {data?.availability_quantity}</p>
-                          </Accordion.Body>
-                        </Accordion.Item>
-                      </Accordion>
+                      <p className="cardtext">Name : {data?.name}</p>
+                      <p className="prices"> Price : {data?.price_string}</p>
+                      <Rating name="simple-controlled" value={data?.rating} className="rating" />
+                      <p className="cardtext">Reviews : {data?.total_reviews}</p>
+                      <p className="cardtext">Stock : {data?.availability_quantity}</p>
                     </CardBody>
                   </Card>
                 </div>

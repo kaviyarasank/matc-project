@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './Profile.scss';
 import { toast } from 'react-toastify';
 import { getLocalStorageValues } from '../../Helper/localStore';
+import { ProfilePageImg } from '../../Helper/Constants';
 
 function Profile() {
   const local = getLocalStorageValues();
@@ -244,11 +245,7 @@ function Profile() {
             </div>
           </div>
           <div className="col-md-4 border-right mt-5">
-            <img
-              src="https://media4.giphy.com/media/RQ8FoNOMI2ZMKKVK9c/giphy.gif?cid=ecf05e47h26k3141ia59wn52i2g6rd3y68xjsumt549qw4o6&rid=giphy.gif&ct=g"
-              className="profileimg"
-              alt=""
-            />
+            <img src={ProfilePageImg} className="profileimg" alt="" />
           </div>
         </div>
       </div>

@@ -67,7 +67,7 @@ function Navigation() {
         </ul>
       </div>
       <div className="login-div">
-        <div style={{ color }} className="hoverColor">
+        <div style={{ color }} className="hoverColor mt-1">
           {memoColor}
         </div>
         <p className="cartLength">{cart?.length}</p>

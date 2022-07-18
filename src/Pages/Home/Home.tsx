@@ -16,6 +16,8 @@ import { likeState } from '../../Redux/LikeAction';
 import { toast } from 'react-toastify';
 import Button from '../../Components/CustomButton/Button';
 import { checkAuth } from '../../Helper/CheckAuth';
+import { HomeVideo } from '../../Helper/Constants';
+import { HomeWatchImg } from '../../Helper/Constants';
 
 function Home() {
   let navigate = useNavigate();
@@ -123,20 +125,12 @@ function Home() {
                 Shop Now
               </button>
             </div>
-            <img
-              src="https://preview.colorlib.com/theme/timezone/assets/img/hero/xwatch.png.pagespeed.ic.LlRtijfV2T.webp"
-              className="watch"
-              alt=""
-            />
+            <img src={HomeWatchImg} className="watch" alt="" />
           </div>
         </div>
         <div></div>
       </div>
-      <img
-        src="https://preview.colorlib.com/theme/timezone/assets/img/hero/xwatch.png.pagespeed.ic.LlRtijfV2T.webp"
-        className="mobileviewwatch mt-5"
-        alt=""
-      />
+      <img src={HomeWatchImg} className="mobileviewwatch mt-5" alt="" />
       <div className="homeshop-divtwo">
         <div className="container">
           <h1 className="popular mt-5">New Arrivals</h1>
@@ -187,12 +181,7 @@ function Home() {
         </div>
         <div className="mt-5">
           <video className="videoPlayAbout" autoPlay loop>
-            <source
-              src={
-                'https://content.rolex.com/dam/watches/hubs/all-watches/videos/hub-collection-watches-cover.mp4'
-              }
-              type="video/mp4"
-            />
+            <source src={HomeVideo} type="video/mp4" />
           </video>
         </div>
         <div className="container mt-5">

@@ -8,41 +8,30 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   let localValuesBoolean = getLocalStorageValuesBoolean();
-  // const notify = () =>
-  //   toast.error('INCOMING TOKEN EXPIRED', {
-  //     className: 'toast-error'
-  //   });
+
   const notifySuccess = () =>
     toast.error('API EXCESSED OUT OF LIMIT', {
       className: 'toast-error'
     });
 
   const navigate = useNavigate();
-  // const logout = () => {
-  //   navigate('/');
-  //   localStorage.removeItem('name');
-  //   localStorage.removeItem('token');
-  //   notify();
-  // };
-  const refreshToken = () => {
-    let userData = JSON.parse(localStorage.getItem('token') || '{}');
-    const postData = axios({
-      method: 'POST',
-      url: 'http://localhost:8080/refresh',
-      headers: {
-        'X-access-token': `${userData.refreshToken}`
-      }
-    }).then((res) => {
-      console.log('response', res);
-      localStorage.setItem('token', JSON.stringify(res?.data));
-    });
-    return postData;
-  };
+
   const logoutSuccess = () => {
     navigate('/');
     localStorage.removeItem('name');
     localStorage.removeItem('token');
     notifySuccess();
+  };
+  const notify = () =>
+    toast.error('INCOMING TOKEN EXPIRED', {
+      className: 'toast-error'
+    });
+
+  const logOut = () => {
+    navigate('/');
+    localStorage.removeItem('name');
+    localStorage.removeItem('token');
+    notify();
   };
 
   axios.interceptors.request.use(
@@ -64,8 +53,20 @@ function App() {
       return response;
     },
     function (error: any) {
+      console.log('error', error);
       if (error?.response?.status === 401) {
-        refreshToken();
+        let userData = JSON.parse(localStorage.getItem('token') || '{}');
+        return axios({
+          method: 'POST',
+          url: 'http://localhost:8080/refresh',
+          headers: {
+            'X-access-token': `${userData.refreshToken}`
+          }
+        }).then((res) => {
+          localStorage.setItem('token', JSON.stringify(res?.data));
+        });
+      } else if (error?.response?.status === 402) {
+        return logOut();
       }
       return Promise.reject(error);
     }

@@ -68,9 +68,8 @@ const CarousalShop = () => {
         </button>
       </div>
       <ul onAnimationEnd={handleAnimationEnd} className={`${moveClass} carousel`}>
-        {carouselItems.map((data: any) => (
-          // eslint-disable-next-line react/jsx-key
-          <Card icon={data.icon} copy={data.copy} />
+        {carouselItems.map((data: any, index: any) => (
+          <Card icon={data.icon} copy={data.copy} key={index} />
         ))}
       </ul>
     </div>

@@ -46,9 +46,10 @@ function Footer() {
         <div className="col">
           <img src={timezone} alt="" data-testid="footer-image" />
           <div>
-            <p className="footer-link">
+            <p className="footer-link mx-auto text-center">
               {' '}
-              Asorem ipsum adipolor sdit amet, consectetur adipisicing elitcf sed do eiusmod tem.
+              Everyone looks at your watch and it represents who you are,your values and your
+              personal style.
             </p>
           </div>
         </div>
@@ -105,7 +106,6 @@ function Footer() {
           </div>
         </div>
         <div className="d-flex justify-content-center">
-          <p className="footer-copyright">Copyright ©2022 All rights reserved</p>
           <p className="footer-icon">
             <GrTwitter />
           </p>
@@ -116,6 +116,7 @@ function Footer() {
             <BsInstagram />
           </p>
         </div>
+        <p className="footer-copyright text-center">Copyright ©2022 All rights reserved</p>
       </div>
     </footer>
   );

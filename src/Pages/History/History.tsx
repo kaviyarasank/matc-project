@@ -10,13 +10,13 @@ function History() {
   const Print: any = useReactToPrint({
     content: () => componentRef.current
   });
-  const handle = () => {
+  const handlePrint = () => {
     Print();
   };
   return (
     <div className="History">
       <h1 className="mx-auto text-center ">History</h1>
-      <button onClick={handle} className="border-0 icon-styleTrack choicesbutton">
+      <button onClick={handlePrint} className="border-0 icon-styleTrack choicesbutton">
         Print Receipt
       </button>
       <table className="table tableHistory mt-5" ref={componentRef}>

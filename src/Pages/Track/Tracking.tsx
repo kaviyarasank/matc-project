@@ -222,11 +222,9 @@ function Tracking() {
                                       </thead>
                                       <tbody>
                                         {userData &&
-                                          userData?.map((data: any) => {
-                                            console.log('dataaaa', data);
+                                          userData?.map((data: any, index: any) => {
                                             return (
-                                              // eslint-disable-next-line react/jsx-key
-                                              <tr>
+                                              <tr key={index}>
                                                 <td>{data?.name}</td>
                                                 <td className="text-center">{data?.quantity}</td>
                                                 <td className="text-center">

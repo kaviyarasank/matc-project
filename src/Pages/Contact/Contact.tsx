@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './Contact.scss';
 import { toast } from 'react-toastify';
 import { checkAuth } from '../../Helper/CheckAuth';
+import { ContactVideo } from '../../Helper/Constants';
 
 function Contact() {
   const [value, setValue] = useState({
@@ -97,12 +98,7 @@ function Contact() {
     <div className="mainDivContact">
       <div className="contactSecondDiv">
         <video className="videoPlayContact" autoPlay loop>
-          <source
-            src={
-              'https://content.rolex.com/dam/homepage/hss/watches/professional-watches/explorer/m124273-0001/homepage-explorer-m124273-0001.mp4'
-            }
-            type="video/mp4"
-          />
+          <source src={ContactVideo} type="video/mp4" />
         </video>
         <div className="mainInput">
           <section className="mb-4 formsections container px-5 py-4">

@@ -11,6 +11,7 @@ import { addToCart } from '../../Redux/CardAction';
 import { toast } from 'react-toastify';
 import React from 'react';
 import 'react-toastify/dist/ReactToastify.css';
+import { LikedPageImg } from '../../Helper/Constants';
 
 function LikedItems() {
   const res = useSelector((state: any) => state?.like);
@@ -84,11 +85,7 @@ function LikedItems() {
         </div>
       ) : (
         <div className="emptysecDiv">
-          <img
-            src="https://24printing.ae/empty_wishlist.jpg"
-            alt=""
-            className="text-center mx-auto d-block likedImage"
-          />
+          <img src={LikedPageImg} alt="" className="text-center mx-auto d-block likedImage" />
           <p className="emptyPara mt-3">
             Return to the store to add items for your delivery slot. <br />
             Before proceed to checkout you must add some products to your shopping cart.

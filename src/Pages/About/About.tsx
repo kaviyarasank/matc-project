@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import './About.scss';
+import { AboutVideo } from '../../Helper/Constants';
 
 function About() {
   useEffect(() => {
@@ -10,12 +11,7 @@ function About() {
     <div className="aboutMain">
       <div className="firstDivabout">
         <video className="videoPlayAbout" autoPlay loop>
-          <source
-            src={
-              'https://content.rolex.com/dam/about-rolex-watches/hub/video/about-rolex-watches-cover.mp4'
-            }
-            type="video/mp4"
-          />
+          <source src={AboutVideo} type="video/mp4" />
         </video>
       </div>
       <div className="container aboutLineCon">
